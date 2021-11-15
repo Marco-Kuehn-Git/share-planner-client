@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class RestController {
+public class DataController {
 
     private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/vpr/all-events";
     private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/vpr/all-users";
