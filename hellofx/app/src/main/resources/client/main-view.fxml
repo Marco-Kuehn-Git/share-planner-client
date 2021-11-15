@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane gridLinesVisible="true" style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.MainController">
+<GridPane gridLinesVisible="true" style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.MainController">
     <columnConstraints>
         <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="60.0" />
         <ColumnConstraints hgrow="ALWAYS" />
