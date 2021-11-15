@@ -6,7 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import res.Event;
-import res.RestController;
+import res.DataController;
 
 public class MainController {
     @FXML
@@ -30,8 +30,8 @@ public class MainController {
 
     @FXML
     protected void onAddBtnClick(){
-        RestController restController = new RestController();
-        Event[] eventList = restController.getAllEvents();
+        DataController dataController = new DataController();
+        Event[] eventList = dataController.getAllEvents();
 
         for(Event event : eventList){
             Label label = new Label();

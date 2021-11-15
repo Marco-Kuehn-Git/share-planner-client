@@ -29,13 +29,13 @@ val jar by tasks.getting(Jar::class) {
     })
 }
 
-tasks.register("blabla", Copy::class) {
-    group = "dasdas"
+tasks.register("rebuild and move", Copy::class) {
+    group = "custom"
     dependsOn("clean")
     dependsOn("jar")
 
     from("$buildDir/libs/app.jar")
 
-    mkdir("$buildDir/newShit/")
-    into("$buildDir/newShit/")
+    mkdir("$buildDir/out/")
+    into("$buildDir/out/")
 }
