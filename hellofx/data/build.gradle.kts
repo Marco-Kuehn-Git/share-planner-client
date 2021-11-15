@@ -3,8 +3,8 @@ plugins {
 }
 
 dependencies {
-
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
-    implementation("com.fasterxml.jackson.core:jackson-core:2.13.0")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.13.0")
+    val jacksonVersion = "2.13.0"
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
 }
