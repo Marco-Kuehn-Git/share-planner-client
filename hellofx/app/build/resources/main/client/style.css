@@ -1,6 +1,13 @@
+GridPane{
+    -fx-background-color: #282C34;
+}
 
 .main-btn{
-    -fx-background-color: #424242;
+    -fx-background-color: #ffffff;
     -fx-text-fill: white;
-    -fx-border-radius: 50em;
+    -fx-background-radius: 5em;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
 }

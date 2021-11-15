@@ -16,20 +16,16 @@
     </rowConstraints>
     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #333333;">
         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+
         </ImageView>
-        <Button mnemonicParsing="false" onAction="#onAddBtnClick" prefHeight="50" prefWidth="50" styleClass="main-btn" text="ADD">
-        </Button>
-        <Button mnemonicParsing="false" prefHeight="50" prefWidth="50" style="-fx-background-color: #424242;" textAlignment="CENTER" textFill="WHITE">
+        <Button onAction="#onAddBtnClick" styleClass="main-btn">
             ADD
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
         </Button>
-        <Button mnemonicParsing="false" prefHeight="50" prefWidth="50" style="-fx-background-color: #424242;" textAlignment="CENTER" textFill="WHITE">
+        <Button onAction="#onAddBtnClick" styleClass="main-btn">
             ADD
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
+        </Button>
+        <Button onAction="#onAddBtnClick" styleClass="main-btn">
+            ADD
         </Button>
     </VBox>
     <GridPane fx:id="calendarGrid" gridLinesVisible="true" GridPane.columnIndex="1">
