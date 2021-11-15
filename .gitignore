@@ -70,5 +70,7 @@ crashlytics-build.properties
 
 #  by github https://github.com/github/gitignore/blob/master/Java.gitignore
 
-client/.gradle/
-client/build/
+hellofx/.gradle/
+hellofx/app/build/
+hellofx/data/build/
+hellofx/.gradle/buildOutputCleanup/
