@@ -1,5 +1,11 @@
-GridPane{
+.main-panel{
     -fx-background-color: #282C34;
+}
+
+.vbox-main{
+    -fx-background-color: #333333;
+    -fx-alignment: top-center;
+
 }
 
 Label{
@@ -15,3 +21,4 @@ Label{
     -fx-max-width: 40px;
     -fx-max-height: 40px;
 }
+
