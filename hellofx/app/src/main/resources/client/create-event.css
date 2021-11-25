@@ -3,6 +3,12 @@ GridPane{
     -fx-padding: 20px;
     -fx-font-size: 20px;
     -fx-font-family: Segoe UI;
+
+    -fx-border-insets: 1;
+    -fx-border-color: white;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(100, 100, 100, 1), 24, 0.5, 0, 0);
 }
 
 Label{
@@ -22,4 +28,8 @@ Label{
 
 .inputField{
     -fx-padding: 10px;
+}
+
+.mainButton{
+    -fx-font-weight: bold;
 }
