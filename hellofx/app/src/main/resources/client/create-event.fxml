@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane>
-    <Label>Terminerstellen</Label>
+<GridPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.MainController">
+
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints halignment="RIGHT"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+
+    <Label styleClass="mainLabel">Termin anlegen</Label>
+
+    <Label styleClass="inputLabel" GridPane.rowIndex="1">Datum:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="2">Titel:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="3">Zeit:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="4">Typ:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="5">Priorität:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="6">Ganztägig:</Label>
+
+    <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="1" maxWidth="300" minWidth="300"/>
+    <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" maxWidth="300" minWidth="300"/>
+    <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="3" maxWidth="300" minWidth="300"/>
+    <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="4" maxWidth="300" minWidth="300"/>
+    <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="5" maxWidth="100" minWidth="100"/>
+    <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+
+    <Button GridPane.columnIndex="3" GridPane.rowIndex="7" onAction="#createBtnClick" >Anlegen</Button>
+
 </GridPane>

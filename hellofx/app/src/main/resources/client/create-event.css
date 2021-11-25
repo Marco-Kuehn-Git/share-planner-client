@@ -1,3 +1,25 @@
 GridPane{
     -fx-background-color: #3E415F;
+    -fx-padding: 20px;
+    -fx-font-size: 20px;
+    -fx-font-family: Segoe UI;
+}
+
+Label{
+    -fx-text-fill: white;
+    -fx-max-width: 150px;
+    -fx-min-width: 150px;
+}
+
+.mainLabel{
+    -fx-background-color: #8D99AE;
+    -fx-padding: 10px;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.inputField{
+    -fx-padding: 10px;
 }

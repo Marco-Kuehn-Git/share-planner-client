@@ -2,6 +2,7 @@ package client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import res.Event;
 import res.DataController;
 
+import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -39,12 +41,13 @@ public class MainController {
     protected void onAddBtnClick(){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("create-event.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Scene scene = new Scene(fxmlLoader.load(), 700, 500);
             scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource("create-event.css")).toExternalForm());
             Stage stage = new Stage();
             stage.setTitle("Termin erstellen");
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.showAndWait();
         }
         catch (IOException e){
@@ -61,5 +64,11 @@ public class MainController {
             label.setTextFill(Color.WHITE);
             vBoxWen.getChildren().add(label);
         }
+    }
+
+    @FXML
+    protected void createBtnClick(ActionEvent event){
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }
