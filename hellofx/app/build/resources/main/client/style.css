@@ -2,6 +2,10 @@ GridPane{
     -fx-background-color: #282C34;
 }
 
+Label{
+    -fx-text-fill: white;
+}
+
 .main-btn{
     -fx-background-color: #ffffff;
     -fx-text-fill: white;
