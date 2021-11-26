@@ -1,0 +1,51 @@
+GridPane{
+    -fx-background-color: #2B2D42;
+}
+
+.main-panel{
+    -fx-background-color: #282C34;
+}
+
+.vbox-main{
+    -fx-background-color: #333333;
+    -fx-alignment: top-center;
+
+}
+
+.gridCalendar Line{
+    -fx-stroke: #B0B0B0;
+}
+
+.gridCalender{
+        -fx-background-color: #2B2D42;
+        -fx-min-height: 80px;
+        -fx-max-height: 80px;
+}
+
+.labelMonth{
+    -fx-padding: 0 0 0 20;
+    -fx-background-color: #77859E;
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+}
+
+.labelDays{
+    -fx-alignment: center;
+    -fx-background-color: #525E74;
+    -fx-font-size: 25px;
+}
+
+Label{
+    -fx-text-fill: white;
+}
+
+.main-btn{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: white;
+    -fx-background-radius: 5em;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+}
+
