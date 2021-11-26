@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane  style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.MainController">
+<GridPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.MainController">
     <columnConstraints>
         <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="60.0" />
         <ColumnConstraints hgrow="ALWAYS" />
@@ -13,7 +13,7 @@
     <rowConstraints>
         <RowConstraints vgrow="SOMETIMES" />
     </rowConstraints>
-    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #333333;">
+    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #525E74;">
         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 
         </ImageView>
@@ -34,18 +34,18 @@
         </columnConstraints>
         <rowConstraints>
             <RowConstraints />
-            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS" />
         </rowConstraints>
-        <Label styleClass="labelMonth" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelMonth" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
             Monat
             <padding>
                 <Insets left="5" />
             </padding>
         </Label>
 
-        <GridPane fx:id="calendarGrid" gridLinesVisible="true" styleClass="gridCalendar" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <GridPane fx:id="calendarGrid" gridLinesVisible="true"  styleClass="gridCalendar" GridPane.columnIndex="0" GridPane.rowIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" maxWidth="14.2857142857" minWidth="14.2857142857" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="14.2857142857" minWidth="14.2857142857" percentWidth="14.2857142857" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
@@ -57,43 +57,43 @@
                 <RowConstraints maxHeight="55.0" minHeight="25.0" vgrow="NEVER" />
                 <RowConstraints percentHeight="-Infinity" vgrow="ALWAYS" />
             </rowConstraints>
-            <Label styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 Montag
                 <padding>
                     <Insets left="5" />
                 </padding>
             </Label>
-            <Label styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 Dienstag
                 <padding>
                     <Insets left="5" />
                 </padding>
             </Label>
-            <Label styleClass="labelDays"  textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0">
                 Mittwoch
                 <padding>
                     <Insets left="5" />
                 </padding>
             </Label>
-            <Label styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="0">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="0">
                 Donnerstag
                 <padding>
                     <Insets left="5" />
                 </padding>
             </Label>
-            <Label styleClass="labelDays"  textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="0">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="0">
                 Freitag
                 <padding>
                     <Insets left="5" />
                 </padding>
             </Label>
-            <Label  styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="0">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="0">
                 Samstag
                 <padding>
                     <Insets left="5" />
                 </padding>
             </Label>
-            <Label styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="0">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="0">
                 Sonntag
                 <padding>
                     <Insets left="5" />

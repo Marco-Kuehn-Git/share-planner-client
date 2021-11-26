@@ -1,3 +1,7 @@
+GridPane{
+    -fx-background-color: #2B2D42;
+}
+
 .main-panel{
     -fx-background-color: #282C34;
 }
@@ -9,22 +13,26 @@
 }
 
 .gridCalendar Line{
-    -fx-stroke: white;
+    -fx-stroke: #B0B0B0;
 }
 
 .gridCalender{
+        -fx-background-color: #2B2D42;
         -fx-min-height: 80px;
         -fx-max-height: 80px;
 }
 
 .labelMonth{
+    -fx-padding: 0 0 0 20;
+    -fx-background-color: #77859E;
     -fx-font-size: 35px;
     -fx-font-weight: bold;
 }
 
 .labelDays{
+    -fx-alignment: center;
     -fx-background-color: #525E74;
-    -fx-font-size: 30px;
+    -fx-font-size: 25px;
 }
 
 Label{
