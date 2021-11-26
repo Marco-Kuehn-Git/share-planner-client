@@ -5,7 +5,7 @@ GridPane{
     -fx-font-family: Segoe UI;
 
     -fx-border-insets: 1;
-    -fx-border-color: white;
+    -fx-border-color: #B0B0B0;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(three-pass-box, rgba(100, 100, 100, 1), 24, 0.5, 0, 0);
