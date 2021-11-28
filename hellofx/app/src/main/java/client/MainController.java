@@ -122,9 +122,9 @@ public class MainController {
         Button deleteBtn = new Button();
         deleteBtn.setText(" X ");
         deleteBtn.setOnAction(e -> {
-            LocalDateTime eventDate = event.getDate();
-            int day = (int)Duration.between(weekStartDateTime.toLocalDate().atStartOfDay(), eventDate.toLocalDate().atStartOfDay()).toDays();
-            dayVBoxes[day].getChildren().remove(vBox);
+            DataController dataController = new DataController();
+            dataController.deleteEvent(event.getId());
+            updateEvents();
         });
         Button editBtn = new Button();
         editBtn.setText("edit");

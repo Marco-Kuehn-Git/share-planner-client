@@ -17,16 +17,25 @@ public class DataController {
     private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/vpr/all-events";
     private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/vpr/all-users";
     private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/vpr/add-event";
+    private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/vpr/del-event";
 
-    private HttpRequest httpRequest;
+    private final HttpRequest httpRequest;
 
     public DataController(){
         httpRequest = new HttpRequest();
     }
 
-    public void CreateEvent(Event event){
+    public void createEvent(Event event){
         try {
             System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteEvent(int eventId){
+        try {
+            System.out.println(httpRequest.sendPostRequest(DELETE_EVENT_ENDPOINT, "eventId=" + eventId));
         } catch (Exception e) {
             e.printStackTrace();
         }

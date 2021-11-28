@@ -11,9 +11,6 @@ import javafx.stage.Stage;
 import res.DataController;
 import res.Event;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 public class CreateEventController {
 
     @FXML
@@ -57,7 +54,7 @@ public class CreateEventController {
         System.out.println(event.getAsUrlParam());
 
         DataController dataController = new DataController();
-        dataController.CreateEvent(event);
+        dataController.createEvent(event);
 
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();
