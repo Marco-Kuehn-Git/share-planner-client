@@ -36,7 +36,7 @@
             <RowConstraints />
             <RowConstraints vgrow="ALWAYS" />
         </rowConstraints>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelMonth" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label fx:id="LabelMonth" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelMonth" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
             Monat
             <padding>
                 <Insets left="5" />
@@ -57,48 +57,7 @@
                 <RowConstraints maxHeight="55.0" minHeight="25.0" vgrow="NEVER" />
                 <RowConstraints percentHeight="-Infinity" vgrow="ALWAYS" />
             </rowConstraints>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                Montag
-                <padding>
-                    <Insets left="5" />
-                </padding>
-            </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                Dienstag
-                <padding>
-                    <Insets left="5" />
-                </padding>
-            </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                Mittwoch
-                <padding>
-                    <Insets left="5" />
-                </padding>
-            </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                Donnerstag
-                <padding>
-                    <Insets left="5" />
-                </padding>
-            </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="0">
-                Freitag
-                <padding>
-                    <Insets left="5" />
-                </padding>
-            </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="0">
-                Samstag
-                <padding>
-                    <Insets left="5" />
-                </padding>
-            </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelDays" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="0">
-                Sonntag
-                <padding>
-                    <Insets left="5" />
-                </padding>
-            </Label>
+
         </GridPane>
     </GridPane>
 </GridPane>

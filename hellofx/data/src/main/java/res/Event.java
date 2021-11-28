@@ -1,5 +1,11 @@
 package res;
 
+import com.sun.jdi.event.StepEvent;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 public class Event {
 
     private int id;
@@ -8,6 +14,44 @@ public class Event {
     private boolean isFullDay;
     private String start;
     private String end;
+
+    private LocalDateTime date;
+
+    private int ownerId;
+    private String ownerName;
+
+    /*
+    Constructor for SELECT:
+    e.id AS eid,
+    e.name AS ename,
+    e.start,
+    e.end,
+    e.priority,
+    e.is_full_day,
+
+    ue.date,
+
+    u.id AS uid,
+    u.forename,
+    u.name AS uname
+     */
+
+    public Event(ArrayList<Object> arr) {
+        id = (int)arr.get(0);
+        name = (String)arr.get(1);
+        start = (String)arr.get(2);
+        end = (String)arr.get(3);
+        priority = (int)arr.get(4);
+        isFullDay = (Boolean)arr.get(5); //((String)arr.get(5)).equals("true");
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        date = LocalDateTime.parse(arr.get(6) + " 00:00", formatter);
+
+        ownerId = (int)arr.get(7);
+        ownerName = arr.get(8) + " " + arr.get(9);
+    }
+
 
     public int getId() {
         return id;
@@ -57,12 +101,36 @@ public class Event {
         this.end = end;
     }
 
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
     @Override
     public String toString() {
         return name +
                 "\nVon: " + start +
                 "\nBis: " + start +
-                "\nisFullDay = " + isFullDay;
+                (isFullDay ? "\nDen ganzen Tag lang" : "");
 
     }
 }
