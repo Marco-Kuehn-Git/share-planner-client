@@ -3,9 +3,36 @@ package client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import res.DataController;
+import res.Event;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class CreateEventController {
+
+    @FXML
+    public DatePicker datePickerDate;
+    @FXML
+    public TextField textName;
+    @FXML
+    public TextField textStart;
+    @FXML
+    public TextField textEnd;
+    @FXML
+    public ComboBox<String> ComboBoxTyp;
+    @FXML
+    public ComboBox<String> ComboBoxPriotity;
+    @FXML
+    public CheckBox checkBoxIsFullDay;
+    @FXML
+    public CheckBox checkBoxIsPrivate;
+
 
     public CreateEventController(){}
 
@@ -14,8 +41,25 @@ public class CreateEventController {
 
 
     @FXML
-    protected void createBtnClick(ActionEvent event){
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    protected void createBtnClick(ActionEvent actionEvent){
+
+        Event event = new Event(
+                textName.getText(),
+                ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
+                checkBoxIsFullDay.isSelected(),
+                checkBoxIsPrivate.isSelected(),
+                textStart.getText(),
+                textEnd.getText(),
+                datePickerDate.getValue().atStartOfDay(),
+                1
+        );
+
+        System.out.println(event.getAsUrlParam());
+
+        DataController dataController = new DataController();
+        dataController.CreateEvent(event);
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();
     }
 

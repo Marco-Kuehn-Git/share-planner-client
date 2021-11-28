@@ -16,6 +16,7 @@ public class DataController {
 
     private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/vpr/all-events";
     private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/vpr/all-users";
+    private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/vpr/add-event";
 
     private HttpRequest httpRequest;
 
@@ -23,6 +24,13 @@ public class DataController {
         httpRequest = new HttpRequest();
     }
 
+    public void CreateEvent(Event event){
+        try {
+            System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public ArrayList<Event> getAllVisibleEvents() {
         ArrayList<Event> eventList = new ArrayList<>();

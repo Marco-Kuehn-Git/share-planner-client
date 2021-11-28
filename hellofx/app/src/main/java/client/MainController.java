@@ -49,6 +49,14 @@ public class MainController {
         createWeek();
         setDates();
 
+        updateEvents();
+    }
+
+    private void updateEvents() {
+        for(VBox vBox : dayVBoxes){
+            vBox.getChildren().clear();
+        }
+
         DataController dataController = new DataController();
         ArrayList<Event> eventList = dataController.getAllVisibleEvents();
 
@@ -74,6 +82,7 @@ public class MainController {
         catch (IOException e){
             e.printStackTrace();
         }
+        updateEvents();
     }
 
     private void createWeek(){

@@ -12,6 +12,7 @@ public class Event {
     private String name;
     private int priority;
     private boolean isFullDay;
+    private boolean isPrivate;
     private String start;
     private String end;
 
@@ -37,21 +38,39 @@ public class Event {
      */
 
     public Event(ArrayList<Object> arr) {
-        id = (int)arr.get(0);
-        name = (String)arr.get(1);
-        start = (String)arr.get(2);
-        end = (String)arr.get(3);
-        priority = (int)arr.get(4);
-        isFullDay = (Boolean)arr.get(5); //((String)arr.get(5)).equals("true");
+        id = (int) arr.get(0);
+        name = (String) arr.get(1);
+        start = (String) arr.get(2);
+        end = (String) arr.get(3);
+        priority = (int) arr.get(4);
+        isFullDay = (Boolean) arr.get(5); //((String)arr.get(5)).equals("true");
 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         date = LocalDateTime.parse(arr.get(6) + " 00:00", formatter);
 
-        ownerId = (int)arr.get(7);
+        ownerId = (int) arr.get(7);
         ownerName = arr.get(8) + " " + arr.get(9);
     }
 
+    public Event(String name,
+                 int priority,
+                 boolean isFullDay,
+                 boolean isPrivate,
+                 String start,
+                 String end,
+                 LocalDateTime date,
+                 int ownerId
+    ) {
+        this.name = name;
+        this.priority = priority;
+        this.isFullDay = isFullDay;
+        this.isPrivate = isPrivate;
+        this.start = start;
+        this.end = end;
+        this.date = date;
+        this.ownerId = ownerId;
+    }
 
     public int getId() {
         return id;
@@ -83,6 +102,14 @@ public class Event {
 
     public void setFullDay(boolean fullDay) {
         isFullDay = fullDay;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
     }
 
     public String getStart() {
@@ -132,5 +159,16 @@ public class Event {
                 "\nBis: " + start +
                 (isFullDay ? "\nDen ganzen Tag lang" : "");
 
+    }
+
+    public String getAsUrlParam() {
+        return "userId=" + getOwnerId() +
+                "&date=" + getDate().toLocalDate() +
+                "&name=" + getName() +
+                "&start=" + getStart() +
+                "&end=" + getEnd() +
+                "&prority=" + getPriority() +
+                "&isFullDay=" + isFullDay() +
+                "&isPrivate=" + isPrivate();
     }
 }
