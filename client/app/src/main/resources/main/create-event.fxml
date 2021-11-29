@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.CreateEventController">
+
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+
+    <Label styleClass="mainLabel">Termin anlegen</Label>
+
+    <Label styleClass="inputLabel" GridPane.rowIndex="1">Datum:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="2">Titel:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="3">Von:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="4">Bis:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="5">Typ:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="6">Priorität:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="7">Ganztägig:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="8">Privat:</Label>
+
+    <DatePicker fx:id="datePickerDate" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="400" minWidth="400"/>
+    <TextField fx:id="textName" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="400" minWidth="400"/>
+    <TextField fx:id="textStart" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="400" minWidth="400"/>
+    <TextField fx:id="textEnd" GridPane.columnIndex="1" GridPane.rowIndex="4" maxWidth="400" minWidth="400"/>
+    <ComboBox fx:id="ComboBoxTyp" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="400" minWidth="400"/>
+    <ComboBox fx:id="ComboBoxPriotity" GridPane.columnIndex="1" GridPane.rowIndex="6" maxWidth="200" minWidth="200">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="gering" />
+                <String fx:value="mittel" />
+                <String fx:value="hoch" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <CheckBox fx:id="checkBoxIsFullDay" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+    <CheckBox fx:id="checkBoxIsPrivate" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+    <HBox GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.columnSpan="2"  alignment="CENTER_RIGHT">
+        <Button onAction="#abortBtnClick" maxWidth="150" minWidth="150" >Abbrechen</Button>
+        <Button styleClass="mainButton" onAction="#createBtnClick" maxWidth="150" minWidth="150">Anlegen</Button>
+    </HBox>
+
+</GridPane>

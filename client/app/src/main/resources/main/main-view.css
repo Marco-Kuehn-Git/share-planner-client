@@ -1,0 +1,74 @@
+* {
+   -fx-base-background-color: #2B2D42;
+   -fx-base1-background-color: #525E74;
+
+   -fx-main-border-color: #B0B0B0;
+   -fx-main-text-color: #ffffff;
+}
+
+
+GridPane{
+    -fx-background-color: -fx-base-background-color;
+}
+
+.main-panel{
+    -fx-background-color: #282C34;
+}
+
+.vbox-main{
+    -fx-background-color: #333333;
+    -fx-alignment: top-center;
+
+}
+
+.gridCalendar Line{
+    -fx-stroke: -fx-main-border-color;
+}
+
+.gridCalender{
+        -fx-background-color: -fx-base-background-color;
+        -fx-min-height: 80px;
+        -fx-max-height: 80px;
+}
+
+.labelMonth{
+    -fx-padding: 0 0 0 20;
+    -fx-background-color: #77859E;
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+}
+
+.scrollDays{
+    -fx-background-color: -fx-base-background-color;
+    -fx-border-color: -fx-main-border-color;
+}
+
+.vBoxDays{
+    -fx-background-color: -fx-base-background-color;
+}
+
+.labelDays{
+    -fx-alignment: center;
+    -fx-background-color: -fx-base1-background-color;
+    -fx-font-size: 25px;
+    -fx-border-color: -fx-main-border-color;
+}
+
+Label{
+    -fx-text-fill: -fx-main-text-color;
+}
+
+.event{
+    -fx-background-color: -fx-base1-background-color;
+}
+
+.main-btn{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: -fx-main-text-color;
+    -fx-background-radius: 5em;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+}
+
