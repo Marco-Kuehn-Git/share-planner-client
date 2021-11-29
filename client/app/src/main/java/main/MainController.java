@@ -1,5 +1,7 @@
 package main;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -43,7 +45,7 @@ public class MainController {
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         createWeek();
         setDates();
 
@@ -51,21 +53,21 @@ public class MainController {
     }
 
     private void updateEvents() {
-        for(VBox vBox : dayVBoxes){
+        for (VBox vBox : dayVBoxes) {
             vBox.getChildren().clear();
         }
 
         DataController dataController = new DataController();
         ArrayList<Event> eventList = dataController.getAllVisibleEvents();
 
-        for(Event event : eventList){
+        for (Event event : eventList) {
             addEvent(event);
         }
     }
 
     @FXML
-    protected void onAddBtnClick(){
-        try{
+    protected void onAddBtnClick() {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("create-event.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 650, 500);
             scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource("create-event.css")).toExternalForm());
@@ -76,14 +78,13 @@ public class MainController {
             stage.setResizable(false);
             //stage.initStyle(StageStyle.UNDECORATED);
             stage.showAndWait();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         updateEvents();
     }
 
-    private void createWeek(){
+    private void createWeek() {
         for (int i = 0; i < 7; i++) {
             Label label = new Label();
             label.setText(dayNames[i]);
@@ -110,7 +111,7 @@ public class MainController {
         }
     }
 
-    private void addEvent(Event event){
+    private void addEvent(Event event) {
         VBox vBox = new VBox();
         vBox.getStyleClass().add("event");
         vBox.setSpacing(5);
@@ -133,8 +134,12 @@ public class MainController {
         Label nameLabel = new Label(event.getName());
         vBox.getChildren().add(nameLabel);
 
-        Label timeLabel = new Label(event.getStart() + "-" + event.getEnd());
-        vBox.getChildren().add(timeLabel);
+        if (event.getStart() != null || event.getEnd() != null) {
+            String timeStr = (event.getStart() != null ? formatTime(event.getStart()) : "")
+                    + (event.getEnd() != null ? " - " + formatTime(event.getEnd()) : "");
+            Label timeLabel = new Label(timeStr);
+            vBox.getChildren().add(timeLabel);
+        }
 
         Label typeLabel = new Label("Wer: " + event.getOwnerName());
         vBox.getChildren().add(typeLabel);
@@ -148,22 +153,30 @@ public class MainController {
         Label prioLabel = new Label("Priorit\u00e4t: " + event.getPriority());
         vBox.getChildren().add(prioLabel);
 
-        if(event.isFullDay()){
+        if (event.isFullDay()) {
             Label fullDayLabel = new Label("Dieser Termin bockiert den ganzen Tag!");
             vBox.getChildren().add(fullDayLabel);
         }
-        
+
 
         LocalDateTime eventDate = event.getDate();
 
-        int day = (int)Duration.between(weekStartDateTime.toLocalDate().atStartOfDay(), eventDate.toLocalDate().atStartOfDay()).toDays();
+        int day = (int) Duration.between(weekStartDateTime.toLocalDate().atStartOfDay(), eventDate.toLocalDate().atStartOfDay()).toDays();
 
-        if(day >= 0 && day < 7){
+        if (day >= 0 && day < 7) {
             dayVBoxes[day].getChildren().add(vBox);
         }
     }
 
-    private void setDates(){
+    private String formatTime(String time) {
+        String[] timeArr = time.split(":");
+        if (timeArr.length > 2) {
+            return timeArr[0] + ":" + timeArr[1];
+        }
+        return time;
+    }
+
+    private void setDates() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("LLLL yyyy");
         DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("E dd.MM");
         DateTimeFormatter dayOfWeekFormatter = DateTimeFormatter.ofPattern("e");
@@ -171,7 +184,7 @@ public class MainController {
         LocalDateTime now = LocalDateTime.now();
         int dayOfWeek = Integer.parseInt(dayOfWeekFormatter.format(now));
 
-        weekStartDateTime = now.minusDays(weekOffset * 7L + dayOfWeek - 1);
+        weekStartDateTime = now.plusDays(weekOffset * 7L - dayOfWeek + 1);
 
         for (int i = 0; i < 7; i++) {
             dayLabel[i].setText(dayFormatter.format(weekStartDateTime.plusDays(i)));
