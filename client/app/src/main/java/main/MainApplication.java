@@ -15,9 +15,17 @@ public class MainApplication extends Application {
 
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
         scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource("main-view.css")).toExternalForm());
-        stage.setTitle("Hello!");
+        stage.setTitle("SharePlaner");
         stage.setScene(scene);
         stage.show();
+
+        FXMLLoader fxmlLoaderLogin = new FXMLLoader(MainApplication.class.getResource("../users/login.fxml"));
+        Scene sceneLogin = new Scene(fxmlLoaderLogin.load(), 650, 500);
+        sceneLogin.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource("../users/login.css")).toExternalForm());
+        Stage stageLogin = new Stage();
+        stageLogin.setTitle("Anmelden");
+        stageLogin.setScene(sceneLogin);
+        stageLogin.show();
 
     }
 
