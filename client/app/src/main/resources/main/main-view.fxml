@@ -5,7 +5,8 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+<GridPane styleClass="mainGrid" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="main.MainController">
     <columnConstraints>
         <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="60.0" />
         <ColumnConstraints hgrow="ALWAYS" />
@@ -13,17 +14,17 @@
     <rowConstraints>
         <RowConstraints vgrow="SOMETIMES" />
     </rowConstraints>
-    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #525E74;">
+    <VBox styleClass="mainVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 
         </ImageView>
-        <Button onAction="#onAddBtnClick" styleClass="main-btn">
+        <Button onAction="#onAddBtnClick" styleClass="mainBtn">
             ADD
         </Button>
-        <Button onAction="#onAddBtnClick" styleClass="main-btn">
+        <Button onAction="#onAddBtnClick" styleClass="mainBtn">
             ADD
         </Button>
-        <Button onAction="#onAddBtnClick" styleClass="main-btn">
+        <Button onAction="#onAddBtnClick" styleClass="mainBtn">
             ADD
         </Button>
     </VBox>
@@ -36,16 +37,19 @@
             <RowConstraints />
             <RowConstraints vgrow="ALWAYS" />
         </rowConstraints>
-        <Label fx:id="LabelMonth" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="labelMonth" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label fx:id="LabelMonth" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+               styleClass="labelMonth"  GridPane.columnIndex="0" GridPane.rowIndex="0">
             Monat
             <padding>
                 <Insets left="5" />
             </padding>
         </Label>
 
-        <GridPane fx:id="calendarGrid" gridLinesVisible="true"  styleClass="gridCalendar" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <GridPane fx:id="calendarGrid" gridLinesVisible="true"  styleClass="gridCalendar"
+                  GridPane.columnIndex="0" GridPane.rowIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="14.2857142857" minWidth="14.2857142857" percentWidth="14.2857142857" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="14.2857142857" minWidth="14.2857142857"
+                                   percentWidth="14.2857142857" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
@@ -57,7 +61,6 @@
                 <RowConstraints maxHeight="55.0" minHeight="25.0" vgrow="NEVER" />
                 <RowConstraints percentHeight="-Infinity" vgrow="ALWAYS" />
             </rowConstraints>
-
         </GridPane>
     </GridPane>
 </GridPane>
