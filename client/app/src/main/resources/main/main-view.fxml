@@ -30,7 +30,10 @@
     <GridPane prefHeight="200.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
-         <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints />
@@ -42,8 +45,11 @@
                 <Insets left="5" />
             </padding>
         </Label>
+        <Button onAction="#onBackClick" GridPane.columnIndex="1" maxHeight="1.7976931348623157E308">zurück</Button>
+        <Button onAction="#onTodayClick" GridPane.columnIndex="2" maxHeight="1.7976931348623157E308">heute</Button>
+        <Button onAction="#onNextClick" GridPane.columnIndex="3" maxHeight="1.7976931348623157E308">weiter</Button>
 
-        <GridPane fx:id="calendarGrid" gridLinesVisible="true"  styleClass="gridCalendar" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <GridPane fx:id="calendarGrid" gridLinesVisible="true"  styleClass="gridCalendar" GridPane.columnSpan="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" maxWidth="14.2857142857" minWidth="14.2857142857" percentWidth="14.2857142857" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />

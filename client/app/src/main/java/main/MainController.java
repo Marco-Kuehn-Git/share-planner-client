@@ -66,6 +66,27 @@ public class MainController {
     }
 
     @FXML
+    protected void onBackClick() {
+        weekOffset--;
+        setDates();
+        updateEvents();
+    }
+
+    @FXML
+    protected void onTodayClick(){
+        weekOffset = 0;
+        setDates();
+        updateEvents();
+    }
+
+    @FXML
+    protected void onNextClick() {
+        weekOffset++;
+        setDates();
+        updateEvents();
+    }
+
+    @FXML
     protected void onAddBtnClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("create-event.fxml"));
