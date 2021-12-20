@@ -3,10 +3,7 @@ package main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import res.DataController;
 import res.Event;
@@ -29,39 +26,51 @@ public class CreateEventController {
     public CheckBox checkBoxIsFullDay;
     @FXML
     public CheckBox checkBoxIsPrivate;
-
-
-    public CreateEventController(){}
-
     @FXML
-    public void initialize(){}
+    public Label labelError;
 
 
-    @FXML
-    protected void createBtnClick(ActionEvent actionEvent){
 
-        Event event = new Event(
-                textName.getText(),
-                ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
-                checkBoxIsFullDay.isSelected(),
-                checkBoxIsPrivate.isSelected(),
-                textStart.getText(),
-                textEnd.getText(),
-                datePickerDate.getValue().atStartOfDay(),
-                1
-        );
-
-        System.out.println(event.getAsUrlParam());
-
-        DataController dataController = new DataController();
-        dataController.createEvent(event);
-
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.close();
+    public CreateEventController() {
     }
 
     @FXML
-    protected void abortBtnClick(ActionEvent event){
+    public void initialize() {
+    }
+
+
+    @FXML
+    protected void createBtnClick(ActionEvent actionEvent) {
+        try {
+            if(datePickerDate.getValue() == null){
+                throw new IllegalArgumentException("Bitte w\u00e4hle ein Datum aus");
+            }
+
+            Event event = new Event(
+                    textName.getText(),
+                    ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
+                    checkBoxIsFullDay.isSelected(),
+                    checkBoxIsPrivate.isSelected(),
+                    textStart.getText(),
+                    textEnd.getText(),
+                    datePickerDate.getValue().atStartOfDay(),
+                    1
+            );
+
+            System.out.println(event.getAsUrlParam());
+
+            DataController dataController = new DataController();
+            dataController.createEvent(event);
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.close();
+        } catch (RuntimeException e) {
+            labelError.setText(e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void abortBtnClick(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }

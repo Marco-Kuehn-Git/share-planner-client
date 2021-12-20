@@ -22,6 +22,7 @@
         <RowConstraints vgrow="ALWAYS" />
         <RowConstraints vgrow="ALWAYS" />
         <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
     </rowConstraints>
 
     <Label styleClass="mainLabel">Termin anlegen</Label>
@@ -51,8 +52,9 @@
     </ComboBox>
     <CheckBox fx:id="checkBoxIsFullDay" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
     <CheckBox fx:id="checkBoxIsPrivate" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+    <Label fx:id="labelError" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
 
-    <HBox GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.columnSpan="2"  alignment="CENTER_RIGHT">
+    <HBox GridPane.columnIndex="1" GridPane.rowIndex="10" GridPane.columnSpan="2"  alignment="CENTER_RIGHT">
         <Button onAction="#abortBtnClick" maxWidth="150" minWidth="150" >Abbrechen</Button>
         <Button styleClass="mainButton" onAction="#createBtnClick" maxWidth="150" minWidth="150">Anlegen</Button>
     </HBox>
