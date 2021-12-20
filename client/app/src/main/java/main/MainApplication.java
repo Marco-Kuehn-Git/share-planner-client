@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import res.DataController;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -17,7 +18,6 @@ public class MainApplication extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource("main-view.css")).toExternalForm());
         stage.setTitle("SharePlaner");
         stage.setScene(scene);
-        stage.show();
 
         FXMLLoader fxmlLoaderLogin = new FXMLLoader(MainApplication.class.getResource("../users/login.fxml"));
         Scene sceneLogin = new Scene(fxmlLoaderLogin.load(), 650, 500);
@@ -25,8 +25,11 @@ public class MainApplication extends Application {
         Stage stageLogin = new Stage();
         stageLogin.setTitle("Anmelden");
         stageLogin.setScene(sceneLogin);
-        stageLogin.show();
+        stageLogin.showAndWait();
 
+        if(DataController.USER_ID >= 0){
+            stage.show();
+        }
     }
 
     public static void main(String[] args) {

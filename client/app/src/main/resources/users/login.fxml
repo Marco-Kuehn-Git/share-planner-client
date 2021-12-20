@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"  fx:controller="users.LoginControler">
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="users.LoginController">
 
     <columnConstraints>
         <ColumnConstraints/>
@@ -23,14 +19,14 @@
     <Label GridPane.columnIndex="1">Anmelden</Label>
 
     <Label GridPane.rowIndex="1">Username</Label>
-    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField"></TextField>
-    <Label GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="userErrLabel">Error</Label>
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField" />
+    <Label GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="userErrLabel"/>
 
     <Label GridPane.rowIndex="2">Paswort</Label>
-    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField"></PasswordField>
-    <Label GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="passErrLabel">Error</Label>
+    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField" />
+    <Label GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="passErrLabel"/>
 
-    <Button GridPane.columnIndex="1" GridPane.rowIndex="3">Beenden</Button>
-    <Button GridPane.columnIndex="2" GridPane.rowIndex="3">Anmelden</Button>
+    <Button onAction="#abortBtnClick" GridPane.columnIndex="1" GridPane.rowIndex="3">Beenden</Button>
+    <Button onAction="#login" GridPane.columnIndex="2" GridPane.rowIndex="3">Anmelden</Button>
 
 </GridPane>

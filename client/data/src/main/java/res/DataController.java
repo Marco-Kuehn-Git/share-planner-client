@@ -14,15 +14,32 @@ import java.util.*;
 
 public class DataController {
 
+    public static long USER_ID = -1;
+
     private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/vpr/all-events";
     private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/vpr/all-users";
     private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/vpr/add-event";
     private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/vpr/del-event";
+    private static final String LOGIN_ENDPOINT = "http://localhost:8080/vpr/login";
 
     private final HttpRequest httpRequest;
 
     public DataController(){
         httpRequest = new HttpRequest();
+    }
+
+    public boolean login(String username, String password){
+        try {
+            USER_ID = Long.parseLong(httpRequest.sendPostRequest(
+                    LOGIN_ENDPOINT,
+                    "login=" + username
+                    + "&password=" + password
+            ));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return USER_ID >= 0;
     }
 
     public void createEvent(Event event){
@@ -45,7 +62,7 @@ public class DataController {
         ArrayList<Event> eventList = new ArrayList<>();
 
         try {
-            String jsonResponse = httpRequest.sendPostRequest(ALL_EVENTS_ENDPOINT, "userId=1");
+            String jsonResponse = httpRequest.sendPostRequest(ALL_EVENTS_ENDPOINT, "userId=" + USER_ID);
             System.out.println(jsonResponse);
 
             ObjectMapper objectMapper = new ObjectMapper();
