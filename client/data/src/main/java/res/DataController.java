@@ -29,7 +29,7 @@ public class DataController {
         try {
             System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam()));
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Es konnte keine Verbindung mit dem Server hergestellt werden.");
         }
     }
 

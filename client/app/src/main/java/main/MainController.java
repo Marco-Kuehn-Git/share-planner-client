@@ -69,7 +69,7 @@ public class MainController {
     protected void onAddBtnClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("create-event.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 650, 500);
+            Scene scene = new Scene(fxmlLoader.load(), 650, 650);
             scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource("create-event.css")).toExternalForm());
             Stage stage = new Stage();
             stage.setTitle("Termin erstellen");
