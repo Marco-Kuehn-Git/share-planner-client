@@ -54,7 +54,7 @@ public class CreateEventController {
                     textStart.getText(),
                     textEnd.getText(),
                     datePickerDate.getValue().atStartOfDay(),
-                    1
+                    (int)DataController.USER_ID
             );
 
             System.out.println(event.getAsUrlParam());
