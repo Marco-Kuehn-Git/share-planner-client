@@ -8,4 +8,29 @@
 
 <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"  fx:controller="users.LoginControler">
 
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+
+    <Label GridPane.columnIndex="1">Anmelden</Label>
+
+    <Label GridPane.rowIndex="1">Username</Label>
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField"></TextField>
+    <Label GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="userErrLabel">Error</Label>
+
+    <Label GridPane.rowIndex="2">Paswort</Label>
+    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField"></PasswordField>
+    <Label GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="passErrLabel">Error</Label>
+
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="3">Beenden</Button>
+    <Button GridPane.columnIndex="2" GridPane.rowIndex="3">Anmelden</Button>
+
 </GridPane>
