@@ -21,13 +21,13 @@ public class LoginController {
     @FXML
     protected void login(ActionEvent event){
         if(userField.getText().trim().isEmpty()){
-            userErrLabel.setText("Bitte laginnamen eingeben!");
+            userErrLabel.setText("Bitte Usernamen eingeben!");
             passErrLabel.setText("");
             return;
         }
         if(passField.getText().trim().isEmpty()){
             userErrLabel.setText("");
-            passErrLabel.setText("Bitte passwort eingeben!");
+            passErrLabel.setText("Bitte Passwort eingeben!");
             return;
         }
 
