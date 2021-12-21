@@ -22,6 +22,7 @@ public class LoginController {
     protected void login(ActionEvent event){
         if(userField.getText().trim().isEmpty()){
             userErrLabel.setText("Bitte laginnamen eingeben!");
+            passErrLabel.setText("");
             return;
         }
         if(passField.getText().trim().isEmpty()){
