@@ -24,16 +24,16 @@ public class DataController {
 
     private final HttpRequest httpRequest;
 
-    public DataController(){
+    public DataController() {
         httpRequest = new HttpRequest();
     }
 
-    public boolean login(String username, String password){
+    public boolean login(String username, String password) {
         try {
             USER_ID = Long.parseLong(httpRequest.sendPostRequest(
                     LOGIN_ENDPOINT,
                     "login=" + username
-                    + "&password=" + password
+                            + "&password=" + password
             ));
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class DataController {
         return USER_ID >= 0;
     }
 
-    public void createEvent(Event event){
+    public void createEvent(Event event) {
         try {
             System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam()));
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class DataController {
         }
     }
 
-    public void deleteEvent(int eventId){
+    public void deleteEvent(int eventId) {
         try {
             System.out.println(httpRequest.sendPostRequest(DELETE_EVENT_ENDPOINT, "eventId=" + eventId));
         } catch (Exception e) {
@@ -68,10 +68,10 @@ public class DataController {
             ObjectMapper objectMapper = new ObjectMapper();
             //String json = "{ \"color\" : \"Black\", \"type\" : \"BMW\" }";
 
-            for (Object obj : objectMapper.readValue(jsonResponse, Object[].class)){
+            for (Object obj : objectMapper.readValue(jsonResponse, Object[].class)) {
                 ArrayList<Object> list = new ArrayList<>();
                 if (obj.getClass().isArray()) {
-                    list = (ArrayList<Object>) Arrays.asList((Object[])obj);
+                    list = (ArrayList<Object>) Arrays.asList((Object[]) obj);
                 } else if (obj instanceof Collection) {
                     list = new ArrayList<>((Collection<?>) obj);
                 }

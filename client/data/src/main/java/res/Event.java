@@ -66,20 +66,21 @@ public class Event {
                  String end,
                  LocalDateTime date,
                  int ownerId
-    ) throws IllegalArgumentException{
-        if(name.length() < 3){
+    ) throws IllegalArgumentException {
+        if (name.length() < 3) {
             throw new IllegalArgumentException("Der Name muss eine L\u00e4nge von 3 haben.");
         }
         Pattern pattern = Pattern.compile("[A-Za-zÄÖÜäöü0-9 =!?+*/$%€.:,;_<>()-]*");
         Matcher matcher = pattern.matcher(name);
-        if(!matcher.matches()){
-            throw new IllegalArgumentException("Der Name Darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: =!?+*/$%€.:,;_ <>()-");
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("Der Name Darf nur aus Zahlen, Buchstaben und " +
+                    "folgenden Sonderzeichen bestehen: =!?+*/$%€.:,;_ <>()-");
         }
-        if(priority < 0){
+        if (priority < 0) {
             throw new IllegalArgumentException("Bitte eine Priorit\u00e4t w\u00e4hlen.");
         }
         LocalDateTime today = LocalDateTime.now().toLocalDate().atStartOfDay();
-        if(Duration.between(today, date).isNegative()){
+        if (Duration.between(today, date).isNegative()) {
             throw new IllegalArgumentException("Das Datum muss in der Zukunft liegen.");
         }
 
