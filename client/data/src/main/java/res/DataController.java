@@ -16,11 +16,12 @@ public class DataController {
 
     public static long USER_ID = -1;
 
-    private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/vpr/all-events";
-    private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/vpr/all-users";
-    private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/vpr/add-event";
-    private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/vpr/del-event";
-    private static final String LOGIN_ENDPOINT = "http://localhost:8080/vpr/login";
+    private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/event/all";
+    private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/event/add";
+    private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/event/del";
+
+    private static final String LOGIN_ENDPOINT = "http://localhost:8080/user/login";
+    private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/user/all";
 
     private final HttpRequest httpRequest;
 

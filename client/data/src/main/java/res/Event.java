@@ -73,7 +73,7 @@ public class Event {
         Pattern pattern = Pattern.compile("[A-Za-zÄÖÜäöü0-9 =!?+*/$%€.:,;_<>()-]*");
         Matcher matcher = pattern.matcher(name);
         if(!matcher.matches()){
-            throw new IllegalArgumentException("Der Name Darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: =!?+*/$%€.:,;_ <>()-");
+            throw new IllegalArgumentException("Der Name darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: =!?+*/$%€.:,;_ <>()-");
         }
         if(priority < 0){
             throw new IllegalArgumentException("Bitte eine Priorit\u00e4t w\u00e4hlen.");
