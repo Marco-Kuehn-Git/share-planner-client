@@ -73,7 +73,7 @@ public class MainController {
     }
 
     @FXML
-    protected void onTodayClick(){
+    protected void onTodayClick() {
         weekOffset = 0;
         setDates();
         updateEvents();
@@ -89,9 +89,11 @@ public class MainController {
     @FXML
     protected void onAddBtnClick() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("create-event.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource("create-event.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 650, 650);
-            scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource("create-event.css")).toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(
+                    MainApplication.class.getResource("create-event.css")).toExternalForm());
             Stage stage = new Stage();
             stage.setTitle("Termin erstellen");
             stage.setScene(scene);
@@ -182,7 +184,8 @@ public class MainController {
 
         LocalDateTime eventDate = event.getDate();
 
-        int day = (int) Duration.between(weekStartDateTime.toLocalDate().atStartOfDay(), eventDate.toLocalDate().atStartOfDay()).toDays();
+        int day = (int) Duration.between(
+                weekStartDateTime.toLocalDate().atStartOfDay(), eventDate.toLocalDate().atStartOfDay()).toDays();
 
         if (day >= 0 && day < 7) {
             dayVBoxes[day].getChildren().add(vBox);

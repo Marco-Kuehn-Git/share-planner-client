@@ -19,20 +19,20 @@ public class LoginController {
     public Label passErrLabel;
 
     @FXML
-    protected void login(ActionEvent event){
-        if(userField.getText().trim().isEmpty()){
+    protected void login(ActionEvent event) {
+        if (userField.getText().trim().isEmpty()) {
             userErrLabel.setText("Bitte Usernamen eingeben!");
             passErrLabel.setText("");
             return;
         }
-        if(passField.getText().trim().isEmpty()){
+        if (passField.getText().trim().isEmpty()) {
             userErrLabel.setText("");
             passErrLabel.setText("Bitte Passwort eingeben!");
             return;
         }
 
         DataController dataController = new DataController();
-        if(!dataController.login(userField.getText(), passField.getText())){
+        if (!dataController.login(userField.getText(), passField.getText())) {
             userErrLabel.setText("Name und Passwort passen nicht zueinander!");
             passErrLabel.setText("Name und Passwort passen nicht zueinander!");
             return;

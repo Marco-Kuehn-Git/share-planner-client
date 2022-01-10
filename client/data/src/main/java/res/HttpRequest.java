@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class HttpRequest {
-    public String sendPostRequest(String urlString, String urlParameters) throws Exception{
+    public String sendPostRequest(String urlString, String urlParameters) throws Exception {
         byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
 
@@ -46,7 +46,7 @@ public class HttpRequest {
         }
     }
 
-    public String sendGetRequest(String urlString) throws Exception{
+    public String sendGetRequest(String urlString) throws Exception {
         URL url = new URL(urlString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");

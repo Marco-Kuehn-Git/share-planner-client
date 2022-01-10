@@ -30,7 +30,6 @@ public class CreateEventController {
     public Label labelError;
 
 
-
     public CreateEventController() {
     }
 
@@ -42,7 +41,7 @@ public class CreateEventController {
     @FXML
     protected void createBtnClick(ActionEvent actionEvent) {
         try {
-            if(datePickerDate.getValue() == null){
+            if (datePickerDate.getValue() == null) {
                 throw new IllegalArgumentException("Bitte w\u00e4hle ein Datum aus");
             }
 
@@ -54,7 +53,7 @@ public class CreateEventController {
                     textStart.getText(),
                     textEnd.getText(),
                     datePickerDate.getValue().atStartOfDay(),
-                    (int)DataController.USER_ID
+                    (int) DataController.USER_ID
             );
 
             System.out.println(event.getAsUrlParam());

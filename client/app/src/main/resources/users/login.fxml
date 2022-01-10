@@ -10,20 +10,20 @@
         <ColumnConstraints/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
     </rowConstraints>
 
     <Label GridPane.columnIndex="1">Anmelden</Label>
 
     <Label GridPane.rowIndex="1">Username</Label>
-    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField" />
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField"/>
     <Label styleClass="errorLbl" GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="userErrLabel"/>
 
     <Label GridPane.rowIndex="2">Paswort</Label>
-    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField" />
+    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField"/>
     <Label styleClass="errorLbl" GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="passErrLabel"/>
 
     <Button onAction="#abortBtnClick" GridPane.columnIndex="1" GridPane.rowIndex="3">Beenden</Button>
