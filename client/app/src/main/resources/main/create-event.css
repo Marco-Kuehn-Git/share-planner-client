@@ -33,3 +33,14 @@ Label{
 .mainButton{
     -fx-font-weight: bold;
 }
+
+#labelError{
+    -fx-font-weight: bold;
+    -fx-max-width: 1000px;
+    -fx-text-fill: #ff5555;
+    -fx-padding: 16px;
+    -fx-min-height: 140px;
+    -fx-max-height: 400px;
+    -fx-wrap-text: true;
+    -fx-font-size: 16px;
+}

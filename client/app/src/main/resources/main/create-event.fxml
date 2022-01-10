@@ -5,7 +5,8 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.CreateEventController">
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="main.CreateEventController">
 
     <columnConstraints>
         <ColumnConstraints/>
@@ -13,15 +14,16 @@
         <ColumnConstraints/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
-        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
     </rowConstraints>
 
     <Label styleClass="mainLabel">Termin anlegen</Label>
@@ -43,17 +45,18 @@
     <ComboBox fx:id="ComboBoxPriotity" GridPane.columnIndex="1" GridPane.rowIndex="6" maxWidth="200" minWidth="200">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="gering" />
-                <String fx:value="mittel" />
-                <String fx:value="hoch" />
+                <String fx:value="gering"/>
+                <String fx:value="mittel"/>
+                <String fx:value="hoch"/>
             </FXCollections>
         </items>
     </ComboBox>
     <CheckBox fx:id="checkBoxIsFullDay" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
     <CheckBox fx:id="checkBoxIsPrivate" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+    <Label fx:id="labelError" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
 
-    <HBox GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.columnSpan="2"  alignment="CENTER_RIGHT">
-        <Button onAction="#abortBtnClick" maxWidth="150" minWidth="150" >Abbrechen</Button>
+    <HBox GridPane.columnIndex="1" GridPane.rowIndex="10" GridPane.columnSpan="2" alignment="CENTER_RIGHT">
+        <Button onAction="#abortBtnClick" maxWidth="150" minWidth="150">Abbrechen</Button>
         <Button styleClass="mainButton" onAction="#createBtnClick" maxWidth="150" minWidth="150">Anlegen</Button>
     </HBox>
 
