@@ -150,6 +150,23 @@ public class MainController {
         });
         Button editBtn = new Button();
         editBtn.setText("edit");
+        editBtn.setOnAction(event1 -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(
+                        MainApplication.class.getResource("edit-event.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 650, 650);
+                scene.getStylesheets().add(Objects.requireNonNull(
+                        MainApplication.class.getResource("edit-event.css")).toExternalForm());
+                Stage stage = new Stage();
+                stage.setTitle("Termin bearbeiten");
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setResizable(false);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         btnHBox.getChildren().add(editBtn);
         btnHBox.getChildren().add(deleteBtn);
         vBox.getChildren().add(btnHBox);
