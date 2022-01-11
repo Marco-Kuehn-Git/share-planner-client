@@ -164,7 +164,7 @@ public class MainController {
             vBox.getChildren().add(timeLabel);
         }
 
-        Label typeLabel = new Label("Wer: " + event.getOwnerName());
+        Label typeLabel = new Label("Wer: " + event.getOwnerName().replace("ü", "\u00fc"));
         vBox.getChildren().add(typeLabel);
 
         /*
