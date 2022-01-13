@@ -71,7 +71,7 @@ public class Event {
         if(name.length() < 3){
             throw new IllegalArgumentException("Der Name muss eine L\u00e4nge von 3 haben.");
         }
-        Pattern pattern = Pattern.compile("[A-Za-z\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc\u00df0-9 =!?+*/$%.:,;_<>()-]*");
+        Pattern pattern = Pattern.compile("[A-Za-z\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc\u00df0-9 =!?+*/$.:,;_<>()-]*");
         Matcher matcher = pattern.matcher(name);
         if(!matcher.matches()){
             System.out.println(name);
@@ -94,7 +94,7 @@ public class Event {
             }
             System.out.println();
 
-            throw new IllegalArgumentException("Der Name darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: \u00e4\u00f6\u00fc \u00c4\u00d6\u00dc \u00df =!?+*/$%.:,;_ <>()-");
+            throw new IllegalArgumentException("Der Name darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: \u00e4\u00f6\u00fc \u00c4\u00d6\u00dc \u00df =!?+*/$.:,;_ <>()-");
         }
         if(priority < 0){
             throw new IllegalArgumentException("Bitte eine Priorit\u00e4t w\u00e4hlen.");
