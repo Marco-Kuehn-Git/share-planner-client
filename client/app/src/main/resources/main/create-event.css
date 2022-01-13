@@ -44,3 +44,8 @@ Label{
     -fx-wrap-text: true;
     -fx-font-size: 16px;
 }
+
+.timePicker{
+    -fx-background-color: white;
+    -fx-max-width: 150px;
+}

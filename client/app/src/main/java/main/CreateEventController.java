@@ -7,8 +7,14 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.LocalTimeStringConverter;
 import res.DataController;
 import res.Event;
+
+import java.time.LocalTime;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 public class CreateEventController {
 
@@ -65,8 +71,8 @@ public class CreateEventController {
                     ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
                     checkBoxIsFullDay.isSelected(),
                     checkBoxIsPrivate.isSelected(),
-                    timeStart.toString(),
-                    timeEnd.toString(),
+                    timeStart.getValue().toString(),
+                    timeEnd.getValue().toString(),
                     datePickerDate.getValue().atStartOfDay(),
                     (int) DataController.USER_ID
             );

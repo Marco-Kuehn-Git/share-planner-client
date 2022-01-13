@@ -154,7 +154,7 @@ public class MainController {
                         MainApplication.class.getResource("edit-event.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 650, 650);
                 scene.getStylesheets().add(Objects.requireNonNull(
-                        MainApplication.class.getResource("edit-event.css")).toExternalForm());
+                        MainApplication.class.getResource("create-event.css")).toExternalForm());
                 Stage stage = new Stage();
                 stage.setTitle("Termin bearbeiten");
                 stage.setScene(scene);
