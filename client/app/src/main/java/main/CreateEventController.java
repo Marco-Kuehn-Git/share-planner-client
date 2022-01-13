@@ -13,7 +13,7 @@ import res.Event;
 public class CreateEventController {
 
     @FXML
-    public GridPane grid;
+    public GridPane mainGrid;
     @FXML
     public DatePicker datePickerDate;
     @FXML
@@ -42,12 +42,14 @@ public class CreateEventController {
         JFXTimePicker timePickerStart = new JFXTimePicker();
         timeStart = timePickerStart;
         timePickerStart.set24HourView(true);
-        grid.add(timePickerStart, 1 , 3);
+        timePickerStart.getStyleClass().add("timePicker");
+        mainGrid.add(timePickerStart, 1 , 3);
 
         JFXTimePicker timePickerEnd = new JFXTimePicker();
         timeEnd = timePickerEnd;
         timePickerEnd.set24HourView(true);
-        grid.add(timePickerEnd, 1 , 4);
+        timePickerEnd.getStyleClass().add("timePicker");
+        mainGrid.add(timePickerEnd, 1 , 4);
     }
 
 

@@ -5,7 +5,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+<GridPane fx:id="mainGrid" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="main.CreateEventController">
 
     <columnConstraints>
@@ -39,8 +39,6 @@
 
     <DatePicker fx:id="datePickerDate" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="400" minWidth="400"/>
     <TextField fx:id="textName" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="400" minWidth="400"/>
-    <TextField fx:id="textStart" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="400" minWidth="400"/>
-    <TextField fx:id="textEnd" GridPane.columnIndex="1" GridPane.rowIndex="4" maxWidth="400" minWidth="400"/>
     <ComboBox fx:id="ComboBoxTyp" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="400" minWidth="400"/>
     <ComboBox fx:id="ComboBoxPriotity" GridPane.columnIndex="1" GridPane.rowIndex="6" maxWidth="200" minWidth="200">
         <items>
