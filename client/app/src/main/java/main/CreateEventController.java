@@ -1,9 +1,11 @@
 package main;
 
+import com.jfoenix.controls.JFXTimePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import res.DataController;
 import res.Event;
@@ -11,13 +13,11 @@ import res.Event;
 public class CreateEventController {
 
     @FXML
+    public GridPane grid;
+    @FXML
     public DatePicker datePickerDate;
     @FXML
     public TextField textName;
-    @FXML
-    public TextField textStart;
-    @FXML
-    public TextField textEnd;
     @FXML
     public ComboBox<String> ComboBoxTyp;
     @FXML
@@ -28,6 +28,10 @@ public class CreateEventController {
     public CheckBox checkBoxIsPrivate;
     @FXML
     public Label labelError;
+    @FXML
+    public JFXTimePicker timeStart;
+    @FXML
+    public JFXTimePicker timeEnd;
 
 
     public CreateEventController() {
@@ -35,6 +39,15 @@ public class CreateEventController {
 
     @FXML
     public void initialize() {
+        JFXTimePicker timePickerStart = new JFXTimePicker();
+        timeStart = timePickerStart;
+        timePickerStart.set24HourView(true);
+        grid.add(timePickerStart, 1 , 3);
+
+        JFXTimePicker timePickerEnd = new JFXTimePicker();
+        timeEnd = timePickerEnd;
+        timePickerEnd.set24HourView(true);
+        grid.add(timePickerEnd, 1 , 4);
     }
 
 
@@ -50,8 +63,8 @@ public class CreateEventController {
                     ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
                     checkBoxIsFullDay.isSelected(),
                     checkBoxIsPrivate.isSelected(),
-                    textStart.getText(),
-                    textEnd.getText(),
+                    timeStart.toString(),
+                    timeEnd.toString(),
                     datePickerDate.getValue().atStartOfDay(),
                     (int) DataController.USER_ID
             );
