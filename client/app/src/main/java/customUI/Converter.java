@@ -7,6 +7,7 @@ public class Converter {
     Ü, ü 		\u00dc, \u00fc
     ß 		    \u00df
      */
+    @SuppressWarnings("all")
     public static String CONVERT_STR(String str){
         return str
                 .replace("ä", "\u00e4")
