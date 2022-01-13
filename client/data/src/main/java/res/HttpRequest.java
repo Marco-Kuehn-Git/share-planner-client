@@ -1,5 +1,7 @@
 package res;
 
+import helper.Tuple;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -9,7 +11,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class HttpRequest {
-    public String sendPostRequest(String urlString, String urlParameters, boolean sendAuth) throws Exception {
+    public static String TOKEN = "";
+
+    public Tuple<Integer, String> sendPostRequest(String urlString, String urlParameters, boolean sendAuth) throws Exception {
         byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
 
@@ -39,7 +43,7 @@ public class HttpRequest {
 
         if(sendAuth){
             con.setRequestProperty("Accept", "application/json");
-            con.setRequestProperty("Authorization", "Bearer {token}");
+            con.setRequestProperty("Authorization", "Bearer " + TOKEN);
         }
 
         try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
@@ -47,22 +51,24 @@ public class HttpRequest {
         }
 
         int status = con.getResponseCode();
-        if (status == 200) {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder content = new StringBuilder();
-            while ((inputLine = in.readLine()) != null) {
-                content.append(inputLine);
-            }
-            in.close();
+        String inputLine;
+        StringBuilder content = new StringBuilder();
+        BufferedReader in;
 
-            con.disconnect();
-            return content.toString();
+        if (status == 200) {
+             in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         } else {
-            con.disconnect();
-            throw new Exception("Status: " + status);
+             in = new BufferedReader(new InputStreamReader(con.getErrorStream()));
         }
+
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        in.close();
+
+        con.disconnect();
+
+        return new Tuple<>(status, content.toString());
     }
 
     public String sendGetRequest(String urlString) throws Exception {
