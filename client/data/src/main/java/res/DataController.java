@@ -15,6 +15,7 @@ import java.util.*;
 public class DataController {
 
     public static long USER_ID = -1;
+    public static String TOKEN = "";
 
     private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/event/all";
     private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/event/add";
@@ -31,12 +32,15 @@ public class DataController {
 
     public boolean login(String username, String password) {
         try {
-            USER_ID = Long.parseLong(httpRequest.sendPostRequest(
+            String response = httpRequest.sendPostRequest(
                     LOGIN_ENDPOINT,
                     "login=" + username
                             + "&password=" + password,
                     false
-            ));
+            );
+
+            USER_ID = Long.parseLong(response.split("\\s+")[1]);
+            TOKEN = response.split("\\s+")[0];
         } catch (Exception e) {
             e.printStackTrace();
             return false;
