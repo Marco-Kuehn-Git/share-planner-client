@@ -34,7 +34,8 @@ public class DataController {
             USER_ID = Long.parseLong(httpRequest.sendPostRequest(
                     LOGIN_ENDPOINT,
                     "login=" + username
-                            + "&password=" + password
+                            + "&password=" + password,
+                    false
             ));
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,7 +46,7 @@ public class DataController {
 
     public void createEvent(Event event) {
         try {
-            System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam()));
+            System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam(), true));
         } catch (Exception e) {
             throw new RuntimeException("Es konnte keine Verbindung mit dem Server hergestellt werden.");
         }
@@ -53,7 +54,7 @@ public class DataController {
 
     public void deleteEvent(int eventId) {
         try {
-            System.out.println(httpRequest.sendPostRequest(DELETE_EVENT_ENDPOINT, "eventId=" + eventId));
+            System.out.println(httpRequest.sendPostRequest(DELETE_EVENT_ENDPOINT, "eventId=" + eventId, true));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,7 +64,7 @@ public class DataController {
         ArrayList<Event> eventList = new ArrayList<>();
 
         try {
-            String jsonResponse = httpRequest.sendPostRequest(ALL_EVENTS_ENDPOINT, "userId=" + USER_ID);
+            String jsonResponse = httpRequest.sendPostRequest(ALL_EVENTS_ENDPOINT, "userId=" + USER_ID, true);
             System.out.println(jsonResponse);
 
             ObjectMapper objectMapper = new ObjectMapper();

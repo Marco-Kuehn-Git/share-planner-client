@@ -1,13 +1,11 @@
 package main;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import customUI.Button;
+import customUI.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -30,7 +28,7 @@ public class MainController {
     private GridPane calendarGrid;
 
     @FXML
-    private Label LabelMonth;
+    private javafx.scene.control.Label LabelMonth;
 
     private final String[] dayNames = {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
     private final Label[] dayLabel = new Label[7];
@@ -110,7 +108,7 @@ public class MainController {
     private void createWeek() {
         for (int i = 0; i < 7; i++) {
             Label label = new Label();
-            label.setText(dayNames[i]);
+            label.setTextValue(dayNames[i]);
             label.setMaxHeight(Double.MAX_VALUE);
             label.setMaxWidth(Double.MAX_VALUE);
             label.getStyleClass().add("labelDays");
@@ -142,31 +140,14 @@ public class MainController {
         HBox btnHBox = new HBox();
         btnHBox.setAlignment(Pos.BOTTOM_RIGHT);
         Button deleteBtn = new Button();
-        deleteBtn.setText(" X ");
+        deleteBtn.setTextValue(" X ");
         deleteBtn.setOnAction(e -> {
             DataController dataController = new DataController();
             dataController.deleteEvent(event.getId());
             updateEvents();
         });
         Button editBtn = new Button();
-        editBtn.setText("edit");
-        editBtn.setOnAction(event1 -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(
-                        MainApplication.class.getResource("edit-event.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 650, 650);
-                scene.getStylesheets().add(Objects.requireNonNull(
-                        MainApplication.class.getResource("edit-event.css")).toExternalForm());
-                Stage stage = new Stage();
-                stage.setTitle("Termin bearbeiten");
-                stage.setScene(scene);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setResizable(false);
-                stage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        editBtn.setTextValue("edit");
         btnHBox.getChildren().add(editBtn);
         btnHBox.getChildren().add(deleteBtn);
         vBox.getChildren().add(btnHBox);
@@ -184,12 +165,6 @@ public class MainController {
         Label typeLabel = new Label("Wer: " + event.getOwnerName());
         vBox.getChildren().add(typeLabel);
 
-        /*
-        Ä, ä 		\u00c4, \u00e4
-        Ö, ö 		\u00d6, \u00f6
-        Ü, ü 		\u00dc, \u00fc
-        ß 		    \u00df
-         */
         Label prioLabel = new Label("Priorit\u00e4t: " + event.getPriority());
         vBox.getChildren().add(prioLabel);
 
@@ -228,7 +203,7 @@ public class MainController {
         weekStartDateTime = now.plusDays(weekOffset * 7L - dayOfWeek + 1);
 
         for (int i = 0; i < 7; i++) {
-            dayLabel[i].setText(dayFormatter.format(weekStartDateTime.plusDays(i)));
+            dayLabel[i].setTextValue(dayFormatter.format(weekStartDateTime.plusDays(i)));
         }
 
         LabelMonth.setText(dateFormatter.format(weekStartDateTime));

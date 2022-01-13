@@ -9,10 +9,23 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class HttpRequest {
-    public String sendPostRequest(String urlString, String urlParameters) throws Exception {
+    public String sendPostRequest(String urlString, String urlParameters, boolean sendAuth) throws Exception {
         byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
 
+        /*
+        URL url = new URL("http://test.de:8080/event/add");
+        HttpURLConnection http = (HttpURLConnection)url.openConnection();
+        http.setRequestMethod("POST");
+        http.setDoOutput(true);
+        http.setRequestProperty("Accept", "application/json");
+        http.setRequestProperty("Authorization", "Bearer {token}");
+        http.setRequestProperty("Content-Type", "");
+        http.setRequestProperty("Content-Length", "0");
+
+        System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
+        http.disconnect();
+         */
         URL url = new URL(urlString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
@@ -23,6 +36,12 @@ public class HttpRequest {
         con.setRequestProperty("charset", "utf-8");
         con.setRequestProperty("Content-Length", Integer.toString(postDataLength));
         con.setUseCaches(false);
+
+        if(sendAuth){
+            con.setRequestProperty("Accept", "application/json");
+            con.setRequestProperty("Authorization", "Bearer {token}");
+        }
+
         try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
             wr.write(postData);
         }
