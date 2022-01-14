@@ -45,15 +45,20 @@ public class CreateEventController {
 
     @FXML
     public void initialize() {
+
+        StringConverter<LocalTime> defaultConverter = new LocalTimeStringConverter(FormatStyle.SHORT, Locale.GERMANY);
+
         JFXTimePicker timePickerStart = new JFXTimePicker();
         timeStart = timePickerStart;
         timePickerStart.set24HourView(true);
+        timePickerStart.setConverter(defaultConverter);
         timePickerStart.getStyleClass().add("timePicker");
         mainGrid.add(timePickerStart, 1 , 3);
 
         JFXTimePicker timePickerEnd = new JFXTimePicker();
         timeEnd = timePickerEnd;
         timePickerEnd.set24HourView(true);
+        timePickerEnd.setConverter(defaultConverter);
         timePickerEnd.getStyleClass().add("timePicker");
         mainGrid.add(timePickerEnd, 1 , 4);
     }
