@@ -12,13 +12,17 @@ import java.util.Objects;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
+                                                                                    //wieder ändern zu main-view.fxml
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("../users/create-user.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
         scene.getStylesheets().add(Objects.requireNonNull(
-                MainApplication.class.getResource("main-view.css")).toExternalForm());
+                                                    //wieder ändern zu main-view.css
+                MainApplication.class.getResource("../users/create-user.css")).toExternalForm());
         stage.setTitle("SharePlaner");
         stage.setScene(scene);
+        //wieder löschen
+        stage.show();
 
         FXMLLoader fxmlLoaderLogin = new FXMLLoader(MainApplication.class.getResource("../users/login.fxml"));
         Scene sceneLogin = new Scene(fxmlLoaderLogin.load(), 650, 500);
