@@ -2,8 +2,10 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import com.jfoenix.controls.*?>
 
 <GridPane fx:id="mainGrid" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="main.CreateEventController">
@@ -36,10 +38,10 @@
     <Label styleClass="inputLabel" GridPane.rowIndex="6">Ganztägig:</Label>
     <Label styleClass="inputLabel" GridPane.rowIndex="7">Privat:</Label>
 
-    <TextField fx:id="textName" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="400" minWidth="400"/>
-    <DatePicker fx:id="datePickerDate" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="200" minWidth="200"/>
+    <JFXTextField styleClass="inputField" fx:id="textName" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="400" minWidth="400"/>
+    <JFXDatePicker styleClass="inputDate" fx:id="datePickerDate" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="200" minWidth="200"/>
 
-    <ComboBox fx:id="ComboBoxPriotity" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="200" minWidth="200">
+    <JFXComboBox fx:id="ComboBoxPriotity" styleClass="comboBox" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="200" minWidth="200">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="gering"/>
@@ -47,14 +49,14 @@
                 <String fx:value="hoch"/>
             </FXCollections>
         </items>
-    </ComboBox>
-    <CheckBox fx:id="checkBoxIsFullDay" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-    <CheckBox fx:id="checkBoxIsPrivate" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+    </JFXComboBox>
+    <JFXCheckBox styleClass="checkbox" fx:id="checkBoxIsFullDay" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+    <JFXCheckBox styleClass="checkbox"  fx:id="checkBoxIsPrivate" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
     <Label fx:id="labelError" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
 
     <HBox GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.columnSpan="2" alignment="CENTER_RIGHT">
-        <Button onAction="#abortBtnClick" maxWidth="150" minWidth="150">Abbrechen</Button>
-        <Button styleClass="mainButton" onAction="#createBtnClick" maxWidth="150" minWidth="150">Speichern</Button>
+        <JFXButton onAction="#abortBtnClick" maxWidth="150" minWidth="150">Abbrechen</JFXButton>
+        <JFXButton styleClass="mainButton" onAction="#createBtnClick" maxWidth="150" minWidth="150">Speichern</JFXButton>
     </HBox>
 
 </GridPane>
