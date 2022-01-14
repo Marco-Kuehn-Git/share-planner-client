@@ -1,5 +1,6 @@
 package main;
 
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +24,7 @@ public class CreateEventController {
     @FXML
     public DatePicker datePickerDate;
     @FXML
-    public TextField textName;
+    public JFXTextField textName;
     @FXML
     public ComboBox<String> ComboBoxPriotity;
     @FXML
