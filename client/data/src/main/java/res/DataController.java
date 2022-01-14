@@ -42,7 +42,7 @@ public class DataController {
             String[] data = response.getValue().split("\\s+");
 
             USER_ID = Long.parseLong(data[1]);
-            HttpRequest.TOKEN = data[1];
+            HttpRequest.TOKEN = data[0];
 
             Tuple<Integer, String> auth = httpRequest.sendPostRequest(
                     HEADER_TEST_ENDPOINT,
