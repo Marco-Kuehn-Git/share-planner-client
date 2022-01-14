@@ -25,8 +25,6 @@ public class CreateEventController {
     @FXML
     public TextField textName;
     @FXML
-    public ComboBox<String> ComboBoxTyp;
-    @FXML
     public ComboBox<String> ComboBoxPriotity;
     @FXML
     public CheckBox checkBoxIsFullDay;
