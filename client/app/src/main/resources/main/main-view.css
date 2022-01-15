@@ -72,3 +72,7 @@ Label{
     -fx-max-height: 40px;
 }
 
+.navButtnon{
+    -fx-background-color: white;
+}
+

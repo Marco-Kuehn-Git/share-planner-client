@@ -1,18 +1,18 @@
 package users;
 
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import res.DataController;
 
 public class LoginController {
     @FXML
-    public TextField userField;
+    public JFXTextField userField;
     @FXML
-    public TextField passField;
+    public JFXPasswordField passField;
     @FXML
     public Label userErrLabel;
     @FXML
