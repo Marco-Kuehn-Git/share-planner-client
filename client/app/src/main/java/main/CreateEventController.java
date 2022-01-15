@@ -1,7 +1,6 @@
 package main;
 
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -22,15 +21,15 @@ public class CreateEventController {
     @FXML
     public GridPane mainGrid;
     @FXML
-    public DatePicker datePickerDate;
+    public JFXDatePicker datePickerDate;
     @FXML
     public JFXTextField textName;
     @FXML
-    public ComboBox<String> ComboBoxPriotity;
+    public JFXComboBox<String> ComboBoxPriotity;
     @FXML
-    public CheckBox checkBoxIsFullDay;
+    public JFXCheckBox checkBoxIsFullDay;
     @FXML
-    public CheckBox checkBoxIsPrivate;
+    public JFXCheckBox checkBoxIsPrivate;
     @FXML
     public Label labelError;
     @FXML
