@@ -1,33 +1,41 @@
 package main;
 
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.LocalTimeStringConverter;
 import res.DataController;
 import res.Event;
+
+import java.time.LocalTime;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 public class CreateEventController {
 
     @FXML
-    public DatePicker datePickerDate;
+    public GridPane mainGrid;
     @FXML
-    public TextField textName;
+    public JFXDatePicker datePickerDate;
     @FXML
-    public TextField textStart;
+    public JFXTextField textName;
     @FXML
-    public TextField textEnd;
+    public JFXComboBox<String> ComboBoxPriotity;
     @FXML
-    public ComboBox<String> ComboBoxTyp;
+    public JFXToggleButton toggleBtnIsFullDay;
     @FXML
-    public ComboBox<String> ComboBoxPriotity;
-    @FXML
-    public CheckBox checkBoxIsFullDay;
-    @FXML
-    public CheckBox checkBoxIsPrivate;
+    public JFXToggleButton toggleBtnIsPrivate;
     @FXML
     public Label labelError;
+    @FXML
+    public JFXTimePicker timeStart;
+    @FXML
+    public JFXTimePicker timeEnd;
 
 
     public CreateEventController() {
@@ -35,6 +43,13 @@ public class CreateEventController {
 
     @FXML
     public void initialize() {
+
+        StringConverter<LocalTime> defaultConverter = new LocalTimeStringConverter(FormatStyle.SHORT, Locale.GERMANY);
+        timeStart.set24HourView(true);
+        timeStart.setConverter(defaultConverter);
+
+        timeEnd.set24HourView(true);
+        timeEnd.setConverter(defaultConverter);
     }
 
 
@@ -48,10 +63,10 @@ public class CreateEventController {
             Event event = new Event(
                     textName.getText(),
                     ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
-                    checkBoxIsFullDay.isSelected(),
-                    checkBoxIsPrivate.isSelected(),
-                    textStart.getText(),
-                    textEnd.getText(),
+                    toggleBtnIsFullDay.isSelected(),
+                    toggleBtnIsPrivate.isSelected(),
+                    timeStart.getValue().toString(),
+                    timeEnd.getValue().toString(),
                     datePickerDate.getValue().atStartOfDay(),
                     (int) DataController.USER_ID
             );

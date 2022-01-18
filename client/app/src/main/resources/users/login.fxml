@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+
 <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="users.LoginController">
 
     <columnConstraints>
@@ -19,14 +21,14 @@
     <Label GridPane.columnIndex="1">Anmelden</Label>
 
     <Label GridPane.rowIndex="1">Username</Label>
-    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField"/>
+    <JFXTextField styleClass="userField" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField"/>
     <Label styleClass="errorLbl" GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="userErrLabel"/>
 
     <Label GridPane.rowIndex="2">Paswort</Label>
-    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField"/>
+    <JFXPasswordField styleClass="passField" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField"/>
     <Label styleClass="errorLbl" GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="passErrLabel"/>
 
-    <Button onAction="#abortBtnClick" GridPane.columnIndex="1" GridPane.rowIndex="3">Beenden</Button>
-    <Button onAction="#login" GridPane.columnIndex="2" GridPane.rowIndex="3">Anmelden</Button>
+    <JFXButton styleClass="quitBtn" onAction="#abortBtnClick" GridPane.columnIndex="1" GridPane.rowIndex="3">Beenden</JFXButton>
+    <JFXButton styleClass="loginBtn" onAction="#login" GridPane.columnIndex="2" GridPane.rowIndex="3">Anmelden</JFXButton>
 
 </GridPane>

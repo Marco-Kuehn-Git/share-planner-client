@@ -16,7 +16,12 @@ application {
     mainClassName = "client.MainApplication"
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
+    implementation("com.jfoenix:jfoenix:9.0.10")
     implementation(project(":data"))
 }
 

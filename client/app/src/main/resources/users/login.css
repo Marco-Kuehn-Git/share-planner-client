@@ -35,3 +35,19 @@ Label{
         -fx-wrap-text: true;
         -fx-font-size: 16px;
 }
+
+.userField{
+    -fx-background-color: white;
+}
+
+.passField{
+    -fx-background-color: white;
+}
+
+.quitBtn{
+    -fx-background-color: white;
+}
+
+.loginBtn{
+    -fx-background-color: white;
+}

@@ -28,10 +28,16 @@ Label{
 
 .inputField{
     -fx-padding: 10px;
+    -fx-background-color: white;
 }
 
 .mainButton{
     -fx-font-weight: bold;
+    -fx-background-color: white;
+}
+
+JFXButton{
+    -fx-background-color: white;
 }
 
 #labelError{
@@ -43,4 +49,16 @@ Label{
     -fx-max-height: 400px;
     -fx-wrap-text: true;
     -fx-font-size: 16px;
+}
+
+.inputDate{
+    -fx-background-color: white;
+}
+
+.comboBox{
+    -fx-background-color: white;
+}
+
+.timePicker{
+    -fx-background-color: white;
 }

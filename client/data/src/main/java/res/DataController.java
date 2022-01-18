@@ -16,11 +16,12 @@ public class DataController {
 
     public static long USER_ID = -1;
 
-    private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/vpr/all-events";
-    private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/vpr/all-users";
-    private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/vpr/add-event";
-    private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/vpr/del-event";
-    private static final String LOGIN_ENDPOINT = "http://localhost:8080/vpr/login";
+    private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/event/all";
+    private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/event/add";
+    private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/event/del";
+
+    private static final String LOGIN_ENDPOINT = "http://localhost:8080/user/login";
+    private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/user/all";
 
     private final HttpRequest httpRequest;
 
@@ -33,7 +34,8 @@ public class DataController {
             USER_ID = Long.parseLong(httpRequest.sendPostRequest(
                     LOGIN_ENDPOINT,
                     "login=" + username
-                            + "&password=" + password
+                            + "&password=" + password,
+                    false
             ));
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,7 +46,7 @@ public class DataController {
 
     public void createEvent(Event event) {
         try {
-            System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam()));
+            System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam(), true));
         } catch (Exception e) {
             throw new RuntimeException("Es konnte keine Verbindung mit dem Server hergestellt werden.");
         }
@@ -52,7 +54,7 @@ public class DataController {
 
     public void deleteEvent(int eventId) {
         try {
-            System.out.println(httpRequest.sendPostRequest(DELETE_EVENT_ENDPOINT, "eventId=" + eventId));
+            System.out.println(httpRequest.sendPostRequest(DELETE_EVENT_ENDPOINT, "eventId=" + eventId, true));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +64,7 @@ public class DataController {
         ArrayList<Event> eventList = new ArrayList<>();
 
         try {
-            String jsonResponse = httpRequest.sendPostRequest(ALL_EVENTS_ENDPOINT, "userId=" + USER_ID);
+            String jsonResponse = httpRequest.sendPostRequest(ALL_EVENTS_ENDPOINT, "userId=" + USER_ID, true);
             System.out.println(jsonResponse);
 
             ObjectMapper objectMapper = new ObjectMapper();
