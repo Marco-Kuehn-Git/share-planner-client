@@ -40,6 +40,8 @@
 
     <JFXTextField styleClass="inputField" fx:id="textName" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="400" minWidth="400"/>
     <JFXDatePicker styleClass="inputDate" fx:id="datePickerDate" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="200" minWidth="200"/>
+    <JFXTimePicker styleClass="timePicker" fx:id="timeStart" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="200" minWidth="200"/>
+    <JFXTimePicker styleClass="timePicker" fx:id="timeEnd" GridPane.columnIndex="1" GridPane.rowIndex="4" maxWidth="200" minWidth="200"/>
 
     <JFXComboBox fx:id="ComboBoxPriotity" styleClass="comboBox" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="200" minWidth="200">
         <items>
@@ -50,8 +52,8 @@
             </FXCollections>
         </items>
     </JFXComboBox>
-    <JFXCheckBox styleClass="checkbox" fx:id="checkBoxIsFullDay" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-    <JFXCheckBox styleClass="checkbox"  fx:id="checkBoxIsPrivate" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+    <JFXToggleButton styleClass="checkbox" fx:id="toggleBtnIsFullDay" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+    <JFXToggleButton styleClass="checkbox"  fx:id="toggleBtnIsPrivate" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
     <Label fx:id="labelError" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
 
     <HBox GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.columnSpan="2" alignment="CENTER_RIGHT">
