@@ -21,11 +21,11 @@ public class CreateEventController {
     @FXML
     public GridPane mainGrid;
     @FXML
-    public DatePicker datePickerDate;
+    public JFXDatePicker datePickerDate;
     @FXML
     public JFXTextField textName;
     @FXML
-    public ComboBox<String> ComboBoxPriotity;
+    public JFXComboBox<String> ComboBoxPriotity;
     @FXML
     public JFXToggleButton toggleBtnIsFullDay;
     @FXML
@@ -36,7 +36,6 @@ public class CreateEventController {
     public JFXTimePicker timeStart;
     @FXML
     public JFXTimePicker timeEnd;
-
 
 
     public CreateEventController() {
