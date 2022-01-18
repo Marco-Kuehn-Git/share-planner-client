@@ -2,14 +2,14 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="users.CreateUserController">
     <columnConstraints>
-        <ColumnConstraints/>
-        <ColumnConstraints/>
-        <ColumnConstraints/>
-        <ColumnConstraints/>
+        <ColumnConstraints minWidth="100"/>
+        <ColumnConstraints minWidth="100"/>
+        <ColumnConstraints minWidth="100"/>
     </columnConstraints>
     <rowConstraints>
         <RowConstraints vgrow="ALWAYS" />
@@ -19,22 +19,38 @@
         <RowConstraints vgrow="ALWAYS" />
         <RowConstraints vgrow="ALWAYS" />
         <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
     </rowConstraints>
 
-    <Label styleClass="mainLabel" GridPane.columnIndex="2" GridPane.columnSpan="2" >User anlegen</Label>
+    <Label styleClass="mainLabel" GridPane.columnIndex="2" >User anlegen</Label>
 
-    <Label styleClass="inputLabel" GridPane.rowIndex="1" GridPane.columnIndex="1">Name:</Label>
-    <Label styleClass="inputLabel" GridPane.rowIndex="3" GridPane.columnIndex="1">Passwort:</Label>
-    <Label styleClass="inputLabel" GridPane.rowIndex="4" GridPane.columnIndex="1">Passwort wiederholen:</Label>
-    <Label styleClass="inputLabel" GridPane.rowIndex="6" GridPane.columnIndex="1">Admin:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="1" GridPane.columnIndex="1">Login:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="2" GridPane.columnIndex="1">Vorname:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="3" GridPane.columnIndex="1">Nachname:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="4" GridPane.columnIndex="1">Passwort:</Label>
+    <Label styleClass="inputLabel" GridPane.rowIndex="5" GridPane.columnIndex="1">Passwort wiederholen:</Label>
 
-    <TextField fx:id="textName" GridPane.columnIndex="2" GridPane.rowIndex="1" maxWidth="400" minWidth="400"/>
-    <TextField fx:id="textPassword" GridPane.columnIndex="2" GridPane.rowIndex="3" maxWidth="400" minWidth="400"/>
-    <TextField fx:id="textPasswordSecond" GridPane.columnIndex="2" GridPane.rowIndex="4" maxWidth="400" minWidth="400"/>
+    <Label styleClass="inputLabelAdmin" GridPane.rowIndex="6" GridPane.columnIndex="1">Admin:</Label>
 
-    <CheckBox fx:id="checkBoxIsAdmin" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+    <TextField fx:id="textLogin" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <TextField fx:id="textForename" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <TextField fx:id="textName" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+    <TextField fx:id="textPassword" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+    <TextField fx:id="textPasswordSecond" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
-    <Label fx:id="labelErrorName" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-    <Label fx:id="labelErrorPw" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+    <ToggleButton fx:id="checkButtonIsAdmin" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+
+    <Label fx:id="labelError" styleClass="errorMessage" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+
+    <HBox GridPane.columnIndex="2" GridPane.rowIndex="8" alignment="CENTER_RIGHT">
+        <HBox.margin>
+            <Insets right="100" left="100"/>
+        </HBox.margin>
+        <Button onAction="#abortBtnClick">Abbrechen</Button>
+        <Button onAction="#createUser" styleClass="btnLogin" >Anmelden</Button>
+
+    </HBox>
 </GridPane>
 
