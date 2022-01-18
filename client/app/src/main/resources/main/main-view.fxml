@@ -49,9 +49,9 @@
                 <Insets left="5"/>
             </padding>
         </Label>
-        <JFXButton styleClass="navButton" onAction="#onBackClick" GridPane.columnIndex="1" maxHeight="1.7976931348623157E308">zurück</JFXButton>
-        <JFXButton styleClass="navButton" GridPane.columnIndex="2" maxHeight="1.7976931348623157E308">heute</JFXButton>
-        <JFXButton styleClass="navButton" GridPane.columnIndex="3" maxHeight="1.7976931348623157E308">weiter</JFXButton>
+        <JFXButton styleClass="navBtn" onAction="#onBackClick" GridPane.columnIndex="1" maxHeight="1.7976931348623157E308">zurück</JFXButton>
+        <JFXButton styleClass="navBtn" GridPane.columnIndex="2" maxHeight="1.7976931348623157E308">heute</JFXButton>
+        <JFXButton styleClass="navBtn" GridPane.columnIndex="3" maxHeight="1.7976931348623157E308">weiter</JFXButton>
 
         <GridPane fx:id="calendarGrid" gridLinesVisible="true" styleClass="gridCalendar" GridPane.columnSpan="4"
                   GridPane.columnIndex="0" GridPane.rowIndex="1">

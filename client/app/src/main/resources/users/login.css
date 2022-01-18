@@ -43,3 +43,11 @@ Label{
 .passField{
     -fx-background-color: white;
 }
+
+.quitBtn{
+    -fx-background-color: white;
+}
+
+.loginBtn{
+    -fx-background-color: white;
+}
