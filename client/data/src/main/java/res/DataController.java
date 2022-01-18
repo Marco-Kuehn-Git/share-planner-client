@@ -1,6 +1,7 @@
 package res;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import helper.Tuple;
 
@@ -11,6 +12,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class DataController {
@@ -66,34 +68,35 @@ public class DataController {
         }
     }
 
-    public void deleteEvent(int eventId) {
+    public void deleteEvent(int userId, int eventId, LocalDateTime date) {
         try {
-            System.out.println(httpRequest.sendPostRequest(DELETE_EVENT_ENDPOINT, "eventId=" + eventId, true));
+            System.out.println("DELETE: userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate());
+            System.out.println(httpRequest.sendPostRequest(
+                    DELETE_EVENT_ENDPOINT,
+                    "userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate(),
+                    true
+            ));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Event> getAllVisibleEvents() {
+    public ArrayList<Event> getAllVisibleEvents(LocalDateTime startDate, LocalDateTime endDate) {
         ArrayList<Event> eventList = new ArrayList<>();
-
         try {
-            Tuple<Integer, String> response = httpRequest.sendPostRequest(ALL_EVENTS_ENDPOINT, "userId=" + USER_ID, true);
+            Tuple<Integer, String> response = httpRequest.sendPostRequest(
+                    ALL_EVENTS_ENDPOINT,
+                    "userId=" + USER_ID + "&startDate=" + startDate.toLocalDate() + "&endDate=" + endDate.toLocalDate(),
+                    true
+            );
             String jsonResponse = response.getValue();
             System.out.println(jsonResponse);
 
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.findAndRegisterModules();
+            eventList = (ArrayList<Event>) objectMapper.readValue(jsonResponse, new TypeReference<List<Event>>(){});
 
-            for (Object obj : objectMapper.readValue(jsonResponse, Object[].class)) {
-                ArrayList<Object> list = new ArrayList<>();
-                if (obj.getClass().isArray()) {
-                    list = (ArrayList<Object>) Arrays.asList((Object[]) obj);
-                } else if (obj instanceof Collection) {
-                    list = new ArrayList<>((Collection<?>) obj);
-                }
-                eventList.add(new Event(list));
 
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

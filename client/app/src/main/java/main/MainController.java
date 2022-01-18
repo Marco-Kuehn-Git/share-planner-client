@@ -56,7 +56,7 @@ public class MainController {
         }
 
         DataController dataController = new DataController();
-        ArrayList<Event> eventList = dataController.getAllVisibleEvents();
+        ArrayList<Event> eventList = dataController.getAllVisibleEvents(weekStartDateTime, weekStartDateTime.plusDays(7));
 
         for (Event event : eventList) {
             addEvent(event);
@@ -143,7 +143,7 @@ public class MainController {
         deleteBtn.setTextValue(" X ");
         deleteBtn.setOnAction(e -> {
             DataController dataController = new DataController();
-            dataController.deleteEvent(event.getId());
+            dataController.deleteEvent(event.getOwnerId(), event.getId(), event.getDate());
             updateEvents();
         });
         Button editBtn = new Button();

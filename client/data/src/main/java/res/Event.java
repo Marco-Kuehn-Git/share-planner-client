@@ -2,6 +2,7 @@ package res;
 
 import com.sun.jdi.event.StepEvent;
 
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -43,6 +44,10 @@ public class Event {
     u.name AS uname
      */
 
+    public Event() {
+
+    }
+
     public Event(ArrayList<Object> arr) {
         id = (int) arr.get(0);
         name = (String) arr.get(1);
@@ -57,6 +62,33 @@ public class Event {
 
         ownerId = (int) arr.get(7);
         ownerName = arr.get(8) + " " + arr.get(9);
+    }
+
+    public Event(
+            int id,
+            String name,
+            int priority,
+            boolean isFullDay,
+            boolean isPrivate,
+            String start,
+            String end,
+            String date,
+            int ownerId,
+            String ownerName
+    ) {
+        this.ownerId = ownerId;
+        this.ownerName = ownerName;
+        this.id = id;
+        this.name = name;
+        this.start = start;
+        this.end = end;
+        this.priority = priority;
+        this.isFullDay = isFullDay;
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.date = LocalDateTime.parse(date + " 00:00", formatter);
+
     }
 
     public Event(String name,
@@ -174,8 +206,9 @@ public class Event {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.date = LocalDateTime.parse(date + " 00:00", formatter);
     }
 
     public int getOwnerId() {
