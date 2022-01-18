@@ -6,6 +6,7 @@
    -fx-main-text-color: #ffffff;
 }
 
+
 GridPane{
     -fx-background-color: #3E415F;
     -fx-padding: 20px;
@@ -19,35 +20,37 @@ GridPane{
     -fx-effect: dropshadow(three-pass-box, rgba(100, 100, 100, 1), 24, 0.5, 0, 0);
 }
 
+.mainLabel{
+    -fx-padding: 10px;
+    -fx-max-width: 400px;
+    -fx-min-width: 400px;
+    -fx-font-weight: bold;
+    -fx-alignment: top-center;
+}
+
+
 Label{
     -fx-text-fill: white;
     -fx-max-width: 150px;
     -fx-min-width: 150px;
 }
 
-.errorLbl{
+.textField{
+    -fx-max-width: 400px;
+    -fx-min-width: 400px;
+}
+
+.errorMessage{
+    -fx-max-width: 400px;
+    -fx-min-width: 400px;
+}
+
+Button{
+    -fx-max-width: 150px;
+    -fx-min-width: 150px;
+}
+
+.btnLogin{
     -fx-font-weight: bold;
-        -fx-max-width: 200px;
-        -fx-text-fill: #ff5555;
-        -fx-padding: 16px;
-        -fx-min-height: 140px;
-        -fx-max-height: 400px;
-        -fx-wrap-text: true;
-        -fx-font-size: 16px;
 }
 
-.userField{
-    -fx-background-color: white;
-}
-
-.passField{
-    -fx-background-color: white;
-}
-
-.quitBtn{
-    -fx-background-color: white;
-}
-
-.loginBtn{
-    -fx-background-color: white;
-}
