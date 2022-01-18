@@ -21,8 +21,6 @@ public class MainApplication extends Application {
                 MainApplication.class.getResource("main-view.css")).toExternalForm());
         stage.setTitle("SharePlaner");
         stage.setScene(scene);
-        //wieder löschen
-        stage.show();
 
         FXMLLoader fxmlLoaderLogin = new FXMLLoader(MainApplication.class.getResource("../users/login.fxml"));
         Scene sceneLogin = new Scene(fxmlLoaderLogin.load(), 650, 500);
