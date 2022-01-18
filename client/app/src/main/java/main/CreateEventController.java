@@ -12,6 +12,7 @@ import javafx.util.converter.LocalTimeStringConverter;
 import res.DataController;
 import res.Event;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.FormatStyle;
 import java.util.Locale;
@@ -65,8 +66,8 @@ public class CreateEventController {
                     ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
                     toggleBtnIsFullDay.isSelected(),
                     toggleBtnIsPrivate.isSelected(),
-                    timeStart.getValue().toString(),
-                    timeEnd.getValue().toString(),
+                    timeStart.getValue(),
+                    timeEnd.getValue(),
                     datePickerDate.getValue().atStartOfDay(),
                     (int) DataController.USER_ID
             );
