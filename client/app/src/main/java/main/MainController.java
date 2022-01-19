@@ -1,15 +1,24 @@
 package main;
 
+import com.jfoenix.svg.SVGGlyph;
+import com.jfoenix.svg.SVGGlyphLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import customUI.Button;
 import customUI.Label;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.SVGPath;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import res.DataController;
@@ -139,15 +148,43 @@ public class MainController {
 
         HBox btnHBox = new HBox();
         btnHBox.setAlignment(Pos.BOTTOM_RIGHT);
+
         Button deleteBtn = new Button();
-        deleteBtn.setTextValue(" X ");
+        Group svgDel = new Group(
+                createPath("M0 0h24v24H0z", "transparent", "transparent"),
+                createPath("M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z",
+                        "white", "lightgray")
+        );
+        Bounds boundsDel = svgDel.getBoundsInParent();
+        double scaleDel = Math.min(20/boundsDel.getWidth(), 20 / boundsDel.getHeight());
+        svgDel.setScaleX(scaleDel);
+        svgDel.setScaleY(scaleDel);
+        deleteBtn.setGraphic(svgDel);
+        deleteBtn.setMaxSize(24, 24);
+        deleteBtn.setMinSize(24, 24);
+        deleteBtn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        deleteBtn.getStyleClass().add("deleteEventBtn");
         deleteBtn.setOnAction(e -> {
             DataController dataController = new DataController();
             dataController.deleteEvent(event.getOwnerId(), event.getId(), event.getDate());
             updateEvents();
         });
+
         Button editBtn = new Button();
-        editBtn.setTextValue("edit");
+        Group svgEdit = new Group(
+                createPath("M0 0h24v24H0z", "transparent", "transparent"),
+                createPath("M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
+                        "white", "lightgray")
+        );
+        Bounds boundsEdit = svgEdit.getBoundsInParent();
+        double scaleEdit = Math.min(20/boundsEdit.getWidth(), 20 / boundsEdit.getHeight());
+        svgEdit.setScaleX(scaleEdit);
+        svgEdit.setScaleY(scaleEdit);
+        editBtn.setGraphic(svgEdit);
+        editBtn.setMaxSize(24, 24);
+        editBtn.setMinSize(24, 24);
+        editBtn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        editBtn.getStyleClass().add("editEventBtn");
         editBtn.setOnAction(event1 -> {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(
@@ -225,5 +262,13 @@ public class MainController {
 
         LabelMonth.setText(dateFormatter.format(weekStartDateTime));
 
+    }
+
+    private static SVGPath createPath(String d, String fill, String hoverFill) {
+        SVGPath path = new SVGPath();
+        path.getStyleClass().add("svg");
+        path.setContent(d);
+        path.setStyle("-fill:" + fill + ";-hover-fill:"+hoverFill+';');
+        return path;
     }
 }
