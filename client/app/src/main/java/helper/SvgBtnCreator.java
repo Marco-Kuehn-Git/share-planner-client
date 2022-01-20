@@ -12,7 +12,7 @@ public class SvgBtnCreator {
         Button btn = new Button();
 
         Bounds boundsDel = group.getBoundsInParent();
-        double scaleDel = Math.min(20 / boundsDel.getWidth(), 20 / boundsDel.getHeight());
+        double scaleDel = Math.min(svgSize / boundsDel.getWidth(), svgSize / boundsDel.getHeight());
         group.setScaleX(scaleDel);
         group.setScaleY(scaleDel);
         btn.setGraphic(group);

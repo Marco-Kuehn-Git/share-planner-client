@@ -15,20 +15,11 @@
     <rowConstraints>
         <RowConstraints vgrow="SOMETIMES"/>
     </rowConstraints>
-    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0"
+    <VBox fx:id="leftNav" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0"
           style="-fx-background-color: #525E74;">
         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 
         </ImageView>
-        <JFXButton onAction="#onAddBtnClick" styleClass="main-btn">
-            ADD
-        </JFXButton>
-        <JFXButton onAction="#onAddBtnClick" styleClass="main-btn">
-            ADD
-        </JFXButton>
-        <JFXButton onAction="#onAddBtnClick" styleClass="main-btn">
-            ADD
-        </JFXButton>
     </VBox>
     <GridPane prefHeight="200.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <columnConstraints>
