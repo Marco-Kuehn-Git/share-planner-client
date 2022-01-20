@@ -12,7 +12,6 @@ import javafx.util.converter.LocalTimeStringConverter;
 import res.DataController;
 import res.Event;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.FormatStyle;
 import java.util.Locale;
