@@ -8,7 +8,7 @@ import javafx.scene.shape.SVGPath;
 
 public class SvgBtnCreator {
 
-    public static Button cretaeBtn(Group group, int svgSize) {
+    public static Button createBtn(Group group, int svgSize) {
         Button btn = new Button();
 
         Bounds boundsDel = group.getBoundsInParent();

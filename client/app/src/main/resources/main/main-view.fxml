@@ -4,7 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import com.jfoenix.controls.*?>
 
 <GridPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="main.MainController">
@@ -21,7 +20,7 @@
 
         </ImageView>
     </VBox>
-    <GridPane prefHeight="200.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+    <GridPane fx:id="mainGridPane" prefHeight="200.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS"/>
             <ColumnConstraints/>
@@ -40,9 +39,6 @@
                 <Insets left="5"/>
             </padding>
         </Label>
-        <JFXButton styleClass="navBtn" onAction="#onBackClick" GridPane.columnIndex="1" maxHeight="1.7976931348623157E308">zurück</JFXButton>
-        <JFXButton styleClass="navBtn" onAction="#onTodayClick" GridPane.columnIndex="2" maxHeight="1.7976931348623157E308">heute</JFXButton>
-        <JFXButton styleClass="navBtn" onAction="#onNextClick" GridPane.columnIndex="3" maxHeight="1.7976931348623157E308">weiter</JFXButton>
 
         <GridPane fx:id="calendarGrid" gridLinesVisible="true" styleClass="gridCalendar" GridPane.columnSpan="4"
                   GridPane.columnIndex="0" GridPane.rowIndex="1">

@@ -76,7 +76,16 @@ Label{
 }
 
 .navBtn{
-    -fx-background-color: white;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.navBtn .svg {
+    -fx-fill: -fill;
+}
+
+.navBtn:hover .svg {
+    -fx-fill: -hover-fill;
 }
 
 .editEventBtn{
