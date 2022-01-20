@@ -1,6 +1,7 @@
 package main;
 
 import com.jfoenix.controls.*;
+import helper.HttpRequestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -74,14 +75,18 @@ public class CreateEventController {
 
             System.out.println(event.getAsUrlParam());
 
-            DataController dataController = new DataController();
-            dataController.createEvent(event);
+            sendHttpRequest(event);
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.close();
-        } catch (RuntimeException e) {
+        } catch (HttpRequestException e) {
             labelError.setText(e.getMessage());
         }
+    }
+
+    protected void sendHttpRequest(Event event) throws HttpRequestException {
+        DataController dataController = new DataController();
+        dataController.createEvent(event);
     }
 
     @FXML
