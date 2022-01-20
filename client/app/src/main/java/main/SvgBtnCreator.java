@@ -8,9 +8,7 @@ import javafx.scene.shape.SVGPath;
 
 public class SvgBtnCreator {
 
-    private static final int SVG_SIZE = 24;
-
-    public static Button cretaeBtn(Group group) {
+    public static Button cretaeBtn(Group group, int svgSize) {
         Button btn = new Button();
 
         Bounds boundsDel = group.getBoundsInParent();
@@ -18,8 +16,8 @@ public class SvgBtnCreator {
         group.setScaleX(scaleDel);
         group.setScaleY(scaleDel);
         btn.setGraphic(group);
-        btn.setMaxSize(SVG_SIZE, SVG_SIZE);
-        btn.setMinSize(SVG_SIZE, SVG_SIZE);
+        btn.setMaxSize(svgSize, svgSize);
+        btn.setMinSize(svgSize, svgSize);
         btn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         return btn;
