@@ -75,6 +75,10 @@ Label{
     -fx-fill: -hover-fill;
 }
 
+.buttonBox{
+    -fx-background-color: #77859E;
+}
+
 .navBtn{
     -fx-background-color: transparent;
     -fx-border-color: transparent;

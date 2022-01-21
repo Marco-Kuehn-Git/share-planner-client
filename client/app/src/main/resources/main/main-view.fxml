@@ -40,6 +40,8 @@
             </padding>
         </Label>
 
+        <HBox fx:id="buttonBox" styleClass="buttonBox" GridPane.columnIndex="1" alignment="CENTER"/>
+
         <GridPane fx:id="calendarGrid" gridLinesVisible="true" styleClass="gridCalendar" GridPane.columnSpan="4"
                   GridPane.columnIndex="0" GridPane.rowIndex="1">
             <columnConstraints>
