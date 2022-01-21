@@ -4,6 +4,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import customUI.Button;
 import javafx.scene.control.ContentDisplay;
+import customUI.Tooltip;
 import javafx.scene.shape.SVGPath;
 
 public class SvgBtnCreator {
@@ -19,6 +20,39 @@ public class SvgBtnCreator {
         btn.setMaxSize(svgSize, svgSize);
         btn.setMinSize(svgSize, svgSize);
         btn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+
+        return btn;
+    }
+
+    public static Button createBtn(Group group, int svgSize, String styleClass) {
+        Button btn = new Button();
+
+        Bounds boundsDel = group.getBoundsInParent();
+        double scaleDel = Math.min(svgSize / boundsDel.getWidth(), svgSize / boundsDel.getHeight());
+        group.setScaleX(scaleDel);
+        group.setScaleY(scaleDel);
+        btn.setGraphic(group);
+        btn.setMaxSize(svgSize, svgSize);
+        btn.setMinSize(svgSize, svgSize);
+        btn.getStyleClass().add(styleClass);
+
+        return btn;
+    }
+
+    public static Button createBtn(Group group, int svgSize, String styleClass, String toolTip) {
+        Button btn = new Button();
+
+        Bounds boundsDel = group.getBoundsInParent();
+        double scaleDel = Math.min(svgSize / boundsDel.getWidth(), svgSize / boundsDel.getHeight());
+        group.setScaleX(scaleDel);
+        group.setScaleY(scaleDel);
+        btn.setGraphic(group);
+        btn.setMaxSize(svgSize, svgSize);
+        btn.setMinSize(svgSize, svgSize);
+        btn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        btn.getStyleClass().add(styleClass);
+        Tooltip tooltip = new Tooltip(toolTip);
+        btn.setTooltip(tooltip);
 
         return btn;
     }
