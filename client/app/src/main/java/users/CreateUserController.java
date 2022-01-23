@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
@@ -13,8 +14,8 @@ import java.util.Objects;
 public class CreateUserController {
 
     public TextField textName;
-    public TextField textPassword;
-    public TextField textPasswordSecond;
+    public PasswordField textPassword;
+    public PasswordField textPasswordSecond;
     public ToggleButton checkButtonIsAdmin;
     public TextField textLogin;
     public TextField textForename;
