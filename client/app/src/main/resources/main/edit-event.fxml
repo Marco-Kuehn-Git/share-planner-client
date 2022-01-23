@@ -8,7 +8,7 @@
 <?import com.jfoenix.controls.*?>
 
 <GridPane fx:id="mainGrid" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="main.CreateEventController">
+          fx:controller="main.EditEventController">
 
     <columnConstraints>
         <ColumnConstraints/>

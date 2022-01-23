@@ -3,6 +3,7 @@ package res;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import helper.HttpRequestException;
 import helper.Tuple;
 
 import java.io.BufferedReader;
@@ -24,6 +25,7 @@ public class DataController {
     private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/event/del";
 
     private static final String LOGIN_ENDPOINT = "http://localhost:8080/user/login";
+    private static final String LOGIN_WITH_TOKEN_ENDPOINT = "http://localhost:8080/user/login-with-token";
     private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/user/all";
     private static final String HEADER_TEST_ENDPOINT = "http://localhost:8080/vpr/header-test";
 
@@ -60,28 +62,59 @@ public class DataController {
         return USER_ID >= 0;
     }
 
-    public void createEvent(Event event) {
+    public boolean loginWithToken(long userId, String token) {
         try {
-            System.out.println(httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam(), true));
+            HttpRequest.TOKEN = token;
+            Tuple<Integer, String> response = httpRequest.sendPostRequest(
+                    LOGIN_WITH_TOKEN_ENDPOINT,
+                    "userId=" + userId,
+                    true
+            );
+
+            System.out.println(response.getKey() + " " + response.getValue());
+
+            if(response.getKey() != 200) return false;
         } catch (Exception e) {
-            throw new RuntimeException("Es konnte keine Verbindung mit dem Server hergestellt werden.");
+            e.printStackTrace();
+            return false;
+        }
+        USER_ID = userId;
+        HttpRequest.TOKEN = token;
+        return USER_ID >= 0;
+    }
+
+    public void createEvent(Event event) throws HttpRequestException {
+        try {
+            Tuple<Integer, String> response = httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam(), true);
+            if(response.getKey() != 200){
+                throw new HttpRequestException(response);
+            }
+        }catch (HttpRequestException e){
+            throw e;
+        }catch (Exception e) {
+            throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
         }
     }
 
-    public void deleteEvent(int userId, int eventId, LocalDateTime date) {
+    public void deleteEvent(int userId, int eventId, LocalDateTime date) throws HttpRequestException {
         try {
             System.out.println("DELETE: userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate());
-            System.out.println(httpRequest.sendPostRequest(
+            Tuple<Integer, String> response = httpRequest.sendPostRequest(
                     DELETE_EVENT_ENDPOINT,
                     "userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate(),
                     true
-            ));
-        } catch (Exception e) {
-            e.printStackTrace();
+            );
+            if(response.getKey() != 200){
+                throw new HttpRequestException(response);
+            }
+        }catch (HttpRequestException e){
+            throw e;
+        }catch (Exception e) {
+            throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
         }
     }
 
-    public ArrayList<Event> getAllVisibleEvents(LocalDateTime startDate, LocalDateTime endDate) {
+    public ArrayList<Event> getAllVisibleEvents(LocalDateTime startDate, LocalDateTime endDate) throws HttpRequestException {
         ArrayList<Event> eventList = new ArrayList<>();
         try {
             Tuple<Integer, String> response = httpRequest.sendPostRequest(
@@ -89,6 +122,9 @@ public class DataController {
                     "userId=" + USER_ID + "&startDate=" + startDate.toLocalDate() + "&endDate=" + endDate.toLocalDate(),
                     true
             );
+            if(response.getKey() != 200){
+                throw new HttpRequestException(response);
+            }
             String jsonResponse = response.getValue();
             System.out.println(jsonResponse);
 
@@ -97,35 +133,14 @@ public class DataController {
             eventList = (ArrayList<Event>) objectMapper.readValue(jsonResponse, new TypeReference<List<Event>>(){});
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        }catch (HttpRequestException e){
+            throw e;
+        }catch (Exception e) {
+            throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
         }
 
         return eventList;
     }
 
-    public Event[] getAllEvents() {
-        Event[] eventList = null;
 
-        try {
-            String jsonResponse = httpRequest.sendGetRequest("http://localhost:8080/vpr/all-events-test");
-            eventList = parseJsonToEventList(jsonResponse);
-            for (Event e : eventList) {
-                System.out.println(e);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return eventList;
-    }
-
-    private Event[] parseJsonToEventList(String jsonString) throws JsonProcessingException {
-        ArrayList<Event> eventList;
-
-        // Parse JSON
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        return objectMapper.readValue(jsonString, Event[].class);
-    }
 }

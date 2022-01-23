@@ -3,11 +3,13 @@ package main;
 import customUI.Button;
 import customUI.Label;
 import helper.SvgBtnCreator;
+import helper.HttpRequestException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
+import customUI.Button;
+import customUI.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -65,10 +67,14 @@ public class MainController {
         }
 
         DataController dataController = new DataController();
-        ArrayList<Event> eventList = dataController.getAllVisibleEvents(weekStartDateTime, weekStartDateTime.plusDays(7));
+        try {
+            ArrayList<Event> eventList = dataController.getAllVisibleEvents(weekStartDateTime, weekStartDateTime.plusDays(7));
 
-        for (Event event : eventList) {
-            addEvent(event);
+            for (Event event : eventList) {
+                addEvent(event);
+            }
+        } catch (HttpRequestException e) {
+            e.printStackTrace();
         }
     }
 
@@ -106,6 +112,7 @@ public class MainController {
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
+            //stage.initStyle(StageStyle.UNDECORATED);
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -166,7 +173,11 @@ public class MainController {
         deleteBtn.getStyleClass().add("deleteEventBtn");
         deleteBtn.setOnAction(e -> {
             DataController dataController = new DataController();
-            dataController.deleteEvent(event.getOwnerId(), event.getId(), event.getDate());
+            try {
+                dataController.deleteEvent(event.getOwnerId(), event.getId(), event.getDate());
+            } catch (HttpRequestException ex) {
+                ex.printStackTrace();
+            }
             updateEvents();
         });
 
@@ -189,7 +200,10 @@ public class MainController {
                 stage.setScene(scene);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setResizable(false);
+                EditEventController editEventController = fxmlLoader.getController();
+                editEventController.setCurrentEvent(event);
                 stage.showAndWait();
+                updateEvents();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -320,6 +334,4 @@ public class MainController {
         GridPane.setColumnIndex(nextBtn, 3);
         buttonBox.getChildren().add(nextBtn);
     }
-
-
 }
