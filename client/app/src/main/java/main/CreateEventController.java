@@ -61,6 +61,8 @@ public class CreateEventController {
                 throw new IllegalArgumentException("Bitte w\u00e4hle ein Datum aus");
             }
 
+            System.out.println(datePickerDate.getValue());
+
             Event event = new Event(
                     textName.getText(),
                     ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
@@ -78,7 +80,7 @@ public class CreateEventController {
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.close();
-        } catch (HttpRequestException e) {
+        } catch (Exception e) {
             labelError.setText(e.getMessage());
         }
     }
