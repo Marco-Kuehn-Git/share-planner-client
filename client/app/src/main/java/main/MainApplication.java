@@ -23,17 +23,18 @@ public class MainApplication extends Application {
         System.out.println("Ignore 'Illegal reflective access operation'-Warning. See https://github.com/sshahine/JFoenix/issues/1170");
 
         if(
-            !config.isLoginSaved()
-            || new DataController().loginWithToken(config.getId(), config.getToken())
+            !config.isSaveLogin()
+            || !new DataController().loginWithToken(config.getId(), config.getToken())
         ){
             // Load login-scene
             loadLoginScene();
         }
 
         if (DataController.USER_ID >= 0) {
-            if(config.isLoginSaved()){
+            if(config.isSaveLogin()){
                 config.setId(DataController.USER_ID);
                 config.setToken(HttpRequest.TOKEN);
+                ConfigLoader.save(config);
             }
             // Load main-scene
             loadMainScene(stage);

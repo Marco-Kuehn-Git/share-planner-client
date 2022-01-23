@@ -76,3 +76,29 @@ Label{
     -fx-background-color: white;
 }
 
+.editEventBtn{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.editEventBtn .svg {
+    -fx-fill: -fill;
+}
+
+.editEventBtn:hover .svg {
+    -fx-fill: -hover-fill;
+}
+
+.deleteEventBtn{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.deleteEventBtn .svg {
+    -fx-fill: -fill;
+}
+
+.deleteEventBtn:hover .svg {
+    -fx-fill: -hover-fill;
+}
+

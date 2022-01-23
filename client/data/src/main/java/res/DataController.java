@@ -62,17 +62,24 @@ public class DataController {
         return USER_ID >= 0;
     }
 
-    public boolean loginWIthToken(String username, String password) {
+    public boolean loginWithToken(long userId, String token) {
         try {
+            HttpRequest.TOKEN = token;
             Tuple<Integer, String> response = httpRequest.sendPostRequest(
                     LOGIN_WITH_TOKEN_ENDPOINT,
-                    "userId=" + USER_ID,
+                    "userId=" + userId,
                     true
             );
+
+            System.out.println(response.getKey() + " " + response.getValue());
+
+            if(response.getKey() != 200) return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+        USER_ID = userId;
+        HttpRequest.TOKEN = token;
         return USER_ID >= 0;
     }
 

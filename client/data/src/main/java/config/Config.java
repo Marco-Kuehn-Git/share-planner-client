@@ -15,7 +15,7 @@ public class Config {
         this.token = token;
     }
 
-    public boolean isLoginSaved() {
+    public boolean isSaveLogin() {
         return saveLogin;
     }
 
