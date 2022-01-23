@@ -8,7 +8,7 @@ public class Converter {
     ß 		    \u00df
      */
     @SuppressWarnings("all")
-    public static String CONVERT_STR(String str){
+    public static String convertString(String str){
         return str
                 .replace("ä", "\u00e4")
                 .replace("Ä", "\u00c4")
