@@ -1,0 +1,59 @@
+* {
+   -fx-base-background-color: #2B2D42;
+   -fx-base1-background-color: #525E74;
+
+   -fx-main-border-color: #B0B0B0;
+   -fx-main-text-color: #ffffff;
+}
+
+
+GridPane{
+    -fx-background-color: #3E415F;
+    -fx-padding: 20px;
+    -fx-font-size: 20px;
+    -fx-font-family: Segoe UI;
+
+    -fx-border-insets: 1;
+    -fx-border-color: #B0B0B0;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(100, 100, 100, 1), 24, 0.5, 0, 0);
+}
+
+.mainLabel{
+    -fx-padding: 10px;
+    -fx-max-width: 400px;
+    -fx-min-width: 400px;
+    -fx-font-weight: bold;
+    -fx-alignment: top-center;
+}
+
+
+Label{
+    -fx-text-fill: white;
+    -fx-max-width: 150px;
+    -fx-min-width: 150px;
+}
+
+.textField{
+    -fx-max-width: 400px;
+    -fx-min-width: 400px;
+}
+
+.errorMessage{
+    -fx-font-weight: bold;
+    -fx-max-width: 200px;
+    -fx-text-fill: #ff5555;
+    -fx-font-size: 16px;
+    -fx-max-width: 400px;
+    -fx-min-width: 400px;
+}
+
+Button{
+    -fx-max-width: 150px;
+    -fx-min-width: 150px;
+}
+
+.btnLogin{
+    -fx-font-weight: bold;
+}
