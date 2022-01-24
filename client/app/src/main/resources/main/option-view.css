@@ -13,8 +13,8 @@ GridPane{
 
 Label{
     -fx-text-fill: white;
-    -fx-max-width: 150px;
-    -fx-min-width: 150px;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
 }
 
 .mainLabel{
@@ -24,11 +24,6 @@ Label{
     -fx-min-width: 200px;
     -fx-font-weight: bold;
     -fx-alignment: center;
-}
-
-.inputField{
-    -fx-padding: 10px;
-    -fx-background-color: white;
 }
 
 .mainButton{
@@ -51,14 +46,13 @@ JFXButton{
     -fx-font-size: 16px;
 }
 
-.inputDate{
-    -fx-background-color: white;
-}
-
 .comboBox{
     -fx-background-color: white;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
 }
 
-.timePicker{
-    -fx-background-color: white;
+.userBtn{
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
 }

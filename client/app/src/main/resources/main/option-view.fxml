@@ -14,7 +14,7 @@
     <columnConstraints>
         <ColumnConstraints minWidth="100"/>
         <ColumnConstraints minWidth="100"/>
-        <ColumnConstraints minWidth="100"/>
+        <ColumnConstraints minWidth="200"/>
         <ColumnConstraints minWidth="100"/>
         <ColumnConstraints minWidth="100"/>
     </columnConstraints>
@@ -27,28 +27,35 @@
         <RowConstraints vgrow="ALWAYS" />
         <RowConstraints vgrow="ALWAYS" />
         <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="ALWAYS" />
     </rowConstraints>
 
     <Label styleClass="mainLabel" GridPane.columnIndex="2" GridPane.halignment="CENTER" >Einstellungen</Label>
 
-    <Label GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER">User:</Label>
-    <JFXComboBox fx:id="userCmb" GridPane.columnIndex="2" GridPane.rowIndex="1">
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.halignment="CENTER">User:</Label>
+    <JFXComboBox styleClass="comboBox" fx:id="userCmb" GridPane.columnIndex="2" GridPane.rowIndex="2">
         <items>
             <FXCollections fx:factory="observableArrayList">
+                <String fx:value="alex"/>
                 <String fx:value="marc"/>
                 <String fx:value="marco"/>
             </FXCollections>
         </items>
     </JFXComboBox>
 
-    <JFXButton fx:id="updateUserBtn" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.halignment="CENTER" onAction="#onUpdateBtnClick">User bearbeiten</JFXButton>
-    <JFXButton fx:id="deleteUserBtn" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.halignment="CENTER" onAction="#onDeleteBtnClick">User löschen</JFXButton>
-    <JFXButton fx:id="createUserBtn" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" GridPane.halignment="CENTER" onAction="#onCreateBtnClick">User anlegen</JFXButton>
+    <JFXButton styleClass="userBtn" fx:id="updateUserBtn" GridPane.columnIndex="1" GridPane.columnSpan="3"
+               GridPane.rowIndex="4" GridPane.halignment="CENTER" onAction="#onUpdateBtnClick">User bearbeiten</JFXButton>
+    <JFXButton styleClass="userBtn" fx:id="deleteUserBtn" GridPane.columnIndex="1" GridPane.columnSpan="3"
+               GridPane.rowIndex="5" GridPane.halignment="CENTER" onAction="#onDeleteBtnClick">User löschen</JFXButton>
+    <JFXButton styleClass="userBtn" fx:id="createUserBtn" GridPane.columnIndex="1" GridPane.columnSpan="3"
+               GridPane.rowIndex="7" GridPane.halignment="CENTER" onAction="#onCreateBtnClick">User anlegen</JFXButton>
 
-    <Label GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.halignment="CENTER">Angemeldet bleiben:</Label>
-    <JFXToggleButton fx:id="saveLoginTBtn" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+    <Label styleClass="loginLbl" GridPane.columnIndex="1" GridPane.rowIndex="8"
+           GridPane.halignment="CENTER">Angemeldet bleiben:</Label>
+    <JFXToggleButton fx:id="saveLoginTBtn" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
 
-    <Label fx:id="labelError" styleClass="errorMessage" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-    <JFXButton GridPane.columnIndex="4" GridPane.rowIndex="7" onAction="#onBackBtnClick">Zurück</JFXButton>
+    <Label fx:id="labelError" styleClass="errorMessage" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+    <JFXButton GridPane.columnIndex="4" GridPane.rowIndex="9" onAction="#onBackBtnClick">Zurück</JFXButton>
 
 </GridPane>
