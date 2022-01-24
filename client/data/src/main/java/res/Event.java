@@ -110,26 +110,6 @@ public class Event {
         Pattern pattern = Pattern.compile("[A-Za-z\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc\u00df0-9 =!?+*/$.:,;_<>()-]*");
         Matcher matcher = pattern.matcher(name);
         if (!matcher.matches()) {
-            System.out.println(name);
-
-            byte[] bytes = name.getBytes(StandardCharsets.UTF_16);
-
-            String utf8EncodedString = new String(bytes, StandardCharsets.UTF_16);
-            System.out.println(utf8EncodedString);
-
-            for (char c : (name).toCharArray()) {
-                System.out.print(c + " " + (int) c + ", ");
-            }
-            System.out.println();
-            for (char c : (name).toCharArray()) {
-                System.out.print(c + " " + (int) c + ", ");
-            }
-            System.out.println();
-            for (char c : ("TäöüÄÖÜ").toCharArray()) {
-                System.out.print(c + " " + (int) c + ", ");
-            }
-            System.out.println();
-
             throw new IllegalArgumentException("Der Name darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: \u00e4\u00f6\u00fc \u00c4\u00d6\u00dc \u00df =!?+*/$.:,;_ <>()-");
         }
         if (priority < 0) {
@@ -163,7 +143,9 @@ public class Event {
     }
 
     public void setName(String name) {
-        this.name = convertToASCII(name);
+        System.out.println(name);
+        this.name = name;
+        System.out.println(this.name);
     }
 
     public int getPriority() {
@@ -249,10 +231,5 @@ public class Event {
                 "&priority=" + getPriority() +
                 "&isFullDay=" + isFullDay() +
                 "&isPrivate=" + isPrivate();
-    }
-
-    private String convertToASCII(String s) {
-        byte[] germanBytes = s.getBytes();
-        return new String(germanBytes, StandardCharsets.US_ASCII);
     }
 }
