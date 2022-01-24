@@ -1,5 +1,7 @@
 package main;
 
+import config.Config;
+import config.ConfigLoader;
 import customUI.Button;
 import customUI.Label;
 import helper.SvgBtnCreator;
@@ -8,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -17,6 +20,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import res.DataController;
 import res.Event;
+
+import javafx.event.ActionEvent;
+import res.HttpRequest;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -123,8 +129,12 @@ public class MainController {
 
     }
 
-    protected void onLogoutBtnClick(){
-
+    protected void onLogoutBtnClick(ActionEvent event){
+        ConfigLoader.save(new Config());
+        DataController.USER_ID = -1;
+        HttpRequest.TOKEN = "";
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     private void createWeek() {
@@ -296,7 +306,7 @@ public class MainController {
                         "white", "gray")
         );
         Button logoutBtn = SvgBtnCreator.createBtn(svgLogout, 40, "main-btn", "Abmelden");
-        logoutBtn.setOnAction(e -> onLogoutBtnClick());
+        logoutBtn.setOnAction(this::onLogoutBtnClick);
         logoutBtn.getStyleClass().add("main-btn");
         leftNav.getChildren().add(logoutBtn);
 
