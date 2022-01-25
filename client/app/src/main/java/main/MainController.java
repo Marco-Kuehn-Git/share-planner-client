@@ -58,6 +58,7 @@ public class MainController {
     }
 
     @FXML
+    //Marco Kühn,Marc Beyer//
     public void initialize() {
         createWeek();
         setDates();
@@ -66,6 +67,7 @@ public class MainController {
         leftNav.setSpacing(40);
     }
 
+    //Marc Beyer//
     private void updateEvents() {
         for (VBox vBox : dayVBoxes) {
             vBox.getChildren().clear();
@@ -83,6 +85,7 @@ public class MainController {
         }
     }
 
+    //Marc Beyer//
     @FXML
     protected void onBackClick() {
         weekOffset--;
@@ -90,6 +93,7 @@ public class MainController {
         updateEvents();
     }
 
+    //Marc Beyer//
     @FXML
     protected void onTodayClick() {
         weekOffset = 0;
@@ -97,6 +101,7 @@ public class MainController {
         updateEvents();
     }
 
+    //Marc Beyer//
     @FXML
     protected void onNextClick() {
         weekOffset++;
@@ -104,6 +109,8 @@ public class MainController {
         updateEvents();
     }
 
+
+    //Marco Kühn,Marc Beyer//
     @FXML
     protected void onAddBtnClick() {
         try {
@@ -125,10 +132,12 @@ public class MainController {
         updateEvents();
     }
 
+    //Marco Kühn//
     protected void onSettingBtnClick(){
 
     }
 
+    //Marc Beyer//
     protected void onLogoutBtnClick(ActionEvent event){
         ConfigLoader.save(new Config());
         DataController.USER_ID = -1;
@@ -137,6 +146,7 @@ public class MainController {
         stage.close();
     }
 
+    //Marc Beyer//
     private void createWeek() {
         for (int i = 0; i < 7; i++) {
             Label label = new Label();
@@ -164,6 +174,7 @@ public class MainController {
         }
     }
 
+    //Marco Kühn ,Marc Beyer//
     private void addEvent(Event event) {
         VBox vBox = new VBox();
         vBox.getStyleClass().add("event");
@@ -253,6 +264,7 @@ public class MainController {
         }
     }
 
+    //Marc Beyer//
     private String formatTime(String time) {
         String[] timeArr = time.split(":");
         if (timeArr.length > 2) {
@@ -261,6 +273,7 @@ public class MainController {
         return time;
     }
 
+    //Marc Beyer//
     private void setDates() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("LLLL yyyy");
         DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("E dd.MM");
@@ -279,6 +292,7 @@ public class MainController {
 
     }
 
+    //Marco Kühn//
     private void createBtns(){
         Group svgAdd = new Group(
                 SvgBtnCreator.createPath("M0 0h24v24H0z", "transparent", "transparent"),

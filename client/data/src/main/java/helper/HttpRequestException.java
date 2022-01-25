@@ -1,3 +1,4 @@
+//Marc Beyer//
 package helper;
 
 public class HttpRequestException extends Exception{

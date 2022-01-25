@@ -1,3 +1,4 @@
+//Marc Beyer//
 package main;
 
 import config.Config;
@@ -11,6 +12,7 @@ import res.HttpRequest;
 
 import java.io.IOException;
 import java.util.Objects;
+
 
 public class MainApplication extends Application {
     @Override

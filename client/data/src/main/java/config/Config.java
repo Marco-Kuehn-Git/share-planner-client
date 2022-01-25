@@ -1,3 +1,4 @@
+//Marc Beyer//
 package config;
 
 public class Config {
