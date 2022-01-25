@@ -13,7 +13,7 @@ javafx {
 }
 
 application {
-    mainClassName = "client.MainApplication"
+    mainClassName = "main.MainApplication"
 }
 
 repositories {
@@ -27,7 +27,7 @@ dependencies {
 
 val jar by tasks.getting(Jar::class) {
     manifest {
-        attributes["Main-Class"] = "client.Launcher"
+        attributes["Main-Class"] = "main.Launcher"
     }
     from({
         configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }
