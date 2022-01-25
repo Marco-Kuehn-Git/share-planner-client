@@ -30,68 +30,7 @@ public class Event {
     private int ownerId;
     private String ownerName;
 
-    /*
-    Constructor for SELECT:
-    e.id AS eid,
-    e.name AS ename,
-    e.start,
-    e.end,
-    e.priority,
-    e.is_full_day,
-
-    ue.date,
-
-    u.id AS uid,
-    u.forename,
-    u.name AS uname
-     */
-
-    public Event() {
-
-    }
-
-    public Event(ArrayList<Object> arr) {
-        id = (int) arr.get(0);
-        name = (String) arr.get(1);
-        start = (String) arr.get(2);
-        end = (String) arr.get(3);
-        priority = (int) arr.get(4);
-        isFullDay = (Boolean) arr.get(5); //((String)arr.get(5)).equals("true");
-
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        date = LocalDateTime.parse(arr.get(6) + " 00:00", formatter);
-
-        ownerId = (int) arr.get(7);
-        ownerName = arr.get(8) + " " + arr.get(9);
-    }
-
-    public Event(
-            int id,
-            String name,
-            int priority,
-            boolean isFullDay,
-            boolean isPrivate,
-            String start,
-            String end,
-            String date,
-            int ownerId,
-            String ownerName
-    ) {
-        this.ownerId = ownerId;
-        this.ownerName = ownerName;
-        this.id = id;
-        this.name = name;
-        this.start = start;
-        this.end = end;
-        this.priority = priority;
-        this.isFullDay = isFullDay;
-
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        this.date = LocalDateTime.parse(date + " 00:00", formatter);
-
-    }
+    public Event() {}
 
     public Event(String name,
                  int priority,

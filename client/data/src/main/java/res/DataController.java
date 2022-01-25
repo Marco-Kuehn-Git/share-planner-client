@@ -23,10 +23,15 @@ public class DataController {
     private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/event/all";
     private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/event/add";
     private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/event/del";
+    private static final String EDIT_EVENT_ENDPOINT = "http://localhost:8080/event/edit";
+
+    private static final String ALL_USER_ENDPOINT = "http://localhost:8080/user/all";
+    private static final String ADD_USER_ENDPOINT = "http://localhost:8080/user/add";
+    private static final String DELETE_USER_ENDPOINT = "http://localhost:8080/user/del";
+    private static final String EDIT_USER_ENDPOINT = "http://localhost:8080/user/edit";
 
     private static final String LOGIN_ENDPOINT = "http://localhost:8080/user/login";
     private static final String LOGIN_WITH_TOKEN_ENDPOINT = "http://localhost:8080/user/login-with-token";
-    private static final String ALL_USERS_ENDPOINT = "http://localhost:8080/user/all";
     private static final String HEADER_TEST_ENDPOINT = "http://localhost:8080/vpr/header-test";
 
     private final HttpRequest httpRequest;
@@ -102,6 +107,32 @@ public class DataController {
             Tuple<Integer, String> response = httpRequest.sendPostRequest(
                     DELETE_EVENT_ENDPOINT,
                     "userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate(),
+                    true
+            );
+            if(response.getKey() != 200){
+                throw new HttpRequestException(response);
+            }
+        }catch (HttpRequestException e){
+            throw e;
+        }catch (Exception e) {
+            throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
+        }
+    }
+
+    public void editEvent(Event oldEvent, Event event) throws HttpRequestException {
+        try {
+            Tuple<Integer, String> response = httpRequest.sendPostRequest(
+                    EDIT_EVENT_ENDPOINT,
+                    "eventId=" + oldEvent.getId() +
+                            "&userId=" + oldEvent.getOwnerId() +
+                            "&date=" + oldEvent.getDate().toLocalDate() +
+                            "&newDate=" + event.getDate().toLocalDate() +
+                            "&newName=" + event.getName() +
+                            "&newStart=" + event.getStart() +
+                            "&newEnd=" + event.getEnd() +
+                            "&newPriority=" + event.getPriority() +
+                            "&newIsFullDay=" + event.isFullDay() +
+                            "&newIsPrivate=" + event.isPrivate(),
                     true
             );
             if(response.getKey() != 200){

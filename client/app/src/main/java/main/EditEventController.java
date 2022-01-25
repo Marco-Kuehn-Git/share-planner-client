@@ -30,13 +30,9 @@ public class EditEventController extends CreateEventController{
         //timeEnd.setValue(currentEvent.getEnd());
     }
 
-
-
-
     @Override
     protected void sendHttpRequest(Event event) throws HttpRequestException {
         DataController dataController = new DataController();
-        dataController.deleteEvent(currentEvent.getOwnerId(), currentEvent.getId(), currentEvent.getDate());
-        dataController.createEvent(event);
+        dataController.editEvent(currentEvent, event);
     }
 }
