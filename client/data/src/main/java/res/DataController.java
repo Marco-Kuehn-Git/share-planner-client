@@ -52,13 +52,6 @@ public class DataController {
 
             USER_ID = Long.parseLong(data[1]);
             HttpRequest.TOKEN = data[0];
-
-            Tuple<Integer, String> auth = httpRequest.sendPostRequest(
-                    HEADER_TEST_ENDPOINT,
-                    "",
-                    true
-            );
-            System.out.println("auth " + auth);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -78,7 +71,7 @@ public class DataController {
 
             System.out.println(response.getKey() + " " + response.getValue());
 
-            if(response.getKey() != 200) return false;
+            if (response.getKey() != 200) return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -88,61 +81,40 @@ public class DataController {
         return USER_ID >= 0;
     }
 
+    /*********
+     * Event *
+     *********/
     public void createEvent(Event event) throws HttpRequestException {
-        try {
-            Tuple<Integer, String> response = httpRequest.sendPostRequest(ADD_EVENT_ENDPOINT, event.getAsUrlParam(), true);
-            if(response.getKey() != 200){
-                throw new HttpRequestException(response);
-            }
-        }catch (HttpRequestException e){
-            throw e;
-        }catch (Exception e) {
-            throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
-        }
+        sendBasicHttpRequest(
+                ADD_EVENT_ENDPOINT,
+                event.getAsUrlParam(),
+                true
+        );
     }
 
     public void deleteEvent(int userId, int eventId, LocalDateTime date) throws HttpRequestException {
-        try {
-            System.out.println("DELETE: userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate());
-            Tuple<Integer, String> response = httpRequest.sendPostRequest(
-                    DELETE_EVENT_ENDPOINT,
-                    "userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate(),
-                    true
-            );
-            if(response.getKey() != 200){
-                throw new HttpRequestException(response);
-            }
-        }catch (HttpRequestException e){
-            throw e;
-        }catch (Exception e) {
-            throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
-        }
+        sendBasicHttpRequest(
+                DELETE_EVENT_ENDPOINT,
+                "userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate(),
+                true
+        );
     }
 
     public void editEvent(Event oldEvent, Event event) throws HttpRequestException {
-        try {
-            Tuple<Integer, String> response = httpRequest.sendPostRequest(
-                    EDIT_EVENT_ENDPOINT,
-                    "eventId=" + oldEvent.getId() +
-                            "&userId=" + oldEvent.getOwnerId() +
-                            "&date=" + oldEvent.getDate().toLocalDate() +
-                            "&newDate=" + event.getDate().toLocalDate() +
-                            "&newName=" + event.getName() +
-                            "&newStart=" + event.getStart() +
-                            "&newEnd=" + event.getEnd() +
-                            "&newPriority=" + event.getPriority() +
-                            "&newIsFullDay=" + event.isFullDay() +
-                            "&newIsPrivate=" + event.isPrivate(),
-                    true
-            );
-            if(response.getKey() != 200){
-                throw new HttpRequestException(response);
-            }
-        }catch (HttpRequestException e){
-            throw e;
-        }catch (Exception e) {
-            throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
-        }
+        sendBasicHttpRequest(
+                EDIT_EVENT_ENDPOINT,
+                "eventId=" + oldEvent.getId() +
+                        "&userId=" + oldEvent.getOwnerId() +
+                        "&date=" + oldEvent.getDate().toLocalDate() +
+                        "&newDate=" + event.getDate().toLocalDate() +
+                        "&newName=" + event.getName() +
+                        "&newStart=" + event.getStart() +
+                        "&newEnd=" + event.getEnd() +
+                        "&newPriority=" + event.getPriority() +
+                        "&newIsFullDay=" + event.isFullDay() +
+                        "&newIsPrivate=" + event.isPrivate(),
+                true
+        );
     }
 
     public ArrayList<Event> getAllVisibleEvents(LocalDateTime startDate, LocalDateTime endDate) throws HttpRequestException {
@@ -153,7 +125,7 @@ public class DataController {
                     "userId=" + USER_ID + "&startDate=" + startDate.toLocalDate() + "&endDate=" + endDate.toLocalDate(),
                     true
             );
-            if(response.getKey() != 200){
+            if (response.getKey() != 200) {
                 throw new HttpRequestException(response);
             }
             String jsonResponse = response.getValue();
@@ -161,17 +133,63 @@ public class DataController {
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.findAndRegisterModules();
-            eventList = (ArrayList<Event>) objectMapper.readValue(jsonResponse, new TypeReference<List<Event>>(){});
+            eventList = (ArrayList<Event>) objectMapper.readValue(jsonResponse, new TypeReference<List<Event>>() {
+            });
 
 
-        }catch (HttpRequestException e){
+        } catch (HttpRequestException e) {
             throw e;
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
         }
 
         return eventList;
     }
 
+    /********
+     * User *
+     ********/
 
+    /*
+    public void createUser(User user) throws HttpRequestException {
+        sendBasicHttpRequest(
+                ADD_USER_ENDPOINT,
+                user.getAsUrlParam(),
+                true
+        );
+    }
+
+    public void deleteUser(User user) throws HttpRequestException {
+        sendBasicHttpRequest(
+                DELETE_USER_ENDPOINT,
+                user.getAsUrlParam(),
+                true
+        );
+    }
+
+    public void editUser(User oldUser, User user) throws HttpRequestException {
+        sendBasicHttpRequest(
+                EDIT_USER_ENDPOINT,
+                user.getAsUrlParam(),
+                true
+        );
+    }
+     */
+
+    private void sendBasicHttpRequest(String urlString, String urlParameters, boolean sendAuth) throws HttpRequestException {
+        try {
+            Tuple<Integer, String> response = httpRequest.sendPostRequest(
+                    urlString,
+                    urlParameters,
+                    sendAuth
+            );
+            if (response.getKey() != 200) {
+                throw new HttpRequestException(response);
+            }
+        } catch (HttpRequestException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
+        }
+    }
 }
