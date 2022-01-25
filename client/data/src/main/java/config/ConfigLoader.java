@@ -17,7 +17,7 @@ public class ConfigLoader {
             objectMapper.findAndRegisterModules();
             return objectMapper.readValue(jsonString, Config.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("config.json missing");
         }
         return null;
     }
