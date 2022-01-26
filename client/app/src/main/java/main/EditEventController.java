@@ -2,15 +2,8 @@ package main;
 
 import customUI.Converter;
 import helper.HttpRequestException;
-import javafx.fxml.FXML;
-import javafx.util.StringConverter;
-import javafx.util.converter.LocalTimeStringConverter;
 import res.DataController;
 import res.Event;
-
-import java.time.LocalTime;
-import java.time.format.FormatStyle;
-import java.util.Locale;
 
 public class EditEventController extends CreateEventController{
 
