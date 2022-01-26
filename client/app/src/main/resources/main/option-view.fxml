@@ -3,9 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
-
 <?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
+
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="main.OptionController"
@@ -37,9 +36,7 @@
     <JFXComboBox styleClass="comboBox" fx:id="userCmb" GridPane.columnIndex="2" GridPane.rowIndex="2">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="alex"/>
-                <String fx:value="marc"/>
-                <String fx:value="marco"/>
+
             </FXCollections>
         </items>
     </JFXComboBox>

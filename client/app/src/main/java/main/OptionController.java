@@ -2,6 +2,7 @@ package main;
 
 import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,11 @@ public class OptionController {
     public Label labelError;
     @FXML
     public JFXComboBox<String> userCmb;
+
+    @FXML
+    public void initialize(){
+
+    }
 
     public void onBackBtnClick(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

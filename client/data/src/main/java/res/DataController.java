@@ -142,5 +142,13 @@ public class DataController {
         return eventList;
     }
 
+    public List<User> getAllUseres(){
+        List<User> users = new ArrayList<>();
+
+        
+
+        return users;
+    }
+
 
 }
