@@ -2,28 +2,28 @@ package res;
 
 public class User {
 
-    private int id;
-    private String loginName;
+    private int userId;
+    private String login;
     private String forename;
     private String name;
+    private boolean isAdmin;
 
-    public User(){
+    public User(){}
+
+    public int getUserId() {
+        return userId;
     }
 
-    public int getId() {
-        return id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getLogin() {
+        return login;
     }
 
-    public String getLoginName() {
-        return loginName;
-    }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getForename() {
@@ -40,5 +40,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }

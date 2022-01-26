@@ -118,7 +118,6 @@ public class DataController {
     }
 
     public ArrayList<Event> getAllVisibleEvents(LocalDateTime startDate, LocalDateTime endDate) throws HttpRequestException {
-        ArrayList<Event> eventList = new ArrayList<>();
         try {
             Tuple<Integer, String> response = httpRequest.sendPostRequest(
                     ALL_EVENTS_ENDPOINT,
@@ -133,28 +132,40 @@ public class DataController {
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.findAndRegisterModules();
-            eventList = (ArrayList<Event>) objectMapper.readValue(jsonResponse, new TypeReference<List<Event>>() {
-            });
-
+            return (ArrayList<Event>) objectMapper.readValue(jsonResponse, new TypeReference<List<Event>>() {});
 
         } catch (HttpRequestException e) {
             throw e;
         } catch (Exception e) {
             throw new HttpRequestException("Es konnte keine Verbindung mit dem Server hergestellt werden.", 600);
         }
-
-        return eventList;
     }
 
     /********
      * User *
      ********/
 
-    /*
+    public List<User> getUser() throws HttpRequestException {
+        String userJSON = sendBasicHttpRequest(
+                ALL_USER_ENDPOINT,
+                "",
+                true
+        );
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        try {
+            return objectMapper.readValue(userJSON, new TypeReference<List<User>>() {});
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
     public void createUser(User user) throws HttpRequestException {
         sendBasicHttpRequest(
                 ADD_USER_ENDPOINT,
-                user.getAsUrlParam(),
+                "",
                 true
         );
     }
@@ -162,7 +173,7 @@ public class DataController {
     public void deleteUser(User user) throws HttpRequestException {
         sendBasicHttpRequest(
                 DELETE_USER_ENDPOINT,
-                user.getAsUrlParam(),
+                "userId=" + user.getUserId(),
                 true
         );
     }
@@ -170,13 +181,12 @@ public class DataController {
     public void editUser(User oldUser, User user) throws HttpRequestException {
         sendBasicHttpRequest(
                 EDIT_USER_ENDPOINT,
-                user.getAsUrlParam(),
+                "",
                 true
         );
     }
-     */
 
-    private void sendBasicHttpRequest(String urlString, String urlParameters, boolean sendAuth) throws HttpRequestException {
+    private String sendBasicHttpRequest(String urlString, String urlParameters, boolean sendAuth) throws HttpRequestException {
         try {
             Tuple<Integer, String> response = httpRequest.sendPostRequest(
                     urlString,
@@ -186,6 +196,8 @@ public class DataController {
             if (response.getKey() != 200) {
                 throw new HttpRequestException(response);
             }
+
+            return response.getValue();
         } catch (HttpRequestException e) {
             throw e;
         } catch (Exception e) {
