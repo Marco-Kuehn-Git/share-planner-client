@@ -126,7 +126,21 @@ public class MainController {
     }
 
     protected void onSettingBtnClick(){
-
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource("option-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 650, 650);
+            scene.getStylesheets().add(Objects.requireNonNull(
+                    MainApplication.class.getResource("option-view.css")).toExternalForm());
+            Stage stage = new Stage();
+            stage.setTitle("Einstellungen");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void onLogoutBtnClick(ActionEvent event){
