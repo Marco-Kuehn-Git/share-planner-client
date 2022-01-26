@@ -34,8 +34,6 @@ public class OptionController {
     @FXML
     public Label labelError;
     @FXML
-    public JFXComboBox<String> userCmb;
-    @FXML
     public GridPane mainGrid;
 
     @FXML
@@ -52,7 +50,7 @@ public class OptionController {
         for (User user: users) {
             observableUserList.add(user.getLogin());
         }
-        JFXComboBox comboBox = new JFXComboBox(observableUserList);
+        JFXComboBox<String> comboBox = new JFXComboBox<>(observableUserList);
         comboBox.getStyleClass().add("comboBox");
         mainGrid.add(comboBox, 2,2);
 
