@@ -1,16 +1,24 @@
 package main;
 
 import com.jfoenix.controls.*;
+import helper.HttpRequestException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import res.DataController;
+import res.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class OptionController {
@@ -27,9 +35,26 @@ public class OptionController {
     public Label labelError;
     @FXML
     public JFXComboBox<String> userCmb;
+    @FXML
+    public GridPane mainGrid;
 
     @FXML
     public void initialize(){
+        DataController dataController = new DataController();
+        List<User> users;
+        try{
+           users = dataController.getAllUser();
+        } catch (HttpRequestException e){
+           users = new ArrayList<>();
+        }
+
+        ObservableList<String> observableUserList = FXCollections.observableArrayList();
+        for (User user: users) {
+            observableUserList.add(user.getLogin());
+        }
+        JFXComboBox comboBox = new JFXComboBox(observableUserList);
+        comboBox.getStyleClass().add("comboBox");
+        mainGrid.add(comboBox, 2,2);
 
     }
 

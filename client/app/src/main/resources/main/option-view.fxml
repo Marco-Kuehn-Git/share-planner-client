@@ -3,12 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
-<?import javafx.collections.FXCollections?>
 
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="main.OptionController"
-          prefHeight="400.0" prefWidth="600.0">
+          prefHeight="400.0" prefWidth="600.0"
+fx:id="mainGrid">
 
     <columnConstraints>
         <ColumnConstraints minWidth="100"/>
@@ -33,13 +33,6 @@
     <Label styleClass="mainLabel" GridPane.columnIndex="2" GridPane.halignment="CENTER" >Einstellungen</Label>
 
     <Label GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.halignment="CENTER">User:</Label>
-    <JFXComboBox styleClass="comboBox" fx:id="userCmb" GridPane.columnIndex="2" GridPane.rowIndex="2">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-
-            </FXCollections>
-        </items>
-    </JFXComboBox>
 
     <JFXButton styleClass="userBtn" fx:id="updateUserBtn" GridPane.columnIndex="1" GridPane.columnSpan="3"
                GridPane.rowIndex="4" GridPane.halignment="CENTER" onAction="#onUpdateBtnClick">User bearbeiten</JFXButton>

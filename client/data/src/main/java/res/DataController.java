@@ -138,7 +138,7 @@ public class DataController {
      * User *
      ********/
 
-    public List<User> getUser() throws HttpRequestException {
+    public List<User> getAllUser() throws HttpRequestException {
         String userJSON = sendBasicHttpRequest(
                 ALL_USER_ENDPOINT,
                 "",
