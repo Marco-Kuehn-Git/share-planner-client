@@ -44,7 +44,6 @@ public class CreateEventController {
 
     @FXML
     public void initialize() {
-
         StringConverter<LocalTime> defaultConverter = new LocalTimeStringConverter(FormatStyle.SHORT, Locale.GERMANY);
         timeStart.set24HourView(true);
         timeStart.setConverter(defaultConverter);
