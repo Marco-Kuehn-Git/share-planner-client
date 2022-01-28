@@ -148,7 +148,7 @@ public class DataController {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
         try {
-            return objectMapper.readValue(userJSON, new TypeReference<List<User>>() {});
+            return (List<User>)objectMapper.readValue(userJSON, new TypeReference<List<User>>() {});
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -158,7 +158,11 @@ public class DataController {
     public void createUser(User user) throws HttpRequestException {
         sendBasicHttpRequest(
                 ADD_USER_ENDPOINT,
-                "",
+                "name=" + user.getName() +
+                        "&forename=" + user.getForename() +
+                        "&login=" + user.getLogin() +
+                        "&password=" + user.getPassword() +
+                        "&isAdmin=" + user.isAdmin(),
                 true
         );
     }
