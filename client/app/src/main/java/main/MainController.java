@@ -2,8 +2,6 @@ package main;
 
 import config.Config;
 import config.ConfigLoader;
-import customUI.Button;
-import customUI.Label;
 import helper.SvgBtnCreator;
 import helper.HttpRequestException;
 import javafx.fxml.FXML;
@@ -12,7 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -154,7 +152,7 @@ public class MainController {
     private void createWeek() {
         for (int i = 0; i < 7; i++) {
             Label label = new Label();
-            label.setTextValue(dayNames[i]);
+            label.setText(dayNames[i]);
             label.setMaxHeight(Double.MAX_VALUE);
             label.setMaxWidth(Double.MAX_VALUE);
             label.getStyleClass().add("labelDays");
@@ -248,7 +246,7 @@ public class MainController {
         Label typeLabel = new Label("Wer: " + event.getOwnerName());
         vBox.getChildren().add(typeLabel);
 
-        Label prioLabel = new Label("Priorit\u00e4t: " + event.getPriority());
+        Label prioLabel = new Label("Priorität: " + event.getPriority());
         vBox.getChildren().add(prioLabel);
 
         if (event.isFullDay()) {
@@ -286,7 +284,7 @@ public class MainController {
         weekStartDateTime = now.plusDays(weekOffset * 7L - dayOfWeek + 1);
 
         for (int i = 0; i < 7; i++) {
-            dayLabel[i].setTextValue(dayFormatter.format(weekStartDateTime.plusDays(i)));
+            dayLabel[i].setText(dayFormatter.format(weekStartDateTime.plusDays(i)));
         }
 
         LabelMonth.setText(dateFormatter.format(weekStartDateTime));

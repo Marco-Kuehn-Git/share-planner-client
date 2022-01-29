@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class OptionController {
 
@@ -36,10 +39,13 @@ public class OptionController {
     @FXML
     public GridPane mainGrid;
 
+    private JFXComboBox<String> comboBox;
+    private DataController dataController;
+    private List<User> users;
+
     @FXML
     public void initialize(){
-        DataController dataController = new DataController();
-        List<User> users;
+        dataController = new DataController();
         try{
            users = dataController.getAllUser();
         } catch (HttpRequestException e){
@@ -50,7 +56,7 @@ public class OptionController {
         for (User user: users) {
             observableUserList.add(user.getLogin());
         }
-        JFXComboBox<String> comboBox = new JFXComboBox<>(observableUserList);
+        comboBox = new JFXComboBox<>(observableUserList);
         comboBox.getStyleClass().add("comboBox");
         mainGrid.add(comboBox, 2,2);
 
@@ -62,14 +68,36 @@ public class OptionController {
     }
 
     public void onCreateBtnClick(ActionEvent actionEvent) {
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    MainApplication.class.getResource("../users/create-user.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 800, 650);
+        loadUserScene(actionEvent, "User erstellen", "../users/create-user.fxml");
+    }
+
+    public void onUpdateBtnClick(ActionEvent actionEvent) {
+        loadUserScene(actionEvent, "User bearbeiten", "../users/edit-user.fxml");
+    }
+
+    public void onDeleteBtnClick(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wirklich löschen?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            try {
+                dataController.deleteUser(users.get(comboBox.getSelectionModel().getSelectedIndex()));
+            } catch (HttpRequestException e) {
+                Alert alert1 = new Alert(Alert.AlertType.ERROR, e.getMessage());
+                alert1.showAndWait();
+            }
+        }
+    }
+
+    private Scene loadUserScene(ActionEvent actionEvent, String title, String fxml) {
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                MainApplication.class.getResource(fxml));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 800, 650);
             scene.getStylesheets().add(Objects.requireNonNull(
                     MainApplication.class.getResource("../users/create-user.css")).toExternalForm());
             Stage stage = new Stage();
-            stage.setTitle("User erstellen");
+            stage.setTitle(title);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -79,11 +107,6 @@ public class OptionController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void onUpdateBtnClick(ActionEvent actionEvent) {
-    }
-
-    public void onDeleteBtnClick(ActionEvent actionEvent) {
+        return scene;
     }
 }

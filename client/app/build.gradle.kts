@@ -5,11 +5,15 @@ plugins {
 }
 
 javafx {
-    version = "11"
+    version = "11.0.2"
     modules(
             "javafx.controls",
             "javafx.fxml"
     )
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
 
 application {

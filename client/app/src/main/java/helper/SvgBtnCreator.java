@@ -2,9 +2,7 @@ package helper;
 
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
-import customUI.Button;
-import javafx.scene.control.ContentDisplay;
-import customUI.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.shape.SVGPath;
 
 public class SvgBtnCreator {

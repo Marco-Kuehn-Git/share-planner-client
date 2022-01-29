@@ -1,6 +1,5 @@
 package main;
 
-import customUI.Converter;
 import helper.HttpRequestException;
 import res.DataController;
 import res.Event;
@@ -16,7 +15,7 @@ public class EditEventController extends CreateEventController{
     public void setCurrentEvent(Event currentEvent) {
         this.currentEvent = currentEvent;
 
-        textName.setText(Converter.convertString(currentEvent.getName()));
+        textName.setText(currentEvent.getName());
         datePickerDate.setValue(currentEvent.getDate().toLocalDate());
         ComboBoxPriotity.getSelectionModel().select(currentEvent.getPriority());
 
