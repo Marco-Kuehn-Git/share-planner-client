@@ -61,9 +61,9 @@ public class HttpRequest {
         BufferedReader in;
 
         if (status == 200) {
-            in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
         } else {
-            in = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+            in = new BufferedReader(new InputStreamReader(connection.getErrorStream(), StandardCharsets.UTF_8));
         }
 
         while ((inputLine = in.readLine()) != null) {
