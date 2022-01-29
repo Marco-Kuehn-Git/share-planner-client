@@ -15,8 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import res.DataController;
-import res.User;
+import container.DataController;
+import container.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,12 +79,16 @@ public class OptionController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wirklich löschen?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
+            int removeIndex = comboBox.getSelectionModel().getSelectedIndex();
             try {
-                dataController.deleteUser(users.get(comboBox.getSelectionModel().getSelectedIndex()));
+                dataController.deleteUser(users.get(removeIndex));
             } catch (HttpRequestException e) {
                 Alert alert1 = new Alert(Alert.AlertType.ERROR, e.getMessage());
                 alert1.showAndWait();
+                return;
             }
+            comboBox.getItems().remove(removeIndex);
+            users.remove(removeIndex);
         }
     }
 

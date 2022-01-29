@@ -10,8 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.LocalTimeStringConverter;
-import res.DataController;
-import res.Event;
+import container.DataController;
+import container.Event;
 
 import java.time.LocalTime;
 import java.time.format.FormatStyle;

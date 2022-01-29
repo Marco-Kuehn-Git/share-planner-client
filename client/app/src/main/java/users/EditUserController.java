@@ -1,6 +1,6 @@
 package users;
 
-import res.User;
+import container.User;
 
 public class EditUserController extends CreateUserController{
     private User currentUser;

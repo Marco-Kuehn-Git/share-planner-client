@@ -1,4 +1,4 @@
-package res;
+package container;
 
 public class User {
 
@@ -10,6 +10,8 @@ public class User {
     private boolean isAdmin;
 
     public User(){}
+
+
 
     public int getUserId() {
         return userId;

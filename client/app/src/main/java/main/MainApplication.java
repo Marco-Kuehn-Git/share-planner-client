@@ -6,8 +6,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import res.DataController;
-import res.HttpRequest;
+import container.DataController;
+import container.HttpRequest;
 
 import java.io.IOException;
 import java.util.Objects;

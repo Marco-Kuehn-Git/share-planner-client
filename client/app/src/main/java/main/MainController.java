@@ -16,11 +16,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import res.DataController;
-import res.Event;
+import container.DataController;
+import container.Event;
 
 import javafx.event.ActionEvent;
-import res.HttpRequest;
+import container.HttpRequest;
 
 import java.io.IOException;
 import java.time.Duration;

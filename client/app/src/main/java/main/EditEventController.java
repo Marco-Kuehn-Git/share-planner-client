@@ -1,8 +1,8 @@
 package main;
 
 import helper.HttpRequestException;
-import res.DataController;
-import res.Event;
+import container.DataController;
+import container.Event;
 
 public class EditEventController extends CreateEventController{
 

@@ -1,4 +1,4 @@
-package res;
+package container;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -148,7 +148,7 @@ public class DataController {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
         try {
-            return (List<User>)objectMapper.readValue(userJSON, new TypeReference<List<User>>() {});
+            return objectMapper.readValue(userJSON, new TypeReference<>() {});
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
