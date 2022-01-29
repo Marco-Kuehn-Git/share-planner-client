@@ -43,7 +43,7 @@
 
     <JFXToggleButton fx:id="checkButtonIsAdmin" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
 
-    <Label fx:id="labelError" styleClass="errorMessage" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+    <Label fx:id="labelError" wrapText="true" styleClass="errorMessage" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
 
     <HBox GridPane.columnIndex="2" GridPane.rowIndex="8" alignment="CENTER_RIGHT">
         <HBox.margin>

@@ -234,6 +234,7 @@ public class MainController {
         vBox.getChildren().add(btnHBox);
 
         Label nameLabel = new Label(event.getName());
+        nameLabel.setWrapText(true);
         vBox.getChildren().add(nameLabel);
 
         if (event.getStart() != null || event.getEnd() != null) {
@@ -251,6 +252,7 @@ public class MainController {
 
         if (event.isFullDay()) {
             Label fullDayLabel = new Label("Dieser Termin bockiert den ganzen Tag!");
+            fullDayLabel.setWrapText(true);
             vBox.getChildren().add(fullDayLabel);
         }
 

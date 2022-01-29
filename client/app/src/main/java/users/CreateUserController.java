@@ -56,11 +56,13 @@ public class CreateUserController {
         user.setForename(textForename.getText().trim());
         user.setName(textName.getText().trim());
         user.setPassword(textPassword.getText().trim());
+        user.setAdmin(checkButtonIsAdmin.isSelected());
 
         try {
             sendHttpRequest(user);
         } catch (HttpRequestException e) {
             labelError.setText(e.getMessage());
+            return;
         }
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

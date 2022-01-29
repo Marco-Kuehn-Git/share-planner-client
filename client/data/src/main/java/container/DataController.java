@@ -125,7 +125,8 @@ public class DataController {
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.findAndRegisterModules();
-            return (ArrayList<Event>) objectMapper.readValue(jsonResponse, new TypeReference<List<Event>>() {});
+            return (ArrayList<Event>) objectMapper.readValue(jsonResponse, new TypeReference<List<Event>>() {
+            });
 
         } catch (HttpRequestException e) {
             throw e;
@@ -148,7 +149,13 @@ public class DataController {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
         try {
-            return objectMapper.readValue(userJSON, new TypeReference<>() {});
+            List<User> list = objectMapper.readValue(userJSON, new TypeReference<>() {
+            });
+
+            for(User u : list){
+                System.out.println(u);
+            }
+            return list;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -175,10 +182,18 @@ public class DataController {
         );
     }
 
-    public void editUser(User oldUser, User user) throws HttpRequestException {
+    public void editUser(User user) throws HttpRequestException {
+        String urlParam = "userId=" + user.getUserId() +
+                "&name=" + user.getName() +
+                "&forename=" + user.getForename() +
+                "&login=" + user.getLogin() +
+                "&isAdmin=" + user.isAdmin() +
+                (user.getPassword() == null ? "" : "&password=" + user.getPassword());
+
+        System.out.println(urlParam);
         sendBasicHttpRequest(
                 EDIT_USER_ENDPOINT,
-                "",
+                urlParam,
                 true
         );
     }

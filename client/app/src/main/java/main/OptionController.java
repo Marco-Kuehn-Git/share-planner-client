@@ -17,12 +17,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import container.DataController;
 import container.User;
+import users.EditUserController;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class OptionController {
 
@@ -68,11 +71,20 @@ public class OptionController {
     }
 
     public void onCreateBtnClick(ActionEvent actionEvent) {
-        loadUserScene(actionEvent, "User erstellen", "../users/create-user.fxml");
+        loadUserScene(actionEvent, "User erstellen", "../users/create-user.fxml", null);
     }
 
     public void onUpdateBtnClick(ActionEvent actionEvent) {
-        loadUserScene(actionEvent, "User bearbeiten", "../users/edit-user.fxml");
+        int editIndex = comboBox.getSelectionModel().getSelectedIndex();
+
+        if(editIndex < 0 || editIndex >= users.size()) return;
+
+        FXMLLoader fxmlLoader = loadUserScene(
+                actionEvent,
+                "User bearbeiten",
+                "../users/edit-user.fxml",
+                this::setUserAtController
+        );
     }
 
     public void onDeleteBtnClick(ActionEvent actionEvent) {
@@ -92,12 +104,11 @@ public class OptionController {
         }
     }
 
-    private Scene loadUserScene(ActionEvent actionEvent, String title, String fxml) {
+    private FXMLLoader loadUserScene(ActionEvent actionEvent, String title, String fxml, Consumer<FXMLLoader> method) {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 MainApplication.class.getResource(fxml));
-        Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 800, 650);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 650);
             scene.getStylesheets().add(Objects.requireNonNull(
                     MainApplication.class.getResource("../users/create-user.css")).toExternalForm());
             Stage stage = new Stage();
@@ -105,12 +116,22 @@ public class OptionController {
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
+
+            if(method != null)method.accept(fxmlLoader);
+
             stage.showAndWait();
             Stage stageOld = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stageOld.close();
         } catch (IOException e) {
             e.printStackTrace();
+            e.printStackTrace();
         }
-        return scene;
+        return fxmlLoader;
+    }
+
+    private void setUserAtController(FXMLLoader fxmlLoader){
+        int editIndex = comboBox.getSelectionModel().getSelectedIndex();
+        EditUserController editUserController = fxmlLoader.getController();
+        editUserController.setCurrentUser(users.get(editIndex));
     }
 }
