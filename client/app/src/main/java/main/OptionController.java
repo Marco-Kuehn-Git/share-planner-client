@@ -1,6 +1,9 @@
 package main;
 
 import com.jfoenix.controls.*;
+import config.Config;
+import config.ConfigLoader;
+import container.HttpRequest;
 import helper.HttpRequestException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,6 +48,7 @@ public class OptionController {
     private JFXComboBox<String> comboBox;
     private DataController dataController;
     private List<User> users;
+    private Config config;
 
     @FXML
     public void initialize(){
@@ -63,6 +67,11 @@ public class OptionController {
         comboBox.getStyleClass().add("comboBox");
         mainGrid.add(comboBox, 2,2);
 
+        config = ConfigLoader.load();
+        if(config == null){
+            config = new Config(false, -1, "");
+        }
+        saveLoginTBtn.setSelected(config.isSaveLogin());
     }
 
     public void onBackBtnClick(ActionEvent actionEvent) {
@@ -133,5 +142,17 @@ public class OptionController {
         int editIndex = comboBox.getSelectionModel().getSelectedIndex();
         EditUserController editUserController = fxmlLoader.getController();
         editUserController.setCurrentUser(users.get(editIndex));
+    }
+
+    public void toggledBtn(ActionEvent actionEvent) {
+        config.setSaveLogin(saveLoginTBtn.isSelected());
+        if(config.isSaveLogin()){
+            config.setId(DataController.USER_ID);
+            config.setToken(HttpRequest.TOKEN);
+        } else {
+            config.setId(-1);
+            config.setToken("");
+        }
+        ConfigLoader.save(config);
     }
 }

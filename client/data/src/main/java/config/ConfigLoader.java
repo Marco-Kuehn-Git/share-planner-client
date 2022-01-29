@@ -17,8 +17,10 @@ public class ConfigLoader {
             return objectMapper.readValue(jsonString, Config.class);
         } catch (IOException e) {
             System.out.println("config.json missing");
+            Config config = new Config(false, -1, "");
+            save(config);
+            return config;
         }
-        return null;
     }
 
     public static void save(Config config){

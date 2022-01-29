@@ -43,7 +43,7 @@ fx:id="mainGrid">
 
     <Label styleClass="loginLbl" GridPane.columnIndex="1" GridPane.rowIndex="8"
            GridPane.halignment="CENTER">Angemeldet bleiben:</Label>
-    <JFXToggleButton fx:id="saveLoginTBtn" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
+    <JFXToggleButton fx:id="saveLoginTBtn" GridPane.columnIndex="3" GridPane.rowIndex="8" onAction="#toggledBtn"/>
 
     <Label fx:id="labelError" styleClass="errorMessage" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
     <JFXButton GridPane.columnIndex="4" GridPane.rowIndex="9" onAction="#onBackBtnClick">Zurück</JFXButton>
