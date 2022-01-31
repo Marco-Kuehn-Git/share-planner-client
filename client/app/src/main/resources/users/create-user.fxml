@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="users.CreateUserController">
@@ -37,19 +38,19 @@
     <TextField fx:id="textLogin" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
     <TextField fx:id="textForename" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     <TextField fx:id="textName" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <TextField fx:id="textPassword" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-    <TextField fx:id="textPasswordSecond" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+    <PasswordField fx:id="textPassword" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+    <PasswordField fx:id="textPasswordSecond" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
-    <ToggleButton fx:id="checkButtonIsAdmin" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+    <JFXToggleButton fx:id="checkButtonIsAdmin" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
 
-    <Label fx:id="labelError" styleClass="errorMessage" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+    <Label fx:id="labelError" wrapText="true" styleClass="errorMessage" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
 
     <HBox GridPane.columnIndex="2" GridPane.rowIndex="8" alignment="CENTER_RIGHT">
         <HBox.margin>
             <Insets right="100" left="100"/>
         </HBox.margin>
         <Button onAction="#abortBtnClick">Abbrechen</Button>
-        <Button onAction="#createUser" styleClass="btnLogin" >Anmelden</Button>
+        <Button onAction="#createUser" styleClass="btnLogin" >Anlegen</Button>
 
     </HBox>
 </GridPane>

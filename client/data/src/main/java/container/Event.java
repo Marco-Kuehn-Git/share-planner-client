@@ -1,16 +1,11 @@
-package res;
+package container;
 
-import com.sun.jdi.event.StepEvent;
-
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 public class Event {
 
@@ -27,80 +22,32 @@ public class Event {
     private int ownerId;
     private String ownerName;
 
-    /*
-    Constructor for SELECT:
-    e.id AS eid,
-    e.name AS ename,
-    e.start,
-    e.end,
-    e.priority,
-    e.is_full_day,
-
-    ue.date,
-
-    u.id AS uid,
-    u.forename,
-    u.name AS uname
-     */
-
-    public Event(ArrayList<Object> arr) {
-        id = (int) arr.get(0);
-        name = (String) arr.get(1);
-        start = (String) arr.get(2);
-        end = (String) arr.get(3);
-        priority = (int) arr.get(4);
-        isFullDay = (Boolean) arr.get(5); //((String)arr.get(5)).equals("true");
-
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        date = LocalDateTime.parse(arr.get(6) + " 00:00", formatter);
-
-        ownerId = (int) arr.get(7);
-        ownerName = arr.get(8) + " " + arr.get(9);
-    }
+    public Event() {}
 
     public Event(String name,
                  int priority,
                  boolean isFullDay,
                  boolean isPrivate,
-                 String start,
-                 String end,
+                 LocalTime start,
+                 LocalTime end,
                  LocalDateTime date,
                  int ownerId
-    ) throws IllegalArgumentException{
-        if(name.length() < 3){
-            throw new IllegalArgumentException("Der Name muss eine L\u00e4nge von 3 haben.");
+    ) throws IllegalArgumentException {
+
+        System.out.println("Create Event");
+        if (name.length() < 3) {
+            throw new IllegalArgumentException("Der Name muss eine Länge von 3 haben.");
         }
-        Pattern pattern = Pattern.compile("[A-Za-z\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc\u00df0-9 =!?+*/$.:,;_<>()-]*");
+        Pattern pattern = Pattern.compile("[A-Za-zäöüÄÖÜß0-9 =!?+*/$.:,;_<>()-]*");
         Matcher matcher = pattern.matcher(name);
-        if(!matcher.matches()){
-            System.out.println(name);
-
-            byte[] bytes = name.getBytes(StandardCharsets.UTF_16);
-
-            String utf8EncodedString = new String(bytes, StandardCharsets.UTF_16);
-            System.out.println(utf8EncodedString);
-
-            for (char c : (name).toCharArray()) {
-                System.out.print(c + " " + (int)c + ", ");
-            }
-            System.out.println();
-            for (char c : (name).toCharArray()) {
-                System.out.print(c + " " + (int)c + ", ");
-            }
-            System.out.println();
-            for (char c : ("TäöüÄÖÜ").toCharArray()) {
-                System.out.print(c + " " + (int)c + ", ");
-            }
-            System.out.println();
-
-            throw new IllegalArgumentException("Der Name darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: \u00e4\u00f6\u00fc \u00c4\u00d6\u00dc \u00df =!?+*/$.:,;_ <>()-");
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("Der Name darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: äöü ÄÖÜ ß =!?+*/$.:,;_ <>()-");
         }
-        if(priority < 0){
-            throw new IllegalArgumentException("Bitte eine Priorit\u00e4t w\u00e4hlen.");
+        if (priority < 0) {
+            throw new IllegalArgumentException("Bitte eine Priorität wählen.");
         }
         LocalDateTime today = LocalDateTime.now().toLocalDate().atStartOfDay();
-        if(Duration.between(today, date).isNegative()){
+        if (Duration.between(today, date).isNegative()) {
             throw new IllegalArgumentException("Das Datum muss in der Zukunft liegen.");
         }
 
@@ -108,8 +55,8 @@ public class Event {
         this.priority = priority;
         this.isFullDay = isFullDay;
         this.isPrivate = isPrivate;
-        this.start = start;
-        this.end = end;
+        if (start != null) this.start = start.toString();
+        if (start != null) this.end = end.toString();
         this.date = date;
         this.ownerId = ownerId;
     }
@@ -127,7 +74,7 @@ public class Event {
     }
 
     public void setName(String name) {
-        this.name = convertToASCII(name);
+        this.name = name;
     }
 
     public int getPriority() {
@@ -174,8 +121,9 @@ public class Event {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.date = LocalDateTime.parse(date + " 00:00", formatter);
     }
 
     public int getOwnerId() {
@@ -209,13 +157,8 @@ public class Event {
                 "&name=" + getName() +
                 "&start=" + getStart() +
                 "&end=" + getEnd() +
-                "&prority=" + getPriority() +
+                "&priority=" + getPriority() +
                 "&isFullDay=" + isFullDay() +
                 "&isPrivate=" + isPrivate();
-    }
-
-    private String convertToASCII(String s){
-        byte[] germanBytes = s.getBytes();
-        return new String(germanBytes, StandardCharsets.US_ASCII);
     }
 }

@@ -1,0 +1,58 @@
+GridPane{
+    -fx-background-color: #3E415F;
+    -fx-padding: 20px;
+    -fx-font-size: 20px;
+    -fx-font-family: Segoe UI;
+
+    -fx-border-insets: 1;
+    -fx-border-color: #B0B0B0;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(100, 100, 100, 1), 24, 0.5, 0, 0);
+}
+
+Label{
+    -fx-text-fill: white;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
+}
+
+.mainLabel{
+    -fx-background-color: #8D99AE;
+    -fx-padding: 10px;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.mainButton{
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+}
+
+JFXButton{
+    -fx-background-color: white;
+}
+
+#labelError{
+    -fx-font-weight: bold;
+    -fx-max-width: 1000px;
+    -fx-text-fill: #ff5555;
+    -fx-padding: 16px;
+    -fx-min-height: 140px;
+    -fx-max-height: 400px;
+    -fx-wrap-text: true;
+    -fx-font-size: 16px;
+}
+
+.comboBox{
+    -fx-background-color: white;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
+}
+
+.userBtn{
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
+}

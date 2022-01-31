@@ -1,6 +1,7 @@
 package main;
 
 import com.jfoenix.controls.*;
+import helper.HttpRequestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,8 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.LocalTimeStringConverter;
-import res.DataController;
-import res.Event;
+import container.DataController;
+import container.Event;
 
 import java.time.LocalTime;
 import java.time.format.FormatStyle;
@@ -43,7 +44,6 @@ public class CreateEventController {
 
     @FXML
     public void initialize() {
-
         StringConverter<LocalTime> defaultConverter = new LocalTimeStringConverter(FormatStyle.SHORT, Locale.GERMANY);
         timeStart.set24HourView(true);
         timeStart.setConverter(defaultConverter);
@@ -60,27 +60,33 @@ public class CreateEventController {
                 throw new IllegalArgumentException("Bitte w\u00e4hle ein Datum aus");
             }
 
+            System.out.println(datePickerDate.getValue());
+
             Event event = new Event(
                     textName.getText(),
                     ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
                     toggleBtnIsFullDay.isSelected(),
                     toggleBtnIsPrivate.isSelected(),
-                    timeStart.getValue().toString(),
-                    timeEnd.getValue().toString(),
+                    timeStart.getValue(),
+                    timeEnd.getValue(),
                     datePickerDate.getValue().atStartOfDay(),
                     (int) DataController.USER_ID
             );
 
             System.out.println(event.getAsUrlParam());
 
-            DataController dataController = new DataController();
-            dataController.createEvent(event);
+            sendHttpRequest(event);
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.close();
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             labelError.setText(e.getMessage());
         }
+    }
+
+    protected void sendHttpRequest(Event event) throws HttpRequestException {
+        DataController dataController = new DataController();
+        dataController.createEvent(event);
     }
 
     @FXML
