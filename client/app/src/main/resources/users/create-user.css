@@ -43,6 +43,7 @@ Label{
 .errorMessage{
     -fx-max-width: 400px;
     -fx-min-width: 400px;
+    -fx-text-fill: red;
 }
 
 Button{
