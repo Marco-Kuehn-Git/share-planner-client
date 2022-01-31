@@ -62,3 +62,18 @@ JFXButton{
 .timePicker{
     -fx-background-color: white;
 }
+
+.jfx-time-picker .date-picker-popup{
+    -fx-max-width: 230px;
+    -fx-min-width: 230px;
+}
+
+.jfx-time-picker .date-picker-popup > * > .spinner > .label {
+    -fx-max-width: 55px;
+    -fx-min-width: 55px;
+}
+
+.jfx-date-picker .date-picker-popup > * > .spinner > .label {
+     -fx-max-width: 300px;
+     -fx-min-width: 300px;
+ }
