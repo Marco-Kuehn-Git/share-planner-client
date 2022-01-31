@@ -12,20 +12,21 @@ import java.util.*;
 public class DataController {
 
     public static long USER_ID = -1;
+    public static String SERVER_URL = "http://localhost:8080";
 
-    private static final String ALL_EVENTS_ENDPOINT = "http://localhost:8080/event/all";
-    private static final String ADD_EVENT_ENDPOINT = "http://localhost:8080/event/add";
-    private static final String DELETE_EVENT_ENDPOINT = "http://localhost:8080/event/del";
-    private static final String EDIT_EVENT_ENDPOINT = "http://localhost:8080/event/edit";
+    private static final String ALL_EVENTS_ENDPOINT =           "/event/all";
+    private static final String ADD_EVENT_ENDPOINT =            "/event/add";
+    private static final String DELETE_EVENT_ENDPOINT =         "/event/del";
+    private static final String EDIT_EVENT_ENDPOINT =           "/event/edit";
 
-    private static final String ALL_USER_ENDPOINT = "http://localhost:8080/user/all";
-    private static final String ADD_USER_ENDPOINT = "http://localhost:8080/user/add";
-    private static final String DELETE_USER_ENDPOINT = "http://localhost:8080/user/del";
-    private static final String EDIT_USER_ENDPOINT = "http://localhost:8080/user/edit";
+    private static final String ALL_USER_ENDPOINT =             "/user/all";
+    private static final String ADD_USER_ENDPOINT =             "/user/add";
+    private static final String DELETE_USER_ENDPOINT =          "/user/del";
+    private static final String EDIT_USER_ENDPOINT =            "/user/edit";
 
-    private static final String LOGIN_ENDPOINT = "http://localhost:8080/user/login";
-    private static final String LOGIN_WITH_TOKEN_ENDPOINT = "http://localhost:8080/user/login-with-token";
-    private static final String HEADER_TEST_ENDPOINT = "http://localhost:8080/vpr/header-test";
+    private static final String LOGIN_ENDPOINT =                "/user/login";
+    private static final String LOGIN_WITH_TOKEN_ENDPOINT =     "/user/login-with-token";
+    private static final String HEADER_TEST_ENDPOINT =          "/vpr/header-test";
 
     private final HttpRequest httpRequest;
 
@@ -36,7 +37,7 @@ public class DataController {
     public boolean login(String username, String password) {
         try {
             Tuple<Integer, String> response = httpRequest.sendPostRequest(
-                    LOGIN_ENDPOINT,
+                    SERVER_URL + LOGIN_ENDPOINT,
                     "login=" + username
                             + "&password=" + password,
                     false
@@ -57,7 +58,7 @@ public class DataController {
         try {
             HttpRequest.TOKEN = token;
             Tuple<Integer, String> response = httpRequest.sendPostRequest(
-                    LOGIN_WITH_TOKEN_ENDPOINT,
+                    SERVER_URL + LOGIN_WITH_TOKEN_ENDPOINT,
                     "userId=" + userId,
                     true
             );
@@ -79,7 +80,7 @@ public class DataController {
      *********/
     public void createEvent(Event event) throws HttpRequestException {
         sendBasicHttpRequest(
-                ADD_EVENT_ENDPOINT,
+                SERVER_URL + ADD_EVENT_ENDPOINT,
                 event.getAsUrlParam(),
                 true
         );
@@ -87,7 +88,7 @@ public class DataController {
 
     public void deleteEvent(int userId, int eventId, LocalDateTime date) throws HttpRequestException {
         sendBasicHttpRequest(
-                DELETE_EVENT_ENDPOINT,
+                SERVER_URL + DELETE_EVENT_ENDPOINT,
                 "userId=" + userId + "&eventId=" + eventId + "&date=" + date.toLocalDate(),
                 true
         );
@@ -95,7 +96,7 @@ public class DataController {
 
     public void editEvent(Event oldEvent, Event event) throws HttpRequestException {
         sendBasicHttpRequest(
-                EDIT_EVENT_ENDPOINT,
+                SERVER_URL + EDIT_EVENT_ENDPOINT,
                 "eventId=" + oldEvent.getId() +
                         "&userId=" + oldEvent.getOwnerId() +
                         "&date=" + oldEvent.getDate().toLocalDate() +
@@ -113,7 +114,7 @@ public class DataController {
     public ArrayList<Event> getAllVisibleEvents(LocalDateTime startDate, LocalDateTime endDate) throws HttpRequestException {
         try {
             Tuple<Integer, String> response = httpRequest.sendPostRequest(
-                    ALL_EVENTS_ENDPOINT,
+                    SERVER_URL + ALL_EVENTS_ENDPOINT,
                     "userId=" + USER_ID + "&startDate=" + startDate.toLocalDate() + "&endDate=" + endDate.toLocalDate(),
                     true
             );
@@ -141,7 +142,7 @@ public class DataController {
 
     public List<User> getAllUser() throws HttpRequestException {
         String userJSON = sendBasicHttpRequest(
-                ALL_USER_ENDPOINT,
+                SERVER_URL + ALL_USER_ENDPOINT,
                 "",
                 true
         );
@@ -164,7 +165,7 @@ public class DataController {
 
     public void createUser(User user) throws HttpRequestException {
         sendBasicHttpRequest(
-                ADD_USER_ENDPOINT,
+                SERVER_URL + ADD_USER_ENDPOINT,
                 "name=" + user.getName() +
                         "&forename=" + user.getForename() +
                         "&login=" + user.getLogin() +
@@ -176,7 +177,7 @@ public class DataController {
 
     public void deleteUser(User user) throws HttpRequestException {
         sendBasicHttpRequest(
-                DELETE_USER_ENDPOINT,
+                SERVER_URL + DELETE_USER_ENDPOINT,
                 "userId=" + user.getUserId(),
                 true
         );
@@ -192,7 +193,7 @@ public class DataController {
 
         System.out.println(urlParam);
         sendBasicHttpRequest(
-                EDIT_USER_ENDPOINT,
+                SERVER_URL + EDIT_USER_ENDPOINT,
                 urlParam,
                 true
         );

@@ -20,23 +20,23 @@ import java.util.Locale;
 public class CreateEventController {
 
     @FXML
-    public GridPane mainGrid;
+    private GridPane mainGrid;
     @FXML
-    public JFXDatePicker datePickerDate;
+    protected JFXDatePicker datePickerDate;
     @FXML
-    public JFXTextField textName;
+    protected JFXTextField textName;
     @FXML
-    public JFXComboBox<String> ComboBoxPriotity;
+    protected JFXComboBox<String> comboBoxPriority;
     @FXML
-    public JFXToggleButton toggleBtnIsFullDay;
+    private JFXToggleButton toggleBtnIsFullDay;
     @FXML
-    public JFXToggleButton toggleBtnIsPrivate;
+    private JFXToggleButton toggleBtnIsPrivate;
     @FXML
-    public Label labelError;
+    private Label labelError;
     @FXML
-    public JFXTimePicker timeStart;
+    private JFXTimePicker timeStart;
     @FXML
-    public JFXTimePicker timeEnd;
+    private JFXTimePicker timeEnd;
 
 
     public CreateEventController() {
@@ -64,7 +64,7 @@ public class CreateEventController {
 
             Event event = new Event(
                     textName.getText(),
-                    ComboBoxPriotity.getSelectionModel().getSelectedIndex(),
+                    comboBoxPriority.getSelectionModel().getSelectedIndex(),
                     toggleBtnIsFullDay.isSelected(),
                     toggleBtnIsPrivate.isSelected(),
                     timeStart.getValue(),

@@ -27,17 +27,17 @@ import java.util.Optional;
 public class OptionController {
 
     @FXML
-    public JFXButton updateUserBtn;
+    private JFXButton updateUserBtn;
     @FXML
-    public JFXButton deleteUserBtn;
+    private JFXButton deleteUserBtn;
     @FXML
-    public JFXButton createUserBtn;
+    private JFXButton createUserBtn;
     @FXML
-    public JFXToggleButton saveLoginTBtn;
+    private JFXToggleButton saveLoginTBtn;
     @FXML
-    public Label labelError;
+    private Label labelError;
     @FXML
-    public GridPane mainGrid;
+    private GridPane mainGrid;
 
     private JFXComboBox<String> comboBox;
     private DataController dataController;
@@ -79,8 +79,7 @@ public class OptionController {
                 "../users/create-user.fxml",
                 "../users/create-user.css",
                 800,
-                650,
-                null
+                650
         );
     }
 

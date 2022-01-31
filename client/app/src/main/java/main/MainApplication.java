@@ -2,16 +2,13 @@ package main;
 
 import config.Config;
 import config.ConfigLoader;
-import helper.Tuple;
+import container.DataController;
+import container.HttpRequest;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import container.DataController;
-import container.HttpRequest;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -41,6 +38,9 @@ public class MainApplication extends Application {
                 config.setToken(HttpRequest.TOKEN);
                 ConfigLoader.save(config);
             }
+
+            DataController.SERVER_URL = config.toServerUrl();
+
             // Load main-scene
             loadMainScene(stage);
 
@@ -60,20 +60,28 @@ public class MainApplication extends Application {
         stage.show();
     }
 
-    private void loadLoginScene() throws IOException {
-        FXMLLoader fxmlLoaderLogin = new FXMLLoader(MainApplication.class.getResource("../users/login.fxml"));
-        Scene sceneLogin = new Scene(fxmlLoaderLogin.load(), 650, 500);
-        sceneLogin.getStylesheets().add(Objects.requireNonNull(
-                MainApplication.class.getResource("../users/login.css")).toExternalForm()
+    private void loadLoginScene() {
+        loadScene(
+                "Anmelden",
+                "../users/login.fxml",
+                "../users/login.css",
+                650,
+                500
         );
-        Stage stageLogin = new Stage();
-        stageLogin.setTitle("Anmelden");
-        stageLogin.setScene(sceneLogin);
-        stageLogin.showAndWait();
     }
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static void loadScene(
+            String title,
+            String fxml,
+            String css,
+            int width,
+            int height
+    ) {
+        loadScene(title, fxml, css, width, height, null);
     }
 
     public static void loadScene(

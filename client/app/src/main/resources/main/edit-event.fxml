@@ -43,7 +43,7 @@
     <JFXTimePicker styleClass="timePicker" fx:id="timeStart" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="200" minWidth="200"/>
     <JFXTimePicker styleClass="timePicker" fx:id="timeEnd" GridPane.columnIndex="1" GridPane.rowIndex="4" maxWidth="200" minWidth="200"/>
 
-    <JFXComboBox fx:id="ComboBoxPriotity" styleClass="comboBox" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="200" minWidth="200">
+    <JFXComboBox fx:id="comboBoxPriority" styleClass="comboBox" GridPane.columnIndex="1" GridPane.rowIndex="5" maxWidth="200" minWidth="200">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="gering"/>

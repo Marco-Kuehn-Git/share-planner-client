@@ -28,9 +28,12 @@ public class ConfigLoader {
         objectMapper.findAndRegisterModules();
 
         try {
-            Files.writeString(Paths.get(
-                    "config.json"),
+            Files.writeString(
+                    Paths.get("config.json"),
                     objectMapper.writeValueAsString(config)
+                            .replace(",", ",\n\t")
+                            .replace("{", "{\n\t")
+                            .replace("}", "\n}")
             );
         } catch (IOException e) {
             e.printStackTrace();

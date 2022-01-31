@@ -2,45 +2,40 @@ package main;
 
 import config.Config;
 import config.ConfigLoader;
+import container.DataController;
+import container.Event;
+import container.HttpRequest;
 import events.EditEventController;
-import ui.DayPane;
-import ui.EventPane;
-import ui.SvgBtnCreator;
 import helper.HttpRequestException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import container.DataController;
-import container.Event;
+import ui.DayPane;
+import ui.EventPane;
+import ui.SvgBtnCreator;
 
-import javafx.event.ActionEvent;
-import container.HttpRequest;
-
-import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class MainController {
 
     @FXML
-    public VBox leftNav;
+    private VBox leftNav;
     @FXML
-    public GridPane mainGridPane;
+    private GridPane mainGridPane;
     @FXML
-    public HBox buttonBox;
+    private HBox buttonBox;
     @FXML
     private GridPane calendarGrid;
-
     @FXML
     private javafx.scene.control.Label LabelMonth;
 
@@ -110,8 +105,7 @@ public class MainController {
                 "create-event.fxml",
                 "create-event.css",
                 650,
-                650,
-                null
+                650
         );
         updateEvents();
     }
@@ -122,8 +116,7 @@ public class MainController {
                 "option-view.fxml",
                 "option-view.css",
                 650,
-                600,
-                null
+                600
                 );
     }
 

@@ -16,40 +16,24 @@ import java.util.Objects;
 
 public class CreateUserController {
 
-    public TextField textName;
-    public PasswordField textPassword;
-    public PasswordField textPasswordSecond;
-    public ToggleButton checkButtonIsAdmin;
-    public TextField textLogin;
-    public TextField textForename;
-    public Label labelError;
+    @FXML
+    protected TextField textName;
+    @FXML
+    protected PasswordField textPassword;
+    @FXML
+    protected PasswordField textPasswordSecond;
+    @FXML
+    protected ToggleButton checkButtonIsAdmin;
+    @FXML
+    protected TextField textLogin;
+    @FXML
+    protected TextField textForename;
+    @FXML
+    protected Label labelError;
 
     @FXML
     protected void createUser(ActionEvent event) {
-        if (textLogin.getText().trim().isEmpty()){
-            labelError.setText("Bitte Login Namen angeben");
-            return;
-        }
-        if (textForename.getText().trim().isEmpty()) {
-            labelError.setText("Bitte Vornamen eingeben!");
-            return;
-        }
-        if (textName.getText().trim().isEmpty()) {
-            labelError.setText("Bitte Nachnamen eingeben!");
-            return;
-        }
-        if (textPassword.getText().trim().isEmpty()) {
-            labelError.setText("Bitte Passwort eingeben!");
-            return;
-        }
-        if (textPassword.getText().trim().length() < 8) {
-            labelError.setText("Das Passwort muss mindestens 8 Zeichen lang sein!");
-            return;
-        }
-        if (!Objects.equals(textPassword.getText(), textPasswordSecond.getText())){
-            labelError.setText("Passwörter stimmen nicht überein!");
-            return;
-        }
+        if (validateNameAndLogin() || validatePassword()) return;
 
         User user = new User();
         user.setLogin(textLogin.getText().trim());
@@ -67,6 +51,38 @@ public class CreateUserController {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    protected boolean validatePassword() {
+        if (textPassword.getText().trim().isEmpty()) {
+            labelError.setText("Bitte Passwort eingeben!");
+            return true;
+        }
+        if (textPassword.getText().trim().length() < 8) {
+            labelError.setText("Das Passwort muss mindestens 8 Zeichen lang sein!");
+            return true;
+        }
+        if (!Objects.equals(textPassword.getText(), textPasswordSecond.getText())){
+            labelError.setText("Passwörter stimmen nicht überein!");
+            return true;
+        }
+        return false;
+    }
+
+    protected boolean validateNameAndLogin() {
+        if (textLogin.getText().trim().isEmpty()){
+            labelError.setText("Bitte Login Namen angeben");
+            return true;
+        }
+        if (textForename.getText().trim().isEmpty()) {
+            labelError.setText("Bitte Vornamen eingeben!");
+            return true;
+        }
+        if (textName.getText().trim().isEmpty()) {
+            labelError.setText("Bitte Nachnamen eingeben!");
+            return true;
+        }
+        return false;
     }
 
     protected void sendHttpRequest(User user) throws HttpRequestException {

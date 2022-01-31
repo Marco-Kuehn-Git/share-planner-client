@@ -17,7 +17,7 @@ public class EditEventController extends CreateEventController{
 
         textName.setText(currentEvent.getName());
         datePickerDate.setValue(currentEvent.getDate().toLocalDate());
-        ComboBoxPriotity.getSelectionModel().select(currentEvent.getPriority());
+        comboBoxPriority.getSelectionModel().select(currentEvent.getPriority());
 
         //timeEnd.setValue(currentEvent.getEnd());
     }
