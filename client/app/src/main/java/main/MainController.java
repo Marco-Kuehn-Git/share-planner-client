@@ -137,27 +137,30 @@ public class MainController {
 
     private void createWeek() {
         for (int i = 0; i < 7; i++) {
-            DayPane dayPane = new DayPane(dayNames[i]);
+            DayPane dayPane = new DayPane();
             this.dayLabel[i] = dayPane.getDayLabel();
             calendarGrid.add(dayPane.getDayLabel(), i, 0);
             dayVBoxes[i] = dayPane.getDayVBox();
-            calendarGrid.add(dayPane.getScrollPane(), i, 1);
+            calendarGrid.add(dayPane, i, 1);
         }
     }
 
     private void addEvent(Event event) {
         EventPane eventPane = new EventPane(event);
-        eventPane.getEditBtn().setOnAction(event1 -> MainApplication.loadScene(
-                "Termin bearbeiten",
-                "edit-event.fxml",
-                "create-event.css",
-                650,
-                650,
-                fxmlLoader -> {
-                    EditEventController editEventController = fxmlLoader.getController();
-                    editEventController.setCurrentEvent(event);
-                }
-        ));
+        eventPane.getEditBtn().setOnAction(event1 -> {
+            MainApplication.loadScene(
+                    "Termin bearbeiten",
+                    "edit-event.fxml",
+                    "create-event.css",
+                    650,
+                    650,
+                    fxmlLoader -> {
+                        EditEventController editEventController = fxmlLoader.getController();
+                        editEventController.setCurrentEvent(event);
+                    }
+            );
+            updateEvents();
+        });
 
         eventPane.getDeleteBtn().setOnAction(e -> {
             DataController dataController = new DataController();

@@ -4,30 +4,28 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
-public class DayPane {
+public class DayPane extends ScrollPane {
 
-    private Label dayLabel;
-    private VBox dayVBox;
-    private ScrollPane scrollPane;
+    private final Label dayLabel;
+    private final VBox dayVBox;
 
-    public DayPane(String name) {
+    public DayPane() {
         dayLabel = new Label();
-        dayLabel.setText(name);
         dayLabel.setMaxHeight(Double.MAX_VALUE);
         dayLabel.setMaxWidth(Double.MAX_VALUE);
         dayLabel.getStyleClass().add("labelDays");
 
-        scrollPane = new ScrollPane();
-
         dayVBox = new VBox();
+
         dayVBox.getStyleClass().add("vBoxDays");
         dayVBox.setSpacing(10);
-        scrollPane.setContent(dayVBox);
 
-        scrollPane.setFitToWidth(true);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.getStyleClass().add("scrollDays");
+        setContent(dayVBox);
+        setFitToWidth(true);
+        setFitToHeight(true);
+        setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        getStyleClass().add("scrollDays");
+        getStyleClass().add("scrollDays");
     }
 
     public Label getDayLabel() {
@@ -36,9 +34,5 @@ public class DayPane {
 
     public VBox getDayVBox() {
         return dayVBox;
-    }
-
-    public ScrollPane getScrollPane() {
-        return scrollPane;
     }
 }
