@@ -11,24 +11,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import container.DataController;
 import container.User;
 import users.EditUserController;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 public class OptionController {
 
@@ -80,7 +74,14 @@ public class OptionController {
     }
 
     public void onCreateBtnClick(ActionEvent actionEvent) {
-        loadUserScene(actionEvent, "User erstellen", "../users/create-user.fxml", null);
+        MainApplication.loadScene(
+                "User erstellen",
+                "../users/create-user.fxml",
+                "../users/create-user.css",
+                800,
+                650,
+                null
+        );
     }
 
     public void onUpdateBtnClick(ActionEvent actionEvent) {
@@ -88,11 +89,16 @@ public class OptionController {
 
         if(editIndex < 0 || editIndex >= users.size()) return;
 
-        FXMLLoader fxmlLoader = loadUserScene(
-                actionEvent,
+        MainApplication.loadScene(
                 "User bearbeiten",
                 "../users/edit-user.fxml",
-                this::setUserAtController
+                "../users/create-user.css",
+                800,
+                650,
+                fxmlLoader -> {
+                    EditUserController editUserController = fxmlLoader.getController();
+                    editUserController.setCurrentUser(users.get(editIndex));
+                }
         );
     }
 
@@ -111,31 +117,6 @@ public class OptionController {
             comboBox.getItems().remove(removeIndex);
             users.remove(removeIndex);
         }
-    }
-
-    private FXMLLoader loadUserScene(ActionEvent actionEvent, String title, String fxml, Consumer<FXMLLoader> method) {
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                MainApplication.class.getResource(fxml));
-        try {
-            Scene scene = new Scene(fxmlLoader.load(), 800, 650);
-            scene.getStylesheets().add(Objects.requireNonNull(
-                    MainApplication.class.getResource("../users/create-user.css")).toExternalForm());
-            Stage stage = new Stage();
-            stage.setTitle(title);
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-
-            if(method != null)method.accept(fxmlLoader);
-
-            stage.showAndWait();
-            Stage stageOld = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stageOld.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            e.printStackTrace();
-        }
-        return fxmlLoader;
     }
 
     private void setUserAtController(FXMLLoader fxmlLoader){

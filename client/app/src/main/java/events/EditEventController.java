@@ -1,4 +1,4 @@
-package main;
+package events;
 
 import helper.HttpRequestException;
 import container.DataController;

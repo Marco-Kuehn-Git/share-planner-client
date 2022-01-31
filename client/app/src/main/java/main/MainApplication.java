@@ -2,15 +2,20 @@ package main;
 
 import config.Config;
 import config.ConfigLoader;
+import helper.Tuple;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import container.DataController;
 import container.HttpRequest;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class MainApplication extends Application {
     @Override
@@ -69,5 +74,33 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static void loadScene(
+            String title,
+            String fxml,
+            String css,
+            int width,
+            int height,
+            Consumer<FXMLLoader> method
+    ) {
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                MainApplication.class.getResource(fxml));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), width, height);
+            scene.getStylesheets().add(Objects.requireNonNull(
+                    MainApplication.class.getResource(css)).toExternalForm());
+            Stage stage = new Stage();
+            stage.setTitle(title);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+
+            if(method != null)method.accept(fxmlLoader);
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

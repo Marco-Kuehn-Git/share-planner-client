@@ -1,4 +1,4 @@
-package main;
+package events;
 
 import com.jfoenix.controls.*;
 import helper.HttpRequestException;
