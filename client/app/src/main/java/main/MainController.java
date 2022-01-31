@@ -105,22 +105,14 @@ public class MainController {
 
     @FXML
     protected void onAddBtnClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    MainApplication.class.getResource("create-event.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 650, 650);
-            scene.getStylesheets().add(Objects.requireNonNull(
-                    MainApplication.class.getResource("create-event.css")).toExternalForm());
-            Stage stage = new Stage();
-            stage.setTitle("Termin erstellen");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            //stage.initStyle(StageStyle.UNDECORATED);
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MainApplication.loadScene(
+                "Termin erstellen",
+                "create-event.fxml",
+                "create-event.css",
+                650,
+                650,
+                null
+        );
         updateEvents();
     }
 
