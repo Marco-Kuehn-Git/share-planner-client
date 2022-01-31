@@ -2,7 +2,8 @@ package main;
 
 import config.Config;
 import config.ConfigLoader;
-import helper.SvgBtnCreator;
+import ui.DayPane;
+import ui.SvgBtnCreator;
 import helper.HttpRequestException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -151,28 +152,11 @@ public class MainController {
 
     private void createWeek() {
         for (int i = 0; i < 7; i++) {
-            Label label = new Label();
-            label.setText(dayNames[i]);
-            label.setMaxHeight(Double.MAX_VALUE);
-            label.setMaxWidth(Double.MAX_VALUE);
-            label.getStyleClass().add("labelDays");
-            dayLabel[i] = label;
-            calendarGrid.add(label, i, 0);
-
-            ScrollPane scrollPane = new ScrollPane();
-
-            VBox vBox = new VBox();
-            vBox.getStyleClass().add("vBoxDays");
-            vBox.setSpacing(10);
-            dayVBoxes[i] = vBox;
-            scrollPane.setContent(vBox);
-
-            scrollPane.setFitToWidth(true);
-            scrollPane.setFitToHeight(true);
-            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-            scrollPane.getStyleClass().add("scrollDays");
-
-            calendarGrid.add(scrollPane, i, 1);
+            DayPane dayPane = new DayPane(dayNames[i]);
+            this.dayLabel[i] = dayPane.getDayLabel();
+            calendarGrid.add(dayPane.getDayLabel(), i, 0);
+            dayVBoxes[i] = dayPane.getDayVBox();
+            calendarGrid.add(dayPane.getScrollPane(), i, 1);
         }
     }
 

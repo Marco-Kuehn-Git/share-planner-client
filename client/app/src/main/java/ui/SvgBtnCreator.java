@@ -1,4 +1,4 @@
-package helper;
+package ui;
 
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
