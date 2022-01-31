@@ -156,11 +156,11 @@ public class MainController {
     private void addEvent(Event event) {
         EventPane eventPane = new EventPane(event);
         eventPane.getEditBtn().setOnAction(event1 -> MainApplication.loadScene(
+                "Termin bearbeiten",
                 "edit-event.fxml",
                 "create-event.css",
-                "Termin bearbeiten",
-                600,
-                600,
+                650,
+                650,
                 fxmlLoader -> {
                     EditEventController editEventController = fxmlLoader.getController();
                     editEventController.setCurrentEvent(event);
