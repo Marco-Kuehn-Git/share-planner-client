@@ -2,12 +2,13 @@ package main;
 
 import config.Config;
 import config.ConfigLoader;
+import events.EditEventController;
 import ui.DayPane;
+import ui.EventPane;
 import ui.SvgBtnCreator;
 import helper.HttpRequestException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -125,21 +126,14 @@ public class MainController {
     }
 
     protected void onSettingBtnClick(){
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    MainApplication.class.getResource("option-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 650, 650);
-            scene.getStylesheets().add(Objects.requireNonNull(
-                    MainApplication.class.getResource("option-view.css")).toExternalForm());
-            Stage stage = new Stage();
-            stage.setTitle("Einstellungen");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MainApplication.loadScene(
+                "Einstellungen",
+                "option-view.fxml",
+                "option-view.css",
+                650,
+                600,
+                null
+                );
     }
 
     protected void onLogoutBtnClick(ActionEvent event){
@@ -161,102 +155,36 @@ public class MainController {
     }
 
     private void addEvent(Event event) {
-        VBox vBox = new VBox();
-        vBox.getStyleClass().add("event");
-        vBox.setSpacing(5);
+        EventPane eventPane = new EventPane(event);
+        eventPane.getEditBtn().setOnAction(event1 -> MainApplication.loadScene(
+                "edit-event.fxml",
+                "create-event.css",
+                "Termin bearbeiten",
+                600,
+                600,
+                fxmlLoader -> {
+                    EditEventController editEventController = fxmlLoader.getController();
+                    editEventController.setCurrentEvent(event);
+                }
+        ));
 
-        HBox btnHBox = new HBox();
-        btnHBox.setAlignment(Pos.BOTTOM_RIGHT);
-
-        Group svgDel = new Group(
-                SvgBtnCreator.createPath("M0 0h24v24H0z", "transparent", "transparent"),
-                SvgBtnCreator.createPath("M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z",
-                        "white", "gray")
-        );
-        Button deleteBtn = SvgBtnCreator.createBtn(svgDel, 24, "", "Löschen des Termins");
-
-        deleteBtn.getStyleClass().add("deleteEventBtn");
-        deleteBtn.setOnAction(e -> {
+        eventPane.getDeleteBtn().setOnAction(e -> {
             DataController dataController = new DataController();
             try {
                 dataController.deleteEvent(event.getOwnerId(), event.getId(), event.getDate());
             } catch (HttpRequestException ex) {
-                ex.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).showAndWait();
             }
             updateEvents();
         });
 
-        Group svgEdit = new Group(
-                SvgBtnCreator.createPath("M0 0h24v24H0z", "transparent", "transparent"),
-                SvgBtnCreator.createPath("M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
-                        "white", "gray")
-        );
-        Button editBtn = SvgBtnCreator.createBtn(svgEdit, 24, "", "Bearbeiten des Termins");
-        editBtn.getStyleClass().add("editEventBtn");
-        editBtn.setOnAction(event1 -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(
-                        MainApplication.class.getResource("edit-event.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 650, 650);
-                scene.getStylesheets().add(Objects.requireNonNull(
-                        MainApplication.class.getResource("create-event.css")).toExternalForm());
-                Stage stage = new Stage();
-                stage.setTitle("Termin bearbeiten");
-                stage.setScene(scene);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setResizable(false);
-                EditEventController editEventController = fxmlLoader.getController();
-                editEventController.setCurrentEvent(event);
-                stage.showAndWait();
-                updateEvents();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        btnHBox.getChildren().add(editBtn);
-        btnHBox.getChildren().add(deleteBtn);
-        vBox.getChildren().add(btnHBox);
-
-        Label nameLabel = new Label(event.getName());
-        nameLabel.setWrapText(true);
-        vBox.getChildren().add(nameLabel);
-
-        if (event.getStart() != null || event.getEnd() != null) {
-            String timeStr = (event.getStart() != null ? formatTime(event.getStart()) : "")
-                    + (event.getEnd() != null ? " - " + formatTime(event.getEnd()) : "");
-            Label timeLabel = new Label(timeStr);
-            vBox.getChildren().add(timeLabel);
-        }
-
-        Label typeLabel = new Label("Wer: " + event.getOwnerName());
-        vBox.getChildren().add(typeLabel);
-
-        Label prioLabel = new Label("Priorität: " + event.getPriority());
-        vBox.getChildren().add(prioLabel);
-
-        if (event.isFullDay()) {
-            Label fullDayLabel = new Label("Dieser Termin bockiert den ganzen Tag!");
-            fullDayLabel.setWrapText(true);
-            vBox.getChildren().add(fullDayLabel);
-        }
-
-
         LocalDateTime eventDate = event.getDate();
-
         int day = (int) Duration.between(
                 weekStartDateTime.toLocalDate().atStartOfDay(), eventDate.toLocalDate().atStartOfDay()).toDays();
 
         if (day >= 0 && day < 7) {
-            dayVBoxes[day].getChildren().add(vBox);
+            dayVBoxes[day].getChildren().add(eventPane);
         }
-    }
-
-    private String formatTime(String time) {
-        String[] timeArr = time.split(":");
-        if (timeArr.length > 2) {
-            return timeArr[0] + ":" + timeArr[1];
-        }
-        return time;
     }
 
     private void setDates() {
