@@ -22,6 +22,8 @@ public class MainApplication extends Application {
             config = new Config(false, -1, "");
         }
 
+        DataController.SERVER_URL = config.toServerUrl();
+
         System.out.println("Ignore 'Illegal reflective access operation'-Warning. See https://github.com/sshahine/JFoenix/issues/1170");
 
         if(
@@ -38,8 +40,6 @@ public class MainApplication extends Application {
                 config.setToken(HttpRequest.TOKEN);
                 ConfigLoader.save(config);
             }
-
-            DataController.SERVER_URL = config.toServerUrl();
 
             // Load main-scene
             loadMainScene(stage);

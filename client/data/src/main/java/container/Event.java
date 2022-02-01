@@ -56,7 +56,7 @@ public class Event {
         this.isFullDay = isFullDay;
         this.isPrivate = isPrivate;
         if (start != null) this.start = start.toString();
-        if (start != null) this.end = end.toString();
+        if (end != null) this.end = end.toString();
         this.date = date;
         this.ownerId = ownerId;
     }
