@@ -1,6 +1,8 @@
 /* Marco Kühn */
 * {
-   -fx-bright-background-color: #3E415F;
+   -fx-dark-background-color: #3E415F;
+
+   -fx-bright-background-color: #ff5555;
    -fx-brighter-background-color: #8D99AE;
    -fx-brightest-background-color: #ffffff;
 
@@ -8,7 +10,7 @@
    -fx-brighter-text-color: #ffffff;
 }
 GridPane{
-    -fx-background-color: -fx-bright-background-color;
+    -fx-background-color: -fx-dark-background-color;
     -fx-padding: 20px;
     -fx-font-size: 20px;
     -fx-font-family: Segoe UI;
@@ -47,7 +49,7 @@ JFXButton{
 #labelError{
     -fx-font-weight: bold;
     -fx-max-width: 1000px;
-    -fx-text-fill: #ff5555;
+    -fx-text-fill: -fx-bright-background-color;
     -fx-padding: 16px;
     -fx-min-height: 140px;
     -fx-max-height: 400px;
