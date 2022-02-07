@@ -2,6 +2,10 @@ plugins {
     java
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     val jacksonVersion = "2.13.0"
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")

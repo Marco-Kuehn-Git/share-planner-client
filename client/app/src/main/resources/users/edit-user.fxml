@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Alex Rechtin -->
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="users.CreateUserController">
+          fx:controller="users.EditUserController">
     <columnConstraints>
         <ColumnConstraints minWidth="100"/>
         <ColumnConstraints minWidth="100"/>
@@ -27,7 +25,7 @@
         <RowConstraints vgrow="ALWAYS" />
     </rowConstraints>
 
-    <Label styleClass="mainLabel" GridPane.columnIndex="2" >User anlegen</Label>
+    <Label styleClass="mainLabel" GridPane.columnIndex="2" >User bearbeiten</Label>
 
     <Label styleClass="inputLabel" GridPane.rowIndex="1" GridPane.columnIndex="1">Login:</Label>
     <Label styleClass="inputLabel" GridPane.rowIndex="2" GridPane.columnIndex="1">Vorname:</Label>
@@ -52,7 +50,7 @@
             <Insets right="100" left="100"/>
         </HBox.margin>
         <Button onAction="#abortBtnClick">Abbrechen</Button>
-        <Button onAction="#createUser" styleClass="btnLogin" >Anlegen</Button>
+        <Button onAction="#createUser" styleClass="btnLogin" >Bearbeiten</Button>
 
     </HBox>
 </GridPane>

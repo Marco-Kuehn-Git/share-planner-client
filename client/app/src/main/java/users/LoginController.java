@@ -7,17 +7,17 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import res.DataController;
+import container.DataController;
 
 public class LoginController {
     @FXML
-    public JFXTextField userField;
+    private JFXTextField userField;
     @FXML
-    public JFXPasswordField passField;
+    private JFXPasswordField passField;
     @FXML
-    public Label userErrLabel;
+    private Label userErrLabel;
     @FXML
-    public Label passErrLabel;
+    private Label passErrLabel;
 
     @FXML
     protected void login(ActionEvent event) {

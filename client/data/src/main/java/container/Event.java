@@ -1,20 +1,11 @@
-//Marc Beyer//
-package res;
+package container;
 
-import com.sun.jdi.event.StepEvent;
-
-import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
-import java.sql.SQLOutput;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 public class Event {
 
@@ -31,68 +22,7 @@ public class Event {
     private int ownerId;
     private String ownerName;
 
-    /*
-    Constructor for SELECT:
-    e.id AS eid,
-    e.name AS ename,
-    e.start,
-    e.end,
-    e.priority,
-    e.is_full_day,
-
-    ue.date,
-
-    u.id AS uid,
-    u.forename,
-    u.name AS uname
-     */
-
-    public Event() {
-
-    }
-
-    public Event(ArrayList<Object> arr) {
-        id = (int) arr.get(0);
-        name = (String) arr.get(1);
-        start = (String) arr.get(2);
-        end = (String) arr.get(3);
-        priority = (int) arr.get(4);
-        isFullDay = (Boolean) arr.get(5); //((String)arr.get(5)).equals("true");
-
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        date = LocalDateTime.parse(arr.get(6) + " 00:00", formatter);
-
-        ownerId = (int) arr.get(7);
-        ownerName = arr.get(8) + " " + arr.get(9);
-    }
-
-    public Event(
-            int id,
-            String name,
-            int priority,
-            boolean isFullDay,
-            boolean isPrivate,
-            String start,
-            String end,
-            String date,
-            int ownerId,
-            String ownerName
-    ) {
-        this.ownerId = ownerId;
-        this.ownerName = ownerName;
-        this.id = id;
-        this.name = name;
-        this.start = start;
-        this.end = end;
-        this.priority = priority;
-        this.isFullDay = isFullDay;
-
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        this.date = LocalDateTime.parse(date + " 00:00", formatter);
-
-    }
+    public Event() {}
 
     public Event(String name,
                  int priority,
@@ -106,15 +36,15 @@ public class Event {
 
         System.out.println("Create Event");
         if (name.length() < 3) {
-            throw new IllegalArgumentException("Der Name muss eine L\u00e4nge von 3 haben.");
+            throw new IllegalArgumentException("Der Name muss eine Länge von 3 haben.");
         }
-        Pattern pattern = Pattern.compile("[A-Za-z\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc\u00df0-9 =!?+*/$.:,;_<>()-]*");
+        Pattern pattern = Pattern.compile("[A-Za-zäöüÄÖÜß0-9 =!?+*/$.:,;_<>()-]*");
         Matcher matcher = pattern.matcher(name);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("Der Name darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: \u00e4\u00f6\u00fc \u00c4\u00d6\u00dc \u00df =!?+*/$.:,;_ <>()-");
+            throw new IllegalArgumentException("Der Name darf nur aus Zahlen, Buchstaben und folgenden Sonderzeichen bestehen: äöü ÄÖÜ ß =!?+*/$.:,;_ <>()-");
         }
         if (priority < 0) {
-            throw new IllegalArgumentException("Bitte eine Priorit\u00e4t w\u00e4hlen.");
+            throw new IllegalArgumentException("Bitte eine Priorität wählen.");
         }
         LocalDateTime today = LocalDateTime.now().toLocalDate().atStartOfDay();
         if (Duration.between(today, date).isNegative()) {
@@ -126,7 +56,7 @@ public class Event {
         this.isFullDay = isFullDay;
         this.isPrivate = isPrivate;
         if (start != null) this.start = start.toString();
-        if (start != null) this.end = end.toString();
+        if (end != null) this.end = end.toString();
         this.date = date;
         this.ownerId = ownerId;
     }
@@ -144,9 +74,7 @@ public class Event {
     }
 
     public void setName(String name) {
-        System.out.println(name);
         this.name = name;
-        System.out.println(this.name);
     }
 
     public int getPriority() {

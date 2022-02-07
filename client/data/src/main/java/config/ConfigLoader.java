@@ -2,7 +2,6 @@
 package config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import res.DataController;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,9 +17,11 @@ public class ConfigLoader {
             objectMapper.findAndRegisterModules();
             return objectMapper.readValue(jsonString, Config.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("config.json missing");
+            Config config = new Config(false, -1, "");
+            save(config);
+            return config;
         }
-        return null;
     }
 
     public static void save(Config config){
@@ -28,9 +29,12 @@ public class ConfigLoader {
         objectMapper.findAndRegisterModules();
 
         try {
-            Files.writeString(Paths.get(
-                    "config.json"),
+            Files.writeString(
+                    Paths.get("config.json"),
                     objectMapper.writeValueAsString(config)
+                            .replace(",", ",\n\t")
+                            .replace("{", "{\n\t")
+                            .replace("}", "\n}")
             );
         } catch (IOException e) {
             e.printStackTrace();
