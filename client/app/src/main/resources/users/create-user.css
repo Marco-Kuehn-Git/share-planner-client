@@ -2,7 +2,8 @@
 * {
   -fx-dark-background-color: #3E415F;
   -fx-bright-border-color: #B0B0B0;
-  -fx-brighter-text-color: #ffffff;
+  -fx-brighter-text-color: #ff5555;
+  -fx-brightest-text-color: #ffffff;
 }
 
 
@@ -29,7 +30,7 @@ GridPane{
 
 
 Label{
-    -fx-text-fill: -fx-brighter-text-color;
+    -fx-text-fill: -fx-brightest-text-color;
     -fx-max-width: 150px;
     -fx-min-width: 150px;
 }
@@ -42,6 +43,7 @@ Label{
 .errorMessage{
     -fx-max-width: 400px;
     -fx-min-width: 400px;
+    -fx-text-fill: -fx-brighter-text-color;
 }
 
 Button{
