@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Marco Kühn -->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="users.LoginController">
+
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+
+    <Label GridPane.columnIndex="1">Anmelden</Label>
+
+    <Label GridPane.rowIndex="1">Username</Label>
+    <JFXTextField styleClass="userField" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField"/>
+    <Label styleClass="errorLbl" GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="userErrLabel"/>
+
+    <Label GridPane.rowIndex="2">Paswort</Label>
+    <JFXPasswordField styleClass="passField" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField"/>
+    <Label styleClass="errorLbl" GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="passErrLabel"/>
+
+    <JFXButton styleClass="quitBtn" onAction="#abortBtnClick" GridPane.columnIndex="1" GridPane.rowIndex="3">Beenden</JFXButton>
+    <JFXButton styleClass="loginBtn" onAction="#login" GridPane.columnIndex="2" GridPane.rowIndex="3">Anmelden</JFXButton>
+
+</GridPane>

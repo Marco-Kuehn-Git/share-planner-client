@@ -10,7 +10,7 @@
 <?import com.jfoenix.controls.*?>
 
 <GridPane fx:id="mainGrid" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="events.CreateEventController">
+          fx:controller="events.EditEventController">
 
     <columnConstraints>
         <ColumnConstraints/>
@@ -29,7 +29,7 @@
         <RowConstraints vgrow="ALWAYS"/>
     </rowConstraints>
 
-    <Label styleClass="mainLabel">Termin anlegen</Label>
+    <Label styleClass="mainLabel">Termin bearbeiten</Label>
 
     <Label styleClass="inputLabel" GridPane.rowIndex="1">Titel:</Label>
     <Label styleClass="inputLabel" GridPane.rowIndex="2">Datum:</Label>
@@ -60,7 +60,7 @@
 
     <HBox GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.columnSpan="2" alignment="CENTER_RIGHT">
         <JFXButton onAction="#abortBtnClick" maxWidth="150" minWidth="150">Abbrechen</JFXButton>
-        <JFXButton styleClass="mainButton" onAction="#createBtnClick" maxWidth="150" minWidth="150">Anlegen</JFXButton>
+        <JFXButton styleClass="mainButton" onAction="#createBtnClick" maxWidth="150" minWidth="150">Speichern</JFXButton>
     </HBox>
 
 </GridPane>

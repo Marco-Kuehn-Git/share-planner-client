@@ -1,72 +1,121 @@
+/*Alex Rechtin, Marco Kühn*/
 * {
-   -fx-dark-background-color: #525E74;
-   -fx-darkest-background-color: #2B2D42;
+   -fx-base-background-color: #2B2D42;
+   -fx-base1-background-color: #525E74;
 
-   -fx-bright-background-color: #77859E;
-   -fx-brighter-background-color: #52567E;
-   -fx-brightest-background-color: #ffffff;
-
-   -fx-bright-border-color: #B0B0B0;
-   -fx-brighter-text-color: #ffffff;
-
+   -fx-main-border-color: #B0B0B0;
+   -fx-main-text-color: #ffffff;
 }
 
-.mainGrid{
-    -fx-background-color: -fx-darkest-background-color;
+
+GridPane{
+    -fx-background-color: -fx-base-background-color;
 }
 
-.mainVbox{
-    -fx-background-color: -fx-dark-background-color;
+.main-panel{
+    -fx-background-color: #282C34;
+}
+
+.vbox-main{
+    -fx-background-color: #333333;
+    -fx-alignment: top-center;
+
 }
 
 .gridCalendar Line{
-    -fx-stroke: -fx-bright-border-color;
+    -fx-stroke: -fx-main-border-color;
 }
 
 .gridCalender{
-        -fx-background-color: -fx-darkest-background-color;
+        -fx-background-color: -fx-base-background-color;
         -fx-min-height: 80px;
         -fx-max-height: 80px;
 }
 
 .labelMonth{
     -fx-padding: 0 0 0 20;
-    -fx-background-color: -fx-bright-background-color;
+    -fx-background-color: #77859E;
     -fx-font-size: 35px;
     -fx-font-weight: bold;
 }
 
 .scrollDays{
-    -fx-background-color: -fx-darkest-background-color;
-    -fx-border-color: -fx-bright-border-color;
+    -fx-background-color: -fx-base-background-color;
+    -fx-border-color: -fx-main-border-color;
 }
 
 .vBoxDays{
-    -fx-background-color: -fx-darkest-background-color;
+    -fx-background-color: -fx-base-background-color;
 }
 
 .labelDays{
     -fx-alignment: center;
-    -fx-background-color: -fx-dark-background-color;
+    -fx-background-color: -fx-base1-background-color;
     -fx-font-size: 25px;
-    -fx-border-color: -fx-bright-border-color;
+    -fx-border-color: -fx-main-border-color;
 }
 
 Label{
-    -fx-text-fill: -fx-brighter-text-color;
+    -fx-text-fill: -fx-main-text-color;
 }
 
 .event{
-    -fx-background-color: -fx-dark-background-color;
+    -fx-background-color: -fx-base1-background-color;
 }
 
-.mainBtn{
-    -fx-background-color: -fx-brightest-background-color;
-    -fx-text-fill: -fx-brighter-text-color;
-    -fx-background-radius: 5em;
-    -fx-min-width: 40px;
-    -fx-min-height: 40px;
-    -fx-max-width: 40px;
-    -fx-max-height: 40px;
+.main-btn{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.main-btn .svg {
+    -fx-fill: -fill;
+}
+
+.main-btn:hover .svg {
+    -fx-fill: -hover-fill;
+}
+
+.buttonBox{
+    -fx-background-color: #77859E;
+}
+
+.navBtn{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.navBtn .svg {
+    -fx-fill: -fill;
+}
+
+.navBtn:hover .svg {
+    -fx-fill: -hover-fill;
+}
+
+.editEventBtn{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.editEventBtn .svg {
+    -fx-fill: -fill;
+}
+
+.editEventBtn:hover .svg {
+    -fx-fill: -hover-fill;
+}
+
+.deleteEventBtn{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.deleteEventBtn .svg {
+    -fx-fill: -fill;
+}
+
+.deleteEventBtn:hover .svg {
+    -fx-fill: -hover-fill;
 }
 

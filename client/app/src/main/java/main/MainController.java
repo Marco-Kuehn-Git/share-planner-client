@@ -1,36 +1,44 @@
+/* Marco Kühn, Marc Beyer */
 package main;
 
+import config.Config;
+import config.ConfigLoader;
+import container.DataController;
+import container.Event;
+import container.HttpRequest;
+import events.EditEventController;
+import helper.HttpRequestException;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import res.DataController;
-import res.Event;
+import ui.DayPane;
+import ui.EventPane;
+import ui.SvgBtnCreator;
 
-import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class MainController {
 
     @FXML
-    private GridPane calendarGrid;
-
+    private VBox leftNav;
     @FXML
-    private Label LabelMonth;
+    private GridPane mainGridPane;
+    @FXML
+    private HBox buttonBox;
+    @FXML
+    private GridPane calendarGrid;
+    @FXML
+    private javafx.scene.control.Label LabelMonth;
 
     private final String[] dayNames = {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
     private final Label[] dayLabel = new Label[7];
@@ -48,8 +56,9 @@ public class MainController {
     public void initialize() {
         createWeek();
         setDates();
-
         updateEvents();
+        createBtns();
+        leftNav.setSpacing(40);
     }
 
     private void updateEvents() {
@@ -58,122 +67,112 @@ public class MainController {
         }
 
         DataController dataController = new DataController();
-        ArrayList<Event> eventList = dataController.getAllVisibleEvents();
+        try {
+            ArrayList<Event> eventList = dataController.getAllVisibleEvents(weekStartDateTime, weekStartDateTime.plusDays(7));
 
-        for (Event event : eventList) {
-            addEvent(event);
+            for (Event event : eventList) {
+                addEvent(event);
+            }
+        } catch (HttpRequestException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
-    protected void onAddBtnClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("create-event.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 650, 500);
-            scene.getStylesheets().add(Objects.requireNonNull(MainApplication.class.getResource("create-event.css")).toExternalForm());
-            Stage stage = new Stage();
-            stage.setTitle("Termin erstellen");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            //stage.initStyle(StageStyle.UNDECORATED);
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    protected void onBackClick() {
+        weekOffset--;
+        setDates();
         updateEvents();
+    }
+
+    @FXML
+    protected void onTodayClick() {
+        weekOffset = 0;
+        setDates();
+        updateEvents();
+    }
+
+    @FXML
+    protected void onNextClick() {
+        weekOffset++;
+        setDates();
+        updateEvents();
+    }
+
+    @FXML
+    protected void onAddBtnClick() {
+        MainApplication.loadScene(
+                "Termin erstellen",
+                "create-event.fxml",
+                "create-event.css",
+                650,
+                650
+        );
+        updateEvents();
+    }
+
+    protected void onSettingBtnClick(){
+        MainApplication.loadScene(
+                "Einstellungen",
+                "option-view.fxml",
+                "option-view.css",
+                650,
+                600
+                );
+    }
+
+    protected void onLogoutBtnClick(ActionEvent event){
+        ConfigLoader.save(new Config());
+        DataController.USER_ID = -1;
+        HttpRequest.TOKEN = "";
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     private void createWeek() {
         for (int i = 0; i < 7; i++) {
-            Label label = new Label();
-            label.setText(dayNames[i]);
-            label.setMaxHeight(Double.MAX_VALUE);
-            label.setMaxWidth(Double.MAX_VALUE);
-            label.getStyleClass().add("labelDays");
-            dayLabel[i] = label;
-            calendarGrid.add(label, i, 0);
-
-            ScrollPane scrollPane = new ScrollPane();
-
-            VBox vBox = new VBox();
-            vBox.getStyleClass().add("vBoxDays");
-            vBox.setSpacing(10);
-            dayVBoxes[i] = vBox;
-            scrollPane.setContent(vBox);
-
-            scrollPane.setFitToWidth(true);
-            scrollPane.setFitToHeight(true);
-            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-            scrollPane.getStyleClass().add("scrollDays");
-
-            calendarGrid.add(scrollPane, i, 1);
+            DayPane dayPane = new DayPane();
+            this.dayLabel[i] = dayPane.getDayLabel();
+            calendarGrid.add(dayPane.getDayLabel(), i, 0);
+            dayVBoxes[i] = dayPane.getDayVBox();
+            calendarGrid.add(dayPane, i, 1);
         }
     }
 
     private void addEvent(Event event) {
-        VBox vBox = new VBox();
-        vBox.getStyleClass().add("event");
-        vBox.setSpacing(5);
-
-        HBox btnHBox = new HBox();
-        btnHBox.setAlignment(Pos.BOTTOM_RIGHT);
-        Button deleteBtn = new Button();
-        deleteBtn.setText(" X ");
-        deleteBtn.setOnAction(e -> {
-            DataController dataController = new DataController();
-            dataController.deleteEvent(event.getId());
+        EventPane eventPane = new EventPane(event);
+        eventPane.getEditBtn().setOnAction(event1 -> {
+            MainApplication.loadScene(
+                    "Termin bearbeiten",
+                    "edit-event.fxml",
+                    "create-event.css",
+                    650,
+                    650,
+                    fxmlLoader -> {
+                        EditEventController editEventController = fxmlLoader.getController();
+                        editEventController.setCurrentEvent(event);
+                    }
+            );
             updateEvents();
         });
-        Button editBtn = new Button();
-        editBtn.setText("edit");
-        btnHBox.getChildren().add(editBtn);
-        btnHBox.getChildren().add(deleteBtn);
-        vBox.getChildren().add(btnHBox);
 
-        Label nameLabel = new Label(event.getName());
-        vBox.getChildren().add(nameLabel);
-
-        if (event.getStart() != null || event.getEnd() != null) {
-            String timeStr = (event.getStart() != null ? formatTime(event.getStart()) : "")
-                    + (event.getEnd() != null ? " - " + formatTime(event.getEnd()) : "");
-            Label timeLabel = new Label(timeStr);
-            vBox.getChildren().add(timeLabel);
-        }
-
-        Label typeLabel = new Label("Wer: " + event.getOwnerName());
-        vBox.getChildren().add(typeLabel);
-
-        /*
-        Ä, ä 		\u00c4, \u00e4
-        Ö, ö 		\u00d6, \u00f6
-        Ü, ü 		\u00dc, \u00fc
-        ß 		    \u00df
-         */
-        Label prioLabel = new Label("Priorit\u00e4t: " + event.getPriority());
-        vBox.getChildren().add(prioLabel);
-
-        if (event.isFullDay()) {
-            Label fullDayLabel = new Label("Dieser Termin bockiert den ganzen Tag!");
-            vBox.getChildren().add(fullDayLabel);
-        }
-
+        eventPane.getDeleteBtn().setOnAction(e -> {
+            DataController dataController = new DataController();
+            try {
+                dataController.deleteEvent(event.getOwnerId(), event.getId(), event.getDate());
+            } catch (HttpRequestException ex) {
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).showAndWait();
+            }
+            updateEvents();
+        });
 
         LocalDateTime eventDate = event.getDate();
-
-        int day = (int) Duration.between(weekStartDateTime.toLocalDate().atStartOfDay(), eventDate.toLocalDate().atStartOfDay()).toDays();
+        int day = (int) Duration.between(
+                weekStartDateTime.toLocalDate().atStartOfDay(), eventDate.toLocalDate().atStartOfDay()).toDays();
 
         if (day >= 0 && day < 7) {
-            dayVBoxes[day].getChildren().add(vBox);
+            dayVBoxes[day].getChildren().add(eventPane);
         }
-    }
-
-    private String formatTime(String time) {
-        String[] timeArr = time.split(":");
-        if (timeArr.length > 2) {
-            return timeArr[0] + ":" + timeArr[1];
-        }
-        return time;
     }
 
     private void setDates() {
@@ -192,5 +191,40 @@ public class MainController {
 
         LabelMonth.setText(dateFormatter.format(weekStartDateTime));
 
+    }
+
+    private void createBtns(){
+        Button addBtn = SvgBtnCreator.createAddBtn();
+        addBtn.setOnAction(e -> onAddBtnClick());
+        addBtn.getStyleClass().add("main-btn");
+        leftNav.getChildren().add(addBtn);
+
+        Button settingsBtn = SvgBtnCreator.createSettingBtn();
+        settingsBtn.setOnAction(e -> onSettingBtnClick());
+        settingsBtn.getStyleClass().add("main-btn");
+        leftNav.getChildren().add(settingsBtn);
+
+        Button logoutBtn = SvgBtnCreator.createLogoutBtn();
+        logoutBtn.setOnAction(this::onLogoutBtnClick);
+        logoutBtn.getStyleClass().add("main-btn");
+        leftNav.getChildren().add(logoutBtn);
+
+        Button backBtn = SvgBtnCreator.createBackBtn();
+        backBtn.setOnAction(e -> onBackClick());
+        backBtn.getStyleClass().add("navBtn");
+        GridPane.setColumnIndex(backBtn, 1);
+        buttonBox.getChildren().add(backBtn);
+
+        Button todayBtn = SvgBtnCreator.createTodayBtn();
+        todayBtn.setOnAction(e -> onTodayClick());
+        todayBtn.getStyleClass().add("navBtn");
+        GridPane.setColumnIndex(todayBtn, 2);
+        buttonBox.getChildren().add(todayBtn);
+
+        Button nextBtn = SvgBtnCreator.createNextBtn();
+        nextBtn.setOnAction(e -> onNextClick());
+        nextBtn.getStyleClass().add("navBtn");
+        GridPane.setColumnIndex(nextBtn, 3);
+        buttonBox.getChildren().add(nextBtn);
     }
 }

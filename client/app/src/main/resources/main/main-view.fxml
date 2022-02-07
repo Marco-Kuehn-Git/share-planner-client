@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Alex Rechtin, Marco Kühn -->
+
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane styleClass="mainGrid" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+<GridPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="main.MainController">
     <columnConstraints>
-        <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="60.0" />
-        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="60.0"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints vgrow="SOMETIMES" />
+        <RowConstraints vgrow="SOMETIMES"/>
     </rowConstraints>
-    <VBox styleClass="mainVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+    <VBox fx:id="leftNav" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0"
+          style="-fx-background-color: #525E74;">
         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 
         </ImageView>
-        <Button onAction="#onAddBtnClick" styleClass="mainBtn">
-            ADD
-        </Button>
-        <Button onAction="#onAddBtnClick" styleClass="mainBtn">
-            ADD
-        </Button>
-        <Button onAction="#onAddBtnClick" styleClass="mainBtn">
-            ADD
-        </Button>
     </VBox>
-    <GridPane prefHeight="200.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+    <GridPane fx:id="mainGridPane" prefHeight="200.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" />
-         <ColumnConstraints />
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints vgrow="ALWAYS" />
+            <RowConstraints/>
+            <RowConstraints vgrow="ALWAYS"/>
         </rowConstraints>
         <Label fx:id="LabelMonth" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-               styleClass="labelMonth"  GridPane.columnIndex="0" GridPane.rowIndex="0">
+               styleClass="labelMonth" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
             Monat
             <padding>
-                <Insets left="5" />
+                <Insets left="5"/>
             </padding>
         </Label>
 
-        <GridPane fx:id="calendarGrid" gridLinesVisible="true"  styleClass="gridCalendar"
+        <HBox fx:id="buttonBox" styleClass="buttonBox" GridPane.columnIndex="1" alignment="CENTER"/>
+
+        <GridPane fx:id="calendarGrid" gridLinesVisible="true" styleClass="gridCalendar" GridPane.columnSpan="4"
                   GridPane.columnIndex="0" GridPane.rowIndex="1">
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" maxWidth="14.2857142857" minWidth="14.2857142857"
-                                   percentWidth="14.2857142857" />
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857" />
+                                   percentWidth="14.2857142857"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="14.2857142857"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="55.0" minHeight="25.0" vgrow="NEVER" />
-                <RowConstraints percentHeight="-Infinity" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="55.0" minHeight="25.0" vgrow="NEVER"/>
+                <RowConstraints percentHeight="-Infinity" vgrow="ALWAYS"/>
             </rowConstraints>
+
         </GridPane>
     </GridPane>
 </GridPane>

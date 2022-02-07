@@ -1,4 +1,4 @@
-/*Marco Kühn*/
+/* Marco Kühn */
 GridPane{
     -fx-background-color: #3E415F;
     -fx-padding: 20px;
@@ -14,8 +14,8 @@ GridPane{
 
 Label{
     -fx-text-fill: white;
-    -fx-max-width: 150px;
-    -fx-min-width: 150px;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
 }
 
 .mainLabel{
@@ -25,11 +25,6 @@ Label{
     -fx-min-width: 200px;
     -fx-font-weight: bold;
     -fx-alignment: center;
-}
-
-.inputField{
-    -fx-padding: 10px;
-    -fx-background-color: white;
 }
 
 .mainButton{
@@ -52,29 +47,13 @@ JFXButton{
     -fx-font-size: 16px;
 }
 
-.inputDate{
-    -fx-background-color: white;
-}
-
 .comboBox{
     -fx-background-color: white;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
 }
 
-.timePicker{
-    -fx-background-color: white;
+.userBtn{
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
 }
-
-.jfx-time-picker .date-picker-popup{
-    -fx-max-width: 230px;
-    -fx-min-width: 230px;
-}
-
-.jfx-time-picker .date-picker-popup > * > .spinner > .label {
-    -fx-max-width: 55px;
-    -fx-min-width: 55px;
-}
-
-.jfx-date-picker .date-picker-popup > * > .spinner > .label {
-     -fx-max-width: 300px;
-     -fx-min-width: 300px;
- }
