@@ -1,66 +1,70 @@
 /*Alex Rechtin, Marco Kühn*/
 * {
-   -fx-base-background-color: #2B2D42;
-   -fx-base1-background-color: #525E74;
+    -fx-dark-background-color: #525E74;
+    -fx-darkest-background-color: #2B2D42;
 
-   -fx-main-border-color: #B0B0B0;
-   -fx-main-text-color: #ffffff;
+    -fx-bright-background-color: #77859E;
+    -fx-brighter-background-color: #282C34 ;
+    -fx-brightest-background-color: #333333 ;
+
+    -fx-bright-border-color: #B0B0B0;
+    -fx-brighter-text-color: #ffffff;
 }
 
 
 GridPane{
-    -fx-background-color: -fx-base-background-color;
+    -fx-background-color: -fx-darkest-background-color;
 }
 
 .main-panel{
-    -fx-background-color: #282C34;
+    -fx-background-color: -fx-brighter-background-color;
 }
 
 .vbox-main{
-    -fx-background-color: #333333;
+    -fx-background-color: -fx-brightest-background-color;
     -fx-alignment: top-center;
 
 }
 
 .gridCalendar Line{
-    -fx-stroke: -fx-main-border-color;
+    -fx-stroke: -fx-bright-border-color;
 }
 
 .gridCalender{
-        -fx-background-color: -fx-base-background-color;
+        -fx-background-color: -fx-darkest-background-color;
         -fx-min-height: 80px;
         -fx-max-height: 80px;
 }
 
 .labelMonth{
     -fx-padding: 0 0 0 20;
-    -fx-background-color: #77859E;
+    -fx-background-color: -fx-bright-background-color;
     -fx-font-size: 35px;
     -fx-font-weight: bold;
 }
 
 .scrollDays{
-    -fx-background-color: -fx-base-background-color;
-    -fx-border-color: -fx-main-border-color;
+    -fx-background-color: -fx-darkest-background-color;
+    -fx-border-color: -fx-bright-border-color;
 }
 
 .vBoxDays{
-    -fx-background-color: -fx-base-background-color;
+    -fx-background-color: -fx-darkest-background-color;
 }
 
 .labelDays{
     -fx-alignment: center;
-    -fx-background-color: -fx-base1-background-color;
+    -fx-background-color: -fx-dark-background-color;
     -fx-font-size: 25px;
-    -fx-border-color: -fx-main-border-color;
+    -fx-border-color: -fx-bright-border-color;
 }
 
 Label{
-    -fx-text-fill: -fx-main-text-color;
+    -fx-text-fill: -fx-brighter-text-color;
 }
 
 .event{
-    -fx-background-color: -fx-base1-background-color;
+    -fx-background-color: -fx-dark-background-color;
 }
 
 .main-btn{
@@ -77,7 +81,7 @@ Label{
 }
 
 .buttonBox{
-    -fx-background-color: #77859E;
+    -fx-background-color: -fx-bright-background-color;
 }
 
 .navBtn{
