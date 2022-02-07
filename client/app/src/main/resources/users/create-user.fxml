@@ -33,7 +33,7 @@
     <Label styleClass="inputLabel" GridPane.rowIndex="2" GridPane.columnIndex="1">Vorname:</Label>
     <Label styleClass="inputLabel" GridPane.rowIndex="3" GridPane.columnIndex="1">Nachname:</Label>
     <Label styleClass="inputLabel" GridPane.rowIndex="4" GridPane.columnIndex="1">Passwort:</Label>
-    <Label styleClass="inputLabel" GridPane.rowIndex="5" GridPane.columnIndex="1">Passwort wiederholen:</Label>
+    <Label styleClass="inputLabel" wrapText="true" GridPane.rowIndex="5" GridPane.columnIndex="1">Passwort wiederholen:</Label>
 
     <Label styleClass="inputLabelAdmin" GridPane.rowIndex="6" GridPane.columnIndex="1">Admin:</Label>
 
