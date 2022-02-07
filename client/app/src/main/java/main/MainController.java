@@ -1,3 +1,4 @@
+/* Marco Kühn, Marc Beyer */
 package main;
 
 import config.Config;
