@@ -1,6 +1,7 @@
 /*Alex Rechtin*/
 * {
   -fx-dark-background-color: #3E415F;
+  -fx-bright-background-color: #ffffff;
   -fx-bright-border-color: #B0B0B0;
   -fx-brighter-text-color: #ff5555;
   -fx-brightest-text-color: #ffffff;
@@ -36,6 +37,7 @@ Label{
 }
 
 .textField{
+    -fx-background-color: -fx-bright-background-color;
     -fx-max-width: 400px;
     -fx-min-width: 400px;
 }
@@ -46,7 +48,8 @@ Label{
     -fx-text-fill: -fx-brighter-text-color;
 }
 
-Button{
+JFXButton{
+    -fx-background-color: -fx-bright-background-color;
     -fx-max-width: 150px;
     -fx-min-width: 150px;
 }

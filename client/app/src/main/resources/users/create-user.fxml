@@ -2,10 +2,13 @@
 
 <!-- Alex Rechtin -->
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import com.jfoenix.controls.JFXToggleButton?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="users.CreateUserController">
@@ -37,11 +40,11 @@
 
     <Label styleClass="inputLabelAdmin" GridPane.rowIndex="6" GridPane.columnIndex="1">Admin:</Label>
 
-    <TextField fx:id="textLogin" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-    <TextField fx:id="textForename" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-    <TextField fx:id="textName" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <PasswordField fx:id="textPassword" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-    <PasswordField fx:id="textPasswordSecond" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+    <JFXTextField fx:id="textLogin" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <JFXTextField fx:id="textForename" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <JFXTextField fx:id="textName" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+    <JFXPasswordField fx:id="textPassword" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+    <JFXPasswordField fx:id="textPasswordSecond" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
     <JFXToggleButton fx:id="checkButtonIsAdmin" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
 
@@ -51,8 +54,8 @@
         <HBox.margin>
             <Insets right="100" left="100"/>
         </HBox.margin>
-        <Button onAction="#abortBtnClick">Abbrechen</Button>
-        <Button onAction="#createUser" styleClass="btnLogin" >Anlegen</Button>
+        <JFXButton onAction="#abortBtnClick">Abbrechen</JFXButton>
+        <JFXButton onAction="#createUser" styleClass="btnLogin" >Anlegen</JFXButton>
 
     </HBox>
 </GridPane>
