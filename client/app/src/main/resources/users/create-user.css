@@ -1,20 +1,21 @@
+/*Alex Rechtin*/
 * {
-   -fx-base-background-color: #2B2D42;
-   -fx-base1-background-color: #525E74;
-
-   -fx-main-border-color: #B0B0B0;
-   -fx-main-text-color: #ffffff;
+  -fx-dark-background-color: #3E415F;
+  -fx-bright-background-color: #ffffff;
+  -fx-bright-border-color: #B0B0B0;
+  -fx-brighter-text-color: #ff5555;
+  -fx-brightest-text-color: #ffffff;
 }
 
 
 GridPane{
-    -fx-background-color: #3E415F;
+    -fx-background-color: -fx-dark-background-color;
     -fx-padding: 20px;
     -fx-font-size: 20px;
     -fx-font-family: Segoe UI;
 
     -fx-border-insets: 1;
-    -fx-border-color: #B0B0B0;
+    -fx-border-color: -fx-bright-border-color;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(three-pass-box, rgba(100, 100, 100, 1), 24, 0.5, 0, 0);
@@ -30,12 +31,13 @@ GridPane{
 
 
 Label{
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-brightest-text-color;
     -fx-max-width: 150px;
     -fx-min-width: 150px;
 }
 
 .textField{
+    -fx-background-color: -fx-bright-background-color;
     -fx-max-width: 400px;
     -fx-min-width: 400px;
 }
@@ -43,9 +45,11 @@ Label{
 .errorMessage{
     -fx-max-width: 400px;
     -fx-min-width: 400px;
+    -fx-text-fill: -fx-brighter-text-color;
 }
 
-Button{
+JFXButton{
+    -fx-background-color: -fx-bright-background-color;
     -fx-max-width: 150px;
     -fx-min-width: 150px;
 }

@@ -1,24 +1,35 @@
+/* Marco Kühn */
+* {
+   -fx-dark-background-color: #3E415F;
+
+   -fx-bright-background-color: #ff5555;
+   -fx-brighter-background-color: #8D99AE;
+   -fx-brightest-background-color: #ffffff;
+
+   -fx-bright-border-color: #B0B0B0;
+   -fx-brighter-text-color: #ffffff;
+}
 GridPane{
-    -fx-background-color: #3E415F;
+    -fx-background-color: -fx-dark-background-color;
     -fx-padding: 20px;
     -fx-font-size: 20px;
     -fx-font-family: Segoe UI;
 
     -fx-border-insets: 1;
-    -fx-border-color: #B0B0B0;
+    -fx-border-color: -fx-bright-border-color;
     -fx-border-style: solid;
     -fx-border-width: 2;
     -fx-effect: dropshadow(three-pass-box, rgba(100, 100, 100, 1), 24, 0.5, 0, 0);
 }
 
 Label{
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-brighter-text-color;
     -fx-max-width: 200px;
     -fx-min-width: 200px;
 }
 
 .mainLabel{
-    -fx-background-color: #8D99AE;
+    -fx-background-color: -fx-brighter-background-color;
     -fx-padding: 10px;
     -fx-max-width: 200px;
     -fx-min-width: 200px;
@@ -28,17 +39,17 @@ Label{
 
 .mainButton{
     -fx-font-weight: bold;
-    -fx-background-color: white;
+    -fx-background-color: -fx-brightest-background-color;
 }
 
 JFXButton{
-    -fx-background-color: white;
+    -fx-background-color: -fx-brightest-background-color;
 }
 
 #labelError{
     -fx-font-weight: bold;
     -fx-max-width: 1000px;
-    -fx-text-fill: #ff5555;
+    -fx-text-fill: -fx-bright-background-color;
     -fx-padding: 16px;
     -fx-min-height: 140px;
     -fx-max-height: 400px;
@@ -47,7 +58,7 @@ JFXButton{
 }
 
 .comboBox{
-    -fx-background-color: white;
+    -fx-background-color: -fx-brightest-background-color;
     -fx-max-width: 200px;
     -fx-min-width: 200px;
 }

@@ -1,13 +1,14 @@
+//Alex Rechtin//
 package users;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import helper.HttpRequestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 import container.DataController;
 import container.User;
@@ -17,17 +18,17 @@ import java.util.Objects;
 public class CreateUserController {
 
     @FXML
-    protected TextField textName;
+    protected JFXTextField textName;
     @FXML
-    protected PasswordField textPassword;
+    protected JFXPasswordField textPassword;
     @FXML
-    protected PasswordField textPasswordSecond;
+    protected JFXPasswordField textPasswordSecond;
     @FXML
-    protected ToggleButton checkButtonIsAdmin;
+    protected JFXToggleButton checkButtonIsAdmin;
     @FXML
-    protected TextField textLogin;
+    protected JFXTextField textLogin;
     @FXML
-    protected TextField textForename;
+    protected JFXTextField textForename;
     @FXML
     protected Label labelError;
 

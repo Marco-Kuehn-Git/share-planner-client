@@ -42,6 +42,7 @@ public class CreateEventController {
     public CreateEventController() {
     }
 
+    //Marco Kühn//
     @FXML
     public void initialize() {
         StringConverter<LocalTime> defaultConverter = new LocalTimeStringConverter(FormatStyle.SHORT, Locale.GERMANY);
@@ -52,7 +53,7 @@ public class CreateEventController {
         timeEnd.setConverter(defaultConverter);
     }
 
-
+    //Marc Beyer//
     @FXML
     protected void createBtnClick(ActionEvent actionEvent) {
         try {
@@ -84,11 +85,13 @@ public class CreateEventController {
         }
     }
 
+    //Marc Beyer//
     protected void sendHttpRequest(Event event) throws HttpRequestException {
         DataController dataController = new DataController();
         dataController.createEvent(event);
     }
 
+    //Marc Beyer//
     @FXML
     protected void abortBtnClick(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

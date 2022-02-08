@@ -1,3 +1,4 @@
+/* Marc Beyer */
 package users;
 
 import container.DataController;

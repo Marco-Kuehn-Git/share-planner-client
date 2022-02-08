@@ -1,3 +1,4 @@
+/* Marco Kühn */
 package main;
 
 import com.jfoenix.controls.*;

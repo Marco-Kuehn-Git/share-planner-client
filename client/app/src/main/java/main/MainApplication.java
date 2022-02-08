@@ -1,3 +1,4 @@
+//Marc Beyer//
 package main;
 
 import config.Config;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.function.Consumer;
+
 
 public class MainApplication extends Application {
     @Override
