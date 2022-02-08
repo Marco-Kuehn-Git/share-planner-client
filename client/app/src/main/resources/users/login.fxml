@@ -26,7 +26,7 @@
     <JFXTextField styleClass="userField" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="userField"/>
     <Label styleClass="errorLbl" GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="userErrLabel"/>
 
-    <Label GridPane.rowIndex="2">Paswort</Label>
+    <Label GridPane.rowIndex="2">Passwort</Label>
     <JFXPasswordField styleClass="passField" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="passField"/>
     <Label styleClass="errorLbl" GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="passErrLabel"/>
 
