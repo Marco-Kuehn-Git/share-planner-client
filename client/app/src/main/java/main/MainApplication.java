@@ -55,7 +55,7 @@ public class MainApplication extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(
                 MainApplication.class.getResource("main-view.css")).toExternalForm()
         );
-        stage.setTitle("SharePlaner");
+        stage.setTitle("SharePlanner");
         stage.setScene(scene);
         stage.show();
     }
