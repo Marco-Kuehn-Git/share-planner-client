@@ -28,15 +28,15 @@ public class CreateEventController {
     @FXML
     protected JFXComboBox<String> comboBoxPriority;
     @FXML
-    private JFXToggleButton toggleBtnIsFullDay;
+    protected JFXToggleButton toggleBtnIsFullDay;
     @FXML
-    private JFXToggleButton toggleBtnIsPrivate;
+    protected JFXToggleButton toggleBtnIsPrivate;
     @FXML
     private Label labelError;
     @FXML
-    private JFXTimePicker timeStart;
+    protected JFXTimePicker timeStart;
     @FXML
-    private JFXTimePicker timeEnd;
+    protected JFXTimePicker timeEnd;
 
 
     public CreateEventController() {
